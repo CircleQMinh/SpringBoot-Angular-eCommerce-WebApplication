@@ -1,0 +1,139 @@
+
+
+
+/*! CSS Used from: https://preview.colorlib.com/theme/ogani/css/A.bootstrap.min.css+font-awesome.min.css+elegant-icons.css+nice-select.css+jquery-ui.min.css+owl.carousel.min.css+slicknav.min.css+style.css,Mcc.4YNTZ7I7f2.css.pagespeed.cf.sbKPPdYIiz.css */
+*,::after,::before{box-sizing:border-box;}
+h5,h6{margin-top:0;margin-bottom:.5rem;}
+ul{margin-top:0;margin-bottom:1rem;}
+a{color:#007bff;text-decoration:none;background-color:transparent;}
+a:hover{color:#0056b3;text-decoration:underline;}
+h5,h6{margin-bottom:.5rem;font-weight:500;line-height:1.2;}
+h5{font-size:1.25rem;}
+h6{font-size:1rem;}
+.col-lg-3,.col-md-4,.col-sm-6{position:relative;width:100%;padding-right:15px;padding-left:15px;}
+@media (min-width:576px){
+.col-sm-6{-ms-flex:0 0 50%;flex:0 0 50%;max-width:50%;}
+}
+@media (min-width:768px){
+.col-md-4{-ms-flex:0 0 33.333333%;flex:0 0 33.333333%;max-width:33.333333%;}
+}
+@media (min-width:992px){
+.col-lg-3{-ms-flex:0 0 25%;flex:0 0 25%;max-width:25%;}
+}
+@media print{
+*,::after,::before{text-shadow:none!important;box-shadow:none!important;}
+a:not(.btn){text-decoration:underline;}
+}
+.fa{display:inline-block;font:14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.fa-heart:before{content:"\f004";}
+.fa-retweet:before{content:"\f079";}
+.fa-shopping-cart:before{content:"\f07a";}
+h5,h6{margin:0;color:#111;font-weight:400;font-family:"Cairo",sans-serif;}
+h5{font-size:18px;}
+h6{font-size:16px;}
+a:hover,a:focus{text-decoration:none;outline:none;color:#fff;}
+ul{padding:0;margin:0;}
+.set-bg{background-repeat:no-repeat;background-size:cover;background-position:top center;}
+.featured__item{margin-bottom:50px;}
+.featured__item:hover .featured__item__pic .featured__item__pic__hover{bottom:20px;}
+.featured__item__pic{height:270px;position:relative;overflow:hidden;background-position:center center;}
+.featured__item__pic__hover{position:absolute;left:0;bottom:-50px;width:100%;text-align:center;-webkit-transition:all , .5s;-moz-transition:all , .5s;-ms-transition:all , .5s;-o-transition:all , .5s;transition:all , .5s;}
+.featured__item__pic__hover li{list-style:none;display:inline-block;margin-right:6px;}
+.featured__item__pic__hover li:last-child{margin-right:0;}
+.featured__item__pic__hover li:hover a{background:#7fad39;border-color:#7fad39;}
+.featured__item__pic__hover li:hover a i{color:#fff;transform:rotate(360deg);}
+.featured__item__pic__hover li a{font-size:16px;color:#1c1c1c;height:40px;width:40px;line-height:40px;text-align:center;border:1px solid #ebebeb;background:#fff;display:block;border-radius:50%;-webkit-transition:all , .5s;-moz-transition:all , .5s;-ms-transition:all , .5s;-o-transition:all , .5s;transition:all , .5s;}
+.featured__item__pic__hover li a i{position:relative;transform:rotate(0);-webkit-transition:all , .3s;-moz-transition:all , .3s;-ms-transition:all , .3s;-o-transition:all , .3s;transition:all , .3s;}
+.featured__item__text{text-align:center;padding-top:15px;}
+.featured__item__text h6{margin-bottom:10px;}
+.featured__item__text h6 a{color:#252525;}
+.featured__item__text h5{color:#252525;font-weight:700;}
+/*! CSS Used fontfaces */
+
+@font-face{font-family:'Cairo';font-style:normal;font-weight:200;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXLc1nY6Hkvalrub46O59ZMaA.woff2) format('woff2');unicode-range:U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:200;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXLc1nY6Hkvalrub46F59ZMaA.woff2) format('woff2');unicode-range:U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:200;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXLc1nY6Hkvalrub46L59Y.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXLc1nY6HkvalqKbI6O59ZMaA.woff2) format('woff2');unicode-range:U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXLc1nY6HkvalqKbI6F59ZMaA.woff2) format('woff2');unicode-range:U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:300;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXLc1nY6HkvalqKbI6L59Y.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXGc1nY6HkvalIkTpu0xg.woff2) format('woff2');unicode-range:U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXGc1nY6HkvalIvTpu0xg.woff2) format('woff2');unicode-range:U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXGc1nY6HkvalIhTps.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:600;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXLc1nY6Hkvalr-ao6O59ZMaA.woff2) format('woff2');unicode-range:U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:600;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXLc1nY6Hkvalr-ao6F59ZMaA.woff2) format('woff2');unicode-range:U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:600;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXLc1nY6Hkvalr-ao6L59Y.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:900;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXLc1nY6HkvalqiaY6O59ZMaA.woff2) format('woff2');unicode-range:U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:900;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXLc1nY6HkvalqiaY6F59ZMaA.woff2) format('woff2');unicode-range:U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:900;font-display:swap;src:url(https://fonts.gstatic.com/s/cairo/v10/SLXLc1nY6HkvalqiaY6L59Y.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+
+
+
+
+
+
+
+
+
+
+
+.searchbar{
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 1%;
+}
+
+form.searchbar input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+  }
+  
+  /* Style the submit button */
+  form.searchbar button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+  }
+  
+  form.searchbar button:hover {
+    background: #0b7dda;
+  }
+  
+  /* Clear floats */
+  form.searchbar::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+.pagination{
+    width: 100%;
+    margin-top: 1%;
+}
+
+/* Pagination links */
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+  }
+  
+  /* Style the active/current link */
+  .pagination a.active_page {
+    background-color: dodgerblue;
+    color: white;
+  }
+  
+  /* Add a grey background color on mouse-over */
+  .pagination a:hover:not(.active_page) {background-color: #ddd;}

@@ -1,0 +1,47 @@
+<section class="ftco-section" style="background-color: #000232;" >
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4" style="border: 2px solid yellow;">
+                <div class="login-wrap py-5">
+                    <div class="img d-flex align-items-center justify-content-center"
+                        style="background-image:url(https://cdn.dribbble.com/users/113499/screenshots/7006153/media/1af75c73d98c2c6b8217294e65a603a9.png?compress=1&resize=400x300)">
+                    </div>
+                    <h3 class="text-center mb-0">Welcome</h3>
+                    <p class="text-center">Sign in by entering the information below</p>
+                    <p class="text-center" *ngIf="loginFailed">Tài khoản không hợp lệ ! Hãy nhập lại</p>
+                    <form action="#" class="login-form" >
+                        <p>
+                            Username :
+                        </p>
+                        <div class="form-group">
+                            
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-user"></span></div>
+                            <input type="text" class="form-control" placeholder="Username" required=""  [(ngModel)]="username" name="username">
+                        </div>
+                        <p>
+                            Password :
+                        </p>
+                        <div class="form-group">
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-lock"></span></div>
+                            <input type="password" class="form-control" placeholder="Password" required=""  [(ngModel)]="password" name="password">
+                        </div>
+                        <div class="form-group d-md-flex">
+                            <div class="w-100 text-md-right">
+                                <a href="#">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" (click)="tryLogin()" class="btn form-control btn-primary rounded submit px-3">Login</button>
+                        </div>
+                    </form>
+                    <div class="w-100 text-center mt-4 text">
+                        <p class="mb-0">Don't have an account?</p>
+                        <a href="#">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
