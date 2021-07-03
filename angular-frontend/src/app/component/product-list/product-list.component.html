@@ -9,31 +9,52 @@
 
 
 <form class="searchbar">
-    <input type="text" placeholder="Search.." name="search">
-    <button type="submit"><i class="fa fa-search"></i></button>
+    <input type="text" placeholder="Search.." name="search" #searchInput (keyup.enter)=" getSearchResult(searchInput.value)">
+    <button type="submit" (click)=" getSearchResult(searchInput.value)"><i class="fa fa-search"></i></button>
 </form>
-<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-    <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#">1</a>
-            <a class="active_page" href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">&raquo;</a>
+
+<div class="row" style="margin-top: 3%;" *ngIf="!searchMode">
+    <div class="col-lg-12">
+        <div class="section-title">
+            <h2>Our Product</h2>
+        </div>
+        <div class="featured__controls">
+            <ul>
+                <li [class.active]="category=='all'" (click)="switchCate('all')"><a >All</a></li>
+                <li [class.active]="category=='Fruit'" (click)="switchCate('Fruit')"><a >Fruit</a></li>
+                <li [class.active]="category=='Vegetable'" (click)="switchCate('Vegetable')"><a >Vegetables</a></li>
+                <li [class.active]="category=='Confectionery'" (click)="switchCate('Confectionery')"><a >Confectionery</a></li>
+                <li [class.active]="category=='Snack'" (click)="switchCate('Snack')"><a >Snack</a></li>
+            </ul>
         </div>
     </div>
-   
-
+</div>
+<div class="row" style="margin-top: 3%;" *ngIf="searchMode">
+    <div class="col-lg-12">
+        <div class="section-title">
+            <h2>Found {{searchCount}} product(s)</h2>
+        </div>
+    </div>
 </div>
 
-<section class="py-5">
+<div class="row" style="margin-top: 3%;" *ngIf="searchMode">
+    <div class="col-lg-12">
+        <div class="section-title">
+           <button (click)="backToProduct()">Back to product list</button>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center"  *ngIf="!searchMode">
+    <div class="col-4" style="margin-left: 6%;">
+        <ngb-pagination [(page)]="pageNumber" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5"
+            [boundaryLinks]=true (pageChange)="getPage()">
+        </ngb-pagination>
+    </div>
+</div>
+<section class="py-5" style="margin-top: -5%;">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div *ngFor="let pro of products  | async" class="col-lg-3 col-md-4 col-sm-6"
-                style="border: 2px solid black;">
+            <div *ngFor="let pro of content  " class="col-lg-3 col-md-4 col-sm-4" style="border: 2px solid black;">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg" [ngStyle]="{'background-image':'url(' + pro.imgUrl + ')'}">
                         <ul class="featured__item__pic__hover">
@@ -52,3 +73,4 @@
         </div>
     </div>
 </section>
+

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/class/product';
 import { ProductService } from 'src/app/service/product.service';
@@ -10,14 +11,69 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class ProductListComponent implements OnInit {
   products!:Observable<Product[]>;
-  constructor(private productService:ProductService) { }
+  content!:Product[];
+  pageNumber:number=1;
+  pageSize:number=12;
+  collectionSize:number=0;
+  category:string="all"
+  searchMode:boolean=false;
+  searchCount:number=0
+  constructor(private productService:ProductService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.reloadData();
+    this.getData();
   }
 
-  reloadData() {
-    this.products = this.productService.getProductList();
-    //console.log(this.products);
+  getData() {
+    this.searchMode=false;
+    const cate=this.route.snapshot.paramMap.get("category");
+    if(cate!=null){
+      this.category=cate
+    }
+    this.productService.getPage(this.pageNumber,this.pageSize,this.category).subscribe(
+      data =>{
+        this.content=data.content;
+        this.collectionSize=data.totalElements;
+        this.pageNumber=data.number
+        this.pageSize=data.size
+      }
+    )
   }
+  getPage(){
+    this.productService.getPage(this.pageNumber,this.pageSize,this.category).subscribe(
+      data =>{
+        this.content=data.content;
+        this.collectionSize=data.totalElements;
+      }
+    )
+  }
+
+  switchCate(cate:string){
+    this.pageNumber=1;
+    this.pageSize=12;
+    this.category=cate;
+    this.productService.getPage(this.pageNumber,this.pageSize,this.category).subscribe(
+      data =>{
+        this.content=data.content;
+        this.collectionSize=data.totalElements;
+      }
+    )
+  }
+
+  getSearchResult(keyword:string){
+    this.searchMode=true;
+
+    this.productService.getSearchResult(keyword).subscribe(
+      data => {
+        this.content=data.content;
+        this.searchCount=data.totalElements;
+      }
+    )
+  }
+
+  backToProduct(){
+    this.getData();
+  }
+  
 }

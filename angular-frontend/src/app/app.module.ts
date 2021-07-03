@@ -12,9 +12,11 @@ import { NavComponent } from './component/nav/nav.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
-
+  { path: 'products/:category', component: ProductListComponent },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
+
   { path: 'products', component: ProductListComponent },
+ 
   { path: 'login', component: LoginComponent },
   {path: '**', redirectTo: '/error', pathMatch: 'full'}
 ];
