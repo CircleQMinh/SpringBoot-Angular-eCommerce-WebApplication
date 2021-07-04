@@ -1,0 +1,106 @@
+<section class="basket" data-cy="basket-page">
+    <div class="container">
+        <div class="row">
+            <nav class="col">
+                <ul class="breadcrumbs">
+                    <li class="breadcrumbs__item">
+                        <a href="/" class="breadcrumbs__link " title="Home" data-cy="breadcrumb-Home">Home</a>
+                    </li>
+                    <li class="breadcrumbs__item">
+                        <span class="breadcrumbs__link breadcrumbs__link--active " title="Basket"
+                            data-cy="breadcrumb-static">Basket</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h1 class="title">Your cart <span class="basket__count" data-cy="basket-count">(<span
+                            class="i-basket-count indicator__count--active" data-wishlist-count="2">{{totalItem}}</span>)</span>
+                </h1>
+            </div>
+        </div>
+        <div class="i-product-update-error errors hidden-xs-up">
+            <p class="errors_error i-product-update-error-text" data-cy="product-update-error-message"></p>
+        </div>
+        <div class="row" style="border: solid blueviolet;">
+            <div class="col-md-8">
+                <a class="btn btn--primary centered i-checkout-button hidden-md-up "
+                    style="margin-top: 10px; display: none;" href="https://www.surfdome.com/checkout/account"
+                    title="Proceed to checkout" data-cy="proceed-to-checkout-btn">Proceed to checkout</a>
+                <br>
+                <!-- if empty -->
+                <div class="i-empty-basket hidden-xs-up" data-cy="empty-basket" *ngIf="totalItem==0">
+                    <br>
+                    Your cart is currently empty.
+                </div>
+                <!-- item -->
+                <div class="basket-item row i-basket-item basket-item" data-stockid="1028286" data-cy="product-271039" *ngFor="let pro of cartItems;index as i">
+                    <div class="basket-item__image col-4 col-lg-2" data-cy="product-image">
+                        <img alt="{{pro.name}}"                       
+                            src="{{pro.imgUrl}}"
+                            width="120" height="120">
+                    </div>
+                    <div class="details col-8 col-lg-10">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-12 basket-item__details">
+                                <h2 class="basket-item__title"><a
+                                        href=""
+                                        data-cy="product-name"
+                                        >{{pro.name}}</a></h2>
+                                <h3 class="basket-item__meta" data-cy="product-colour"> {{pro.category}}</h3>
+                                <h3 class="basket-item__meta" data-cy="product-size">Price : ${{pro.price}}</h3>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="cart-qty">
+                                    <a class="cart-qty__btn cart-qty__btn--down i-basket-change-quantity"
+                                        data-qty-change="-1" data-stockid="1028286" data-cy="decrease-quantity-btn"
+                                        title="Decrease" (click)="decrementQuantity(pro)">-</a>
+                                    <input type="number" max="47" min="1" name=""
+                                        class="cart-qty__input i-basket-quantity" data-cy="item-quantity" readonly=""
+                                        value="{{cartItemQuantity[i]}}" data-stockid="1028286" style="width: fit-content;">
+                                    <a class="cart-qty__btn cart-qty__btn--up i-basket-change-quantity"
+                                        data-qty-change="1" data-stockid="1028286" data-cy="increase-quantity-btn"
+                                        title="Increase" (click)="incrementQuantity(pro)">+</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <div class="price">
+                                    <h4 class="price--fullprice i-product-full-price" data-cy="item-price">${{(pro.price*cartItemQuantity[i]).toFixed(2)}}</h4>
+                                </div>
+                                <a class="basket-item__remove i-basket-remove" data-stockid="1028286"
+                                    data-cy="remove-item-btn" title="Remove From Cart" (click)="removeItem(pro)">Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- item -->
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <a class="btn btn--primary centered i-checkout-button hidden-sm-down " style="display: none;"
+                     title="Proceed to checkout"
+                    data-cy="proceed-to-checkout-btn">Proceed to checkout</a>
+                <br>
+                <section class="basket-summary">
+                    <h2 class="basket_summary__total">Total cost<span class="basket-summary__value i-basket-total"
+                            data-cy="basket-total">{{totalPrice}}</span></h2>
+                </section>
+                <form class="promo-code " >
+                    <h5 class="title--small promo-code__title">Thank you for shopping with us</h5>
+                    <p class="promo-code__intro">Checkout now or continue shopping</p>
+                    <input type="hidden" name="_token" value="wbSzToBzrXkN9X5Z7bn5jDQvAr8pFavgNEXHzEfN">
+                </form>
+                <a class="btn btn--primary centered i-checkout-button "
+                    title="Proceed to checkout" data-cy="proceed-to-checkout-btn">Proceed to checkout</a>
+                <br>
+                <a ><button class="btn btn--secondary centered" style="border: 1px solid black;"
+                    data-cy="continue-shopping-btn">Checkout---<i class="fas fa-money-check-alt"></i></button></a>
+                <a ><button class="btn btn--secondary centered" style="border: 1px solid red;"
+                        data-cy="continue-shopping-btn">Continue shopping---<i class="fas fa-shopping-cart"></i></button></a>
+                <p class="centered">Free 30 day return policy</p>
+                
+            </div>
+        </div>
+    </div>
+</section>

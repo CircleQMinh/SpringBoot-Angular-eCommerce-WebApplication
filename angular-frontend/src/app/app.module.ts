@@ -10,13 +10,15 @@ import { ProductListComponent } from './component/product-list/product-list.comp
 import { LoginComponent } from './component/login/login.component';
 import { NavComponent } from './component/nav/nav.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CartStatusComponent } from './component/cart-status/cart-status.component';
+import { CartDetailComponent } from './component/cart-detail/cart-detail.component';
+import { ProductInfoComponent } from './component/product-info/product-info.component';
 
 const routes: Routes = [
-  { path: 'products/:category', component: ProductListComponent },
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
-
-  { path: 'products', component: ProductListComponent },
- 
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'cart-detail', component: CartDetailComponent},
+  { path: 'home', component: ProductListComponent },
+  { path: 'products/:id', component: ProductInfoComponent },
   { path: 'login', component: LoginComponent },
   {path: '**', redirectTo: '/error', pathMatch: 'full'}
 ];
@@ -27,7 +29,10 @@ const routes: Routes = [
     AppComponent,
     ProductListComponent,
     LoginComponent,
-    NavComponent
+    NavComponent,
+    CartStatusComponent,
+    CartDetailComponent,
+    ProductInfoComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

@@ -1,0 +1,67 @@
+<div class="container" *ngIf="product.name">
+    
+    <div class="card" style="border: 3px solid #544bc8;
+    margin-top: 10%;
+    margin-bottom: 2%;">
+        <div class="i-product-update-error errors hidden-xs-up" >
+            <p class="errors_error i-product-update-error-text" data-cy="product-update-error-message"></p>
+        </div>
+        <div class="container-fliud">
+            
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+                    
+                    <div class="preview-pic tab-content" >
+                      <div class="tab-pane active" id="pic-1">
+                          <img src="{{product!.imgUrl}}" /></div>
+                    </div>
+
+                    
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title">{{product.name}}</h3>
+ 
+                    <p class="product-description">Category : {{product.category}}</p>
+                    <h3 class="product-title">Product Description</h3>
+ 
+                    <p class="product-description" style="    height: 45%;
+                    border: solid mediumslateblue 2px;
+                    padding: 1%;">{{product.description}}</p>
+                    <h4 class="price">current price: <span>${{product.price}} </span></h4>
+            
+                    <div class="action">
+                        <button class="like btn btn-default" type="button" style="background-color: red;margin-right: 3%;"><span class="fa fa-heart"></span></button>
+                        <button class="add-to-cart btn btn-default" type="button"><i class="fas fa-shopping-cart"></i>  add to cart</button>
+                       
+                    </div>
+                    <h4 class="price" style="margin-top: 3%;">product number: <span> </span></h4>
+                    <div>
+                        <button (click)="prev()" class="like btn btn-default" type="button" style="background-color: rgb(100, 185, 211);margin-left: 3%;"><span class="fas fa-arrow-left"></span></button>
+                        <button class="like btn btn-default" style="background-color: transparent;color: #000;border: 1px solid black;">{{product.id}}</button>
+                        <button (click)="next()" class="like btn btn-default" type="button" style="background-color: rgb(100, 185, 211);"><span class="fas fa-arrow-right"></span></button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="!product.name">
+    
+    <div class="card" style="border: 3px solid #544bc8;
+    margin-top: 10%;
+    margin-bottom: 2%;">
+        <div class="i-product-update-error errors hidden-xs-up" >
+            <p class="errors_error i-product-update-error-text" data-cy="product-update-error-message"></p>
+        </div>
+        <div class="container-fliud" style="height: 400px;">
+            
+           <p class="product-title" style="text-align: center;">There is no product with this id!</p>
+           <button style="text-align: center;
+           margin-left: 37.5%;
+           width: 25%;" routerLink="/home">Go back to homepage!</button>
+           
+        </div>
+    </div>
+</div>

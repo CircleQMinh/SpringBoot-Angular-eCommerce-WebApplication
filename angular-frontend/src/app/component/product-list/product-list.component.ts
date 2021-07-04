@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/class/product';
+import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class ProductListComponent implements OnInit {
   searchMode:boolean=false;
   searchCount:number=0
   constructor(private productService:ProductService,
+              private cartService:CartService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -74,6 +76,10 @@ export class ProductListComponent implements OnInit {
 
   backToProduct(){
     this.getData();
+  }
+
+  addToCart(pro:Product){
+    this.cartService.addToCart(pro)
   }
   
 }
