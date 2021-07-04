@@ -94,4 +94,5 @@ public class Product {
     public void setLastUpdate(java.sql.Timestamp lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
+
 }

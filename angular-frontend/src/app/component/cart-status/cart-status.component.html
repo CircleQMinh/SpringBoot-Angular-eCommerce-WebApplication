@@ -1,0 +1,8 @@
+<form class="d-flex" routerLink="cart-detail">
+    <button class="btn btn-outline-dark" type="submit">
+      <i class="bi-cart-fill me-1"></i>
+      Cart
+      <span class="badge bg-dark text-white ms-1 rounded-pill">{{totalItem}}</span>
+      <span class="badge bg-dark text-white ms-1 rounded-pill">{{totalPrice.toFixed(2)}}</span>
+    </button>
+  </form>

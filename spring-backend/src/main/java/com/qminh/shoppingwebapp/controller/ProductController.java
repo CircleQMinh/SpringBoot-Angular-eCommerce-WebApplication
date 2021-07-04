@@ -1,9 +1,11 @@
 package com.qminh.shoppingwebapp.controller;
+import com.qminh.shoppingwebapp.exception.ResourceNotFoundException;
 import com.qminh.shoppingwebapp.model.Product;
 import com.qminh.shoppingwebapp.repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,13 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
+    @GetMapping("/Products/{id}")
+    public ResponseEntity<Product> getEmployeeById(@PathVariable(value = "id") Long proId)
+            throws ResourceNotFoundException {
+        Product pro = productRepository.findById(proId)
+                .orElse(new Product());
+        return ResponseEntity.ok().body(pro);
+    }
     @GetMapping("/Products/all")
     public List<Product> getAllProduct() {
         return productRepository.findAll();
@@ -26,7 +35,7 @@ public class ProductController {
 
     @GetMapping("/Products")
     Page<Product> getProductPage(@RequestParam(defaultValue = "1") int pageNumber,
-                                 @RequestParam(defaultValue = "8") int pageSize,
+                                 @RequestParam(defaultValue = "12") int pageSize,
                                  @RequestParam(defaultValue = "") String category){
         Page<Product> page;
         if(category.equals("all")){
