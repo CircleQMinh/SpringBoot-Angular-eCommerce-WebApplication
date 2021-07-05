@@ -1,0 +1,128 @@
+<section class="ftco-section" style="background-color: #000232;" *ngIf="!verifyMode">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4" style="border: 2px solid yellow;">
+                <div class="login-wrap py-5">
+                    <div class="img d-flex align-items-center justify-content-center"
+                        style="background-image:url(https://cdn.dribbble.com/users/113499/screenshots/7006153/media/1af75c73d98c2c6b8217294e65a603a9.png?compress=1&resize=400x300)">
+                    </div>
+                    <h3 class="text-center mb-0">Welcome</h3>
+                    <p class="text-center">Sign up by entering the information below</p>
+                    <form action="#" class="login-form">
+                       
+                        <p>
+                            Username :
+                        </p>
+                        <p class="text-center" *ngIf="usernameError"><i class="fas fa-exclamation-triangle"></i>The username already exists or not not useable. Please use a different username!</p>
+                        <div class="form-group">
+
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-user"></span></div>
+                            <input type="text" class="form-control" placeholder="Username" required="" name="username" [(ngModel)]="username">
+                        </div>
+                        
+                        <p>
+                            Password :
+                        </p>
+                        <p class="text-center" *ngIf="passwordError"><i class="fas fa-exclamation-triangle"></i>Password must be atleast 8 digits long!</p>
+                        <div class="form-group">
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-lock"></span></div>
+                            <input type="password" class="form-control" placeholder="Password" required=""
+                                name="password" [(ngModel)]="password">
+                        </div>
+                        <p>
+                            Name :
+                        </p>
+                        <p class="text-center" *ngIf="nameError"><i class="fas fa-exclamation-triangle"></i>Enter your name !</p>
+                        <div class="form-group">
+
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="fas fa-signature"></span></div>
+                            <input type="text" class="form-control" placeholder="Enter your name" required=""
+                                name="name" [(ngModel)]="name">
+                        </div>
+                        <p>
+                            Email :
+                        </p>
+                        <p class="text-center" *ngIf="emailError"><i class="fas fa-exclamation-triangle"></i>Email already is used or not not useable. Please use a different email!</p>
+                        <div class="form-group">
+
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="far fa-envelope"></span></div>
+                            <input type="text" class="form-control" placeholder="Enter your email" required=""
+                                name="email" [(ngModel)]="email" >
+                        </div>
+                        <p>
+                            Phone :
+                        </p>
+                        <p class="text-center" *ngIf="phoneError"><i class="fas fa-exclamation-triangle"></i>Enter your phone number !</p>
+                        <div class="form-group">
+
+                            <div class="icon d-flex align-items-center justify-content-center"><span
+                                    class="fal fa-phone"></span></div>
+                            <input type="text" (keypress)="numberOnly($event)" class="form-control" placeholder="Enter your Phone" required=""
+                                name="phone" [(ngModel)]="phone">
+                        </div>
+                        <p class="text-center" *ngIf="agreeError"><i class="fas fa-exclamation-triangle"></i>You must accept out terms and conditions !</p>
+                        <div class="form-group">
+                            <input type="checkbox" [(ngModel)]="agree" name="agree" checked> <p style="display: inline-block;margin-left: 10px;"> I agree to the terms and conditions</p>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit"
+                                class="btn form-control btn-primary rounded submit px-3" (click)="tryRegister()">Register</button>
+                        </div>
+                        <div class="clearfix" *ngIf="isLoading">
+                            <div class="spinner-border text-light" role="status">
+                               
+                            </div>
+                            <p style="display: inline-block;margin-left: 10px;">Register...</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="ftco-section" style="background-color: #000232;" *ngIf="verifyMode">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4" style="border: 2px solid yellow;">
+                <div class="login-wrap py-5">
+                    <div class="img d-flex align-items-center justify-content-center"
+                        style="background-image:url(https://cdn.dribbble.com/users/113499/screenshots/7006153/media/1af75c73d98c2c6b8217294e65a603a9.png?compress=1&resize=400x300)">
+                    </div>
+                    <h3 class="text-center mb-0">Check your email for verifycation code</h3>
+                    <p class="text-center">A email has been sent to {{email}} </p>
+                    <form action="#" class="login-form">
+                       
+                        <p>
+                           Enter your code :
+                        </p>
+                        <!-- <p class="text-center" *ngIf="usernameError"><i class="fas fa-exclamation-triangle"></i>Tên tài khoản đã được sử dụng hoặc không hợp lệ ! Hãy nhập lại</p> -->
+                        <div class="form-group">
+
+                            <div class="icon d-flex align-items-center justify-content-center"><span class="fas fa-envelope-open-text"></span></div>
+                            <input type="text" class="form-control" placeholder="Verifycation code" required="" name="code"  [(ngModel)]="verifycode">
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit"
+                                class="btn form-control btn-primary rounded submit px-3" (click)="checkValidateCode()">Verify</button>
+                        </div>
+                        <div class="clearfix" *ngIf="isLoading">
+                            <div class="spinner-border text-light" role="status">
+                               
+                            </div>
+                            <p style="display: inline-block;margin-left: 10px;">Verify...</p>
+                        </div>
+                        <p class="text-center" *ngIf="registerComplete">Registration complete! <a routerLink="/login"><b>Login</b></a> now !</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
