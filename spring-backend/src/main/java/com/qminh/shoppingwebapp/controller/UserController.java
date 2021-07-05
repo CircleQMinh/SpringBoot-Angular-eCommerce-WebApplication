@@ -40,7 +40,7 @@ public class UserController {
         return ResponseEntity.ok().body(user);
     }
 
-    @PostMapping("/Users")
+    @PostMapping("/Users/createUser")
     public User createUser( @RequestBody User User) {
         return userRepository.save(User);
     }
@@ -81,6 +81,33 @@ public class UserController {
             response.put("success", Boolean.TRUE);
         }
 
+        return response;
+    }
+
+    @GetMapping("/User/checkIfUsernameExist")
+    public Map<String, Boolean> checkIfUsernameExist(@RequestParam(defaultValue = "empty") String username) {
+        User u = userRepository.findByUsername(username);
+        Map<String, Boolean> response = new HashMap<>();
+        if(u==null){
+            response.put("success", Boolean.FALSE);
+        }
+        else{
+            response.put("success", Boolean.TRUE);
+        }
+        return response;
+    }
+
+
+    @GetMapping("/User/checkIfEmailExist")
+    public Map<String, Boolean> checkIfEmailExist(@RequestParam(defaultValue = "empty") String email) {
+        User u = userRepository.findByEmail(email);
+        Map<String, Boolean> response = new HashMap<>();
+        if(u==null){
+            response.put("success", Boolean.FALSE);
+        }
+        else{
+            response.put("success", Boolean.TRUE);
+        }
         return response;
     }
 }

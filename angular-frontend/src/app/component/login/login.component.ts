@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         if(this.dataRegister.success==true){
           this.loginFailed=false;
           this.getUserInfo();
-          this.router.navigate(['/products']);
+          this.router.navigate(['/home']);
           this.loginService.isLogin=true;
         }
         else{

@@ -13,11 +13,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './component/cart-status/cart-status.component';
 import { CartDetailComponent } from './component/cart-detail/cart-detail.component';
 import { ProductInfoComponent } from './component/product-info/product-info.component';
+import { RegisterComponent } from './component/register/register.component';
+import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'cart-detail', component: CartDetailComponent},
   { path: 'home', component: ProductListComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'products/:id', component: ProductInfoComponent },
   { path: 'login', component: LoginComponent },
   {path: '**', redirectTo: '/error', pathMatch: 'full'}
@@ -32,7 +36,9 @@ const routes: Routes = [
     NavComponent,
     CartStatusComponent,
     CartDetailComponent,
-    ProductInfoComponent
+    ProductInfoComponent,
+    RegisterComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
