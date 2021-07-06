@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../class/user';
 
@@ -12,7 +13,7 @@ export class LoginService {
   user:User=new User();
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private route:Router) { }
 
 
   tryLogin(un:string,pw:string){
@@ -27,6 +28,7 @@ export class LoginService {
   tryLogout(){
     this.isLogin=false;
     this.user=new User();
+    this.route.navigateByUrl("/home")
   }
 
   checkIfUsernameExist(un:string):Observable<any>{

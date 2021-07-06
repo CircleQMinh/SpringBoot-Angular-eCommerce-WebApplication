@@ -15,12 +15,17 @@ import { CartDetailComponent } from './component/cart-detail/cart-detail.compone
 import { ProductInfoComponent } from './component/product-info/product-info.component';
 import { RegisterComponent } from './component/register/register.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
+import { AccountInfoComponent } from './component/account-info/account-info.component';
+import { AccountNewpasswordComponent } from './component/account-newpassword/account-newpassword.component';
+import { AccountOrderinfoComponent } from './component/account-orderinfo/account-orderinfo.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'cart-detail', component: CartDetailComponent},
   { path: 'home', component: ProductListComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'account-info', component: AccountInfoComponent },
+  { path: 'account-newpassword', component: AccountNewpasswordComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'products/:id', component: ProductInfoComponent },
   { path: 'login', component: LoginComponent },
@@ -38,7 +43,10 @@ const routes: Routes = [
     CartDetailComponent,
     ProductInfoComponent,
     RegisterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    AccountInfoComponent,
+    AccountNewpasswordComponent,
+    AccountOrderinfoComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

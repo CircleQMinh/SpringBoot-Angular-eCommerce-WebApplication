@@ -1,7 +1,9 @@
 package com.qminh.shoppingwebapp.controller;
 
 import com.qminh.shoppingwebapp.model.User;
+import com.qminh.shoppingwebapp.model.VerifyCode;
 import com.qminh.shoppingwebapp.repo.UserRepository;
+import com.qminh.shoppingwebapp.repo.VerifyRepository;
 import com.qminh.shoppingwebapp.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -21,7 +23,8 @@ public class MailController {
     public JavaMailSender emailSender;
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private VerifyRepository verifyRepository;
 
     @GetMapping ("/sendEmailVerifyRegister")
     public Map<String, String> sendSimpleEmail(@RequestParam(defaultValue = "") String email) {
@@ -79,4 +82,22 @@ public class MailController {
 
         return response;
     }
+
+    @GetMapping("/requestVerifyCode")
+    public Map<String,String> requestVerifyCode(@RequestParam(defaultValue = "") String email){
+        Map<String,String> response = new HashMap<>();
+        String code=RandomString.getRandomString(6);
+        VerifyCode vc = new VerifyCode();
+        vc.setVerifyCode(code);
+        vc.setEmail(email);
+        verifyRepository.save(vc);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("Your Verification Code");
+        message.setText("Your verification code is : "+code);
+        this.emailSender.send(message);
+        response.put("success","true");
+        return response;
+    }
+
 }
