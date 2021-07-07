@@ -18,6 +18,7 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
 import { AccountInfoComponent } from './component/account-info/account-info.component';
 import { AccountNewpasswordComponent } from './component/account-newpassword/account-newpassword.component';
 import { AccountOrderinfoComponent } from './component/account-orderinfo/account-orderinfo.component';
+import { CheckoutComponent } from './component/checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'account-info', component: AccountInfoComponent },
   { path: 'account-newpassword', component: AccountNewpasswordComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: 'products/:id', component: ProductInfoComponent },
   { path: 'login', component: LoginComponent },
   {path: '**', redirectTo: '/error', pathMatch: 'full'}
@@ -46,7 +48,8 @@ const routes: Routes = [
     ForgotPasswordComponent,
     AccountInfoComponent,
     AccountNewpasswordComponent,
-    AccountOrderinfoComponent
+    AccountOrderinfoComponent,
+    CheckoutComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
