@@ -94,8 +94,8 @@
                 <a class="btn btn--primary centered i-checkout-button "
                     title="Proceed to checkout" data-cy="proceed-to-checkout-btn">Proceed to checkout</a>
                 <br>
-                <a ><button class="btn btn--secondary centered" style="border: 1px solid black;"
-                    data-cy="continue-shopping-btn">Checkout---<i class="fas fa-money-check-alt"></i></button></a>
+                <a *ngIf="totalItem>0"><button class="btn btn--secondary centered" style="border: 1px solid black;"
+                    data-cy="continue-shopping-btn" routerLink="/checkout">Checkout---<i class="fas fa-money-check-alt"></i></button></a>
                 <a ><button class="btn btn--secondary centered" style="border: 1px solid red;"
                         data-cy="continue-shopping-btn">Continue shopping---<i class="fas fa-shopping-cart"></i></button></a>
                 <p class="centered">Free 30 day return policy</p>
