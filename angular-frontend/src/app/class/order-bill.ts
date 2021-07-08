@@ -7,6 +7,9 @@ export class OrderBill {
     address!:string
     phone!: string
     email!: string
+    orderDate!:string
     paymentMethod!: string
     status!: number
+    totalItem!:number
+    totalPrice!:number
 }

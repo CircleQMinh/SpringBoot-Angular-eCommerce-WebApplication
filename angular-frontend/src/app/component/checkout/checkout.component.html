@@ -1,4 +1,4 @@
-<div class="main-content page-m">
+<div class="main-content page-m" *ngIf="!orderComplete">
 
     <h1>Order infomation</h1>
     <div class="section-content section-content-p30" style="margin-top: 5%;padding: 5%;
@@ -11,7 +11,7 @@
                 <!-- customer form group -->
                 <div  class="form-area" style="border: 2px solid black;">
                     <h3 style="border: 2px solid black;">Contact Info</h3>
-
+                    <p class="text-center" *ngIf="nameError"><i class="fas fa-exclamation-triangle"></i>Enter contact name !</p>
                     <div class="row">
                         <div class="col-md-2"> <label>Contact name</label></div>
                         <div class="col-md-9">
@@ -20,7 +20,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <p class="text-center" *ngIf="emailError"><i class="fas fa-exclamation-triangle"></i>Enter your email !</p>
                     <div class="row">
                         <div class="col-md-2"> <label>Email</label></div>
                         <div class="col-md-9">
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <p class="text-center" *ngIf="phoneError"><i class="fas fa-exclamation-triangle"></i>Enter your phone number !</p>
                     <div class="row">
                         <div class="col-md-2"> <label>Phone</label></div>
                         <div class="col-md-9">
@@ -45,7 +45,7 @@
                 <div class="form-area" style="border: 2px solid black;">
                     <h3 style="border: 2px solid black;">Shipping Address</h3>
 
-
+                    <p class="text-center" *ngIf="addressError"><i class="fas fa-exclamation-triangle"></i>Enter your shipping address !</p>
                     <div class="row">
                         <div class="col-md-2"> <label>Number </label></div>
                         <div class="col-md-9">
@@ -106,15 +106,35 @@
 
                     <p>Total Quantity: {{totalQuantity}}</p>
                     <p>Shipping: FREE</p>
-                    <p>Total Price: {{totalPrice}}</p>
+                    <p>Total Price: {{totalPrice.toFixed(2)}}</p>
                 </div>
 
                 <!-- submit button-->
                 <div class="text-center">
                     <button (click)="sendOrder()" class="btn btn-info">Purchase</button>
                 </div>
-
+                <div class="clearfix" *ngIf="isLoading">
+                    <div class="spinner-border text-light" role="status">
+                       
+                    </div>
+                    <p style="display: inline-block;margin-left: 10px;">Saving your order...</p>
+                </div>
             </form>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="main-content page-m" *ngIf="orderComplete">
+
+    <h1>Order Complete</h1>
+    <div class="section-content section-content-p30" style="margin-top: 5%;padding: 5%;
+    border: solid;
+    background-color: darkslateblue;">
+        <div class="container-fluid">
+            <h2>Your order have been saved ! Thank you for shopping with us !</h2>
+            
 
         </div>
     </div>

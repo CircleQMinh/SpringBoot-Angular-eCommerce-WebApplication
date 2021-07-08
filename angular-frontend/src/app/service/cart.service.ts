@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { OrderBill } from '../class/order-bill';
+import { OrderDetail } from '../class/order-detail';
 import { Product } from '../class/product';
 
 @Injectable({
@@ -12,7 +14,7 @@ export class CartService {
 
   totalPrice: Subject<number> = new Subject<number>();
   totalQuantity: Subject<number> = new Subject<number>();
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   computeCartTotals() {
     let sum=0;
@@ -67,6 +69,7 @@ export class CartService {
       }
     }
     this.computeCartTotals();
+    
   }
   removeItem(pro:Product){
     for(let i = 0; i < this.cartItems.length; i++){
@@ -80,4 +83,17 @@ export class CartService {
     this.computeCartTotals();
   }
 
+  emptyCart(){
+    this.cartItems=[]
+    this.cartItemsQuantity=[]
+    this.computeCartTotals()
+  }
+
+  saveOrder(order:OrderBill): Observable<any> {
+    return this.http.post(`http://localhost:8080/api/v1/Orders/createOrder`, order);
+  }
+
+  saveOrderDetail(od:OrderDetail): Observable<any> {
+    return this.http.post(`http://localhost:8080/api/v1/Orders/createOrderDetail`, od);
+  }
 }

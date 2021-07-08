@@ -19,6 +19,7 @@ import { AccountInfoComponent } from './component/account-info/account-info.comp
 import { AccountNewpasswordComponent } from './component/account-newpassword/account-newpassword.component';
 import { AccountOrderinfoComponent } from './component/account-orderinfo/account-orderinfo.component';
 import { CheckoutComponent } from './component/checkout/checkout.component';
+import { AccountOrderlistComponent } from './component/account-orderlist/account-orderlist.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'account-info', component: AccountInfoComponent },
   { path: 'account-newpassword', component: AccountNewpasswordComponent },
+  { path: 'account-orderlist', component: AccountOrderlistComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'products/:id', component: ProductInfoComponent },
@@ -49,7 +51,8 @@ const routes: Routes = [
     AccountInfoComponent,
     AccountNewpasswordComponent,
     AccountOrderinfoComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    AccountOrderlistComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

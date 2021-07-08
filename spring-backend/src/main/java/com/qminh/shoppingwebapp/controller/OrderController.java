@@ -6,6 +6,8 @@ import com.qminh.shoppingwebapp.model.User;
 import com.qminh.shoppingwebapp.repo.OrderDetailRepository;
 import com.qminh.shoppingwebapp.repo.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +40,26 @@ public class OrderController {
     @PostMapping("/Orders/createOrderDetail")
     public OrderDetail createOrderDetail( @RequestBody OrderDetail orderDetail) {
         return orderDetailRepository.save(orderDetail);
+    }
+
+    @GetMapping("/getUserOrders")
+    public Page<OrderBill> getUserOrders(@RequestParam(defaultValue = "") Long id,
+                                         @RequestParam(defaultValue = "order_date") String order,
+                                         @RequestParam(defaultValue = "1") int pageNumber,
+                                         @RequestParam(defaultValue = "5") int pageSize){
+
+        Page<OrderBill> page = null;
+
+        if(order.equals("order_date")){
+            page=orderRepository.findByUserIdOrderByOrderDate(id,PageRequest.of(pageNumber-1,pageSize));
+        }
+        else if(order.equals("price")){
+            page=orderRepository.findByUserIdOrderByTotalPriceDesc(id,PageRequest.of(pageNumber-1,pageSize));
+        }
+        else if(order.equals("method")){
+            page=orderRepository.findByUserIdOrderByPaymentMethod(id,PageRequest.of(pageNumber-1,pageSize));
+        }
+        return page;
     }
 
 
