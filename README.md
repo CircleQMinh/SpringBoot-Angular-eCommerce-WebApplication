@@ -5,3 +5,4 @@
 05-07-2021 : thêm chức năng đăng ký tài khoản và reset mật khẩu.<br>
 06-07-2021 : thêm trang thông tin tài khoản và thay đổi mật khẩu.<br>
 07-07-2021 : thêm trang checkout và thiết lập database cho đơn hàng.<br>
+08-07-2021 : thêm chức năng lưu đơn hàng và trang lịch sử đơn hàng.<br>
