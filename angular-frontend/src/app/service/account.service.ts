@@ -18,4 +18,9 @@ export class AccountService {
     return this.http.get(`http://localhost:8080/api/v1/requestVerifyChangePassword?email=${email}&code=${code}&pass=${pass}`)
   }
 
+
+  getUserOrder(id:number,order:string,page:number,pagesize:number):Observable<any>{
+    return this.http.get(`http://localhost:8080/api/v1/getUserOrders?id=${id}&pageNumber=${page}&pageSize=${pagesize}&order=${order}`)
+  }
+
 }

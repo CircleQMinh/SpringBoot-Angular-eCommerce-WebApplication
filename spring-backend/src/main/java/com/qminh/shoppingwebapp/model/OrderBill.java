@@ -1,6 +1,7 @@
 package com.qminh.shoppingwebapp.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "orderbill", schema = "dbtmdt")
@@ -34,13 +35,20 @@ public class OrderBill {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "order_date")
+    private String orderDate;
+
     @Column(name = "payment_method")
     private String paymentMethod;
 
     @Column(name = "status")
     private Integer status;
 
+    @Column(name = "total_item")
+    private Integer totalItem;
 
+    @Column(name = "total_price")
+    private BigDecimal totalPrice;
     public Long getId() {
         return this.id;
     }
@@ -56,7 +64,13 @@ public class OrderBill {
     public void setContactName(String contactName) {
         this.contactName = contactName;
     }
+    public String getOrderDate() {
+        return this.orderDate;
+    }
 
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
+    }
 
     public String getAddress() {
         return this.address;
@@ -97,5 +111,19 @@ public class OrderBill {
     public void setStatus(Integer status) {
         this.status = status;
     }
+    public Integer getTotalItem() {
+        return this.totalItem;
+    }
 
+    public void setTotalItem(Integer totalItem) {
+        this.totalItem = totalItem;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return this.totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }

@@ -72,62 +72,82 @@
     </div>
     <div class="_3D9BVC">
         <div class="h4QDlo" role="main">
-            <form>
-                <div class="kJiu0u">
-                    <div class="ZsX2q-">
-                        <h1 class="_2xVij2">Change Password</h1>
-                        <div class="_2PlnUp">For account security, please do not share your password with others</div>
-                        <div class="_2PlnUp" *ngIf="repeatError"><i class="fas fa-exclamation-triangle"></i>Password is not the same</div>
-                        <div class="_2PlnUp" *ngIf="passError"><i class="fas fa-exclamation-triangle"></i>Password must be atleast 8 digit long</div>
-                        <div class="_2PlnUp" *ngIf="emailSent"><i class="fas fa-exclamation-triangle"></i>An email has been sent to {{user.email}}</div>
-                        <div class="_2PlnUp" *ngIf="verifyError"><i class="fas fa-exclamation-triangle"></i>Verify code not correct</div>
-                        <div class="_2PlnUp" *ngIf="verifyComplete"><i class="fas fa-exclamation-triangle"></i>Your password has been changed</div>
-                    </div>
-                    <div class="_2gERne">
-                        <div class="eSOrcn">
-                            <div class="_3m9JxV">
-                                <div class="_1p2sNF">
-                                    <div class="J7OZkm"><label class="_3W1PU2" for="password">New Password</label></div>
-                                    <div class="_38MRMp"><input class="_2R9TsD _3_Hq9P" type="password"
-                                            autocomplete="off" name="password" value="" [(ngModel)]="password"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="eSOrcn">
-                            <div class="_3m9JxV">
-                                <div class="_1p2sNF">
-                                    <div class="J7OZkm"><label class="_3W1PU2" for="passwordRepeat">Repeat new
-                                            password</label></div>
-                                    <div class="_38MRMp">
-                                        <input class="_2R9TsD _3_Hq9P" type="password" autocomplete="off"
-                                            name="repassword" value="" [(ngModel)]="repassword">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="eSOrcn">
-                            <div class="_3m9JxV">
-                                <div class="_1p2sNF">
-                                    <div class="J7OZkm"><label class="_3W1PU2" for="otp">Verification Code</label></div>
-                                    <div class="_38MRMp">
-                                        <div class="_3fQyST">
-                                            <div class="_2Xkw2E _3wMbl7"><input class="_1v16qs _3wMbl7" name="code"
-                                                    type="text" autocomplete="off" value="" [(ngModel)]="code"></div><button class="OK6Cf4"
-                                                (click)="tryResetPass()">Send verify email</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="eSOrcn" *ngIf="emailSent">
-                            <div class="_1DS7fG"></div>
-                            <div class="_1IcdS-"><button type="button"
-                                    class="btn btn-solid-primary btn--m btn--inline btn-solid-primary" (click)="tryVerify()">Verify</button>
-                            </div>
+            <div class="container payment-container">
+                <div class="main-container-title">
+                    <div class="form-container">
+                        <div class="title-section">
+                            <p class="title">Order History</p>
+                            <p class="description"><span>View your account payment details and orders.</span></p>
                         </div>
                     </div>
                 </div>
-            </form>
+                <div class="results-container">
+                    <div class="select-container">
+                        <div class="select-div"><select class="select select-history select-lg" [(ngModel)]="pageOrder" (change)="orderChange()">
+                                <option value="price">Price</option>
+                                <option value="order_date" selected="">Order Date</option>
+                                <option value="method">Payment Method</option>
+                            </select></div>
+                    </div>
+                    <div class="main-container-transaction">
+                        <table class="table payment-history-table">
+                            <thead>
+                                <tr>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Date</p>
+                                    </th>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Number of Products</p>
+                                    </th>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Price</p>
+                                    </th>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Payment Method</p>
+                                    </th>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Status</p>
+                                    </th>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Detail</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="mobile-table-body" *ngFor="let o of orders">
+                                <tr class="data-column">
+                                    <td class="table-data">{{o.orderDate}}</td>
+                                    <td class="table-data">
+                                        <span class="order-description">
+                                            <span>
+                                                <p class="expand-btn" ><span>{{o.totalItem}}
+                                                    </span>
+                                                </p>
+                                            </span>
+                                        </span>
+                                    </td>
+                                    <td class="price table-data non-credit">${{o.totalPrice}}</td>
+                                    <td class="table-data order-status">{{o.paymentMethod}}</td>
+                                    <td class="table-data order-status">{{status[o.status]}}</td>
+                                    <td class="table-data order-status"><button>View Detail</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-4" style="margin-left: 6%;">
+                            <ngb-pagination [(page)]="pageNumber" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5"
+                                [boundaryLinks]=true (pageChange)="getPage()">
+                            </ngb-pagination>
+                        </div>
+                    </div>
+                    <div class="submit-section show-more-btn-section">
+                        <div class="submit-btns">
+                            <p type="p" class="btn btn-default btn-custom">Show
+                                More</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
