@@ -20,6 +20,8 @@ import { AccountNewpasswordComponent } from './component/account-newpassword/acc
 import { AccountOrderinfoComponent } from './component/account-orderinfo/account-orderinfo.component';
 import { CheckoutComponent } from './component/checkout/checkout.component';
 import { AccountOrderlistComponent } from './component/account-orderlist/account-orderlist.component';
+import { AdministratorComponent } from './component/administrator/administrator.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,7 +30,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'account-info', component: AccountInfoComponent },
   { path: 'account-newpassword', component: AccountNewpasswordComponent },
+  { path: 'account-orderlist/:id', component: AccountOrderinfoComponent },
   { path: 'account-orderlist', component: AccountOrderlistComponent },
+  { path: 'Administrator', component: AdministratorComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'products/:id', component: ProductInfoComponent },
@@ -52,7 +56,9 @@ const routes: Routes = [
     AccountNewpasswordComponent,
     AccountOrderinfoComponent,
     CheckoutComponent,
-    AccountOrderlistComponent
+    AccountOrderlistComponent,
+    AdministratorComponent,
+    FooterComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
