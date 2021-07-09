@@ -1,1 +1,159 @@
-<p>account-orderinfo works!</p>
+<app-nav></app-nav>
+<div class="container _1QwuCJ" style="margin-top: 8%;border: 2px black solid;margin-bottom: 8%;">
+    <div class="_36cLcR" style="padding-left: 2%;border-right: 1px solid black;width: 25%;">
+        <div class="_1_68zU"><a class="_2BuJEf" routerLink="/account-info">
+                <div class="shopee-avatar">
+                    <div class="shopee-avatar__placeholder"><svg enable-background="new 0 0 15 15" viewBox="0 0 15 15"
+                            x="0" y="0" class="shopee-svg-icon icon-headshot">
+                            <g>
+                                <circle cx="7.5" cy="4.5" fill="none" r="3.8" stroke-miterlimit="10"></circle>
+                                <path d="m1.5 14.2c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke-linecap="round"
+                                    stroke-miterlimit="10"></path>
+                            </g>
+                        </svg></div><img class="shopee-avatar__img"
+                        src="https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg">
+                </div>
+            </a>
+            <div class="_2uLDqN">
+                <div class="_2lG70n">{{user.name}}</div>
+                <div><a class="_27BCO5" routerLink="/account-info"><svg width="12" height="12" viewBox="0 0 12 12"
+                            xmlns="http://www.w3.org/2000/svg" style="margin-right: 4px;">
+                            <path d="M8.54 0L6.987 1.56l3.46 3.48L12 3.48M0 8.52l.073 3.428L3.46 12l6.21-6.18-3.46-3.48"
+                                fill="#9B9B9B" fill-rule="evenodd"></path>
+                        </svg>Edit profile</a></div>
+            </div>
+        </div>
+        <div class="_1ZnP-m">
+            <div class="stardust-dropdown stardust-dropdown--open">
+                <div class="stardust-dropdown__item-header"><a class="_3aAm2h" routerLink="/account-info">
+                        <div class="_21F-bS"><img src="https://cf.shopee.vn/file/ba61750a46794d8847c3f463c5e71cc4">
+                        </div>
+                        <div class="_2i7380"><span class="_3CHLlN">Account </span></div>
+                    </a></div>
+
+            </div>
+            <div class="stardust-dropdown">
+                <div class="stardust-dropdown__item-header"><a class="_3aAm2h" routerLink="/account-orderlist">
+                        <div class="_21F-bS"><img src="https://cf.shopee.vn/file/f0049e9df4e536bc3e7f140d071e9078">
+                        </div>
+                        <div class="_2i7380"><span class="_3CHLlN">Order</span></div>
+                    </a></div>
+                <div class="stardust-dropdown__item-body">
+                    <div class="_3aiYwk"></div>
+                </div>
+            </div>
+            <div class="stardust-dropdown">
+                <div class="stardust-dropdown__item-header"><a class="_3aAm2h" routerLink="/account-newpassword">
+                        <div class="_21F-bS"><img src="https://cf.shopee.vn/file/e10a43b53ec8605f4829da5618e0717c">
+                        </div>
+                        <div class="_2i7380"><span class="_3CHLlN">Change Password</span></div>
+                    </a></div>
+            </div>
+            <div class="stardust-dropdown">
+                <div class="stardust-dropdown__item-header"><a class="_3aAm2h">
+                        <div class="_21F-bS"><img src="https://cf.shopee.vn/file/84feaa363ce325071c0a66d3c9a88748">
+                        </div>
+                        <div class="_2i7380"><span class="_3CHLlN">Voucher</span></div>
+                    </a></div>
+                <div class="stardust-dropdown__item-body">
+                    <div class="_3aiYwk"></div>
+                </div>
+            </div>
+            <div class="stardust-dropdown">
+                <div class="stardust-dropdown__item-header"><a class="_3aAm2h">
+                        <div class="_21F-bS"><img src="https://cf.shopee.vn/file/a0ef4bd8e16e481b4253bd0eb563f784">
+                        </div>
+                        <div class="_2i7380"><span class="_3CHLlN">Shop Coins</span></div>
+                    </a></div>
+                <div class="stardust-dropdown__item-body">
+                    <div class="_3aiYwk"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="_3D9BVC">
+        <div class="h4QDlo" role="main">
+            <div class="container payment-container">
+                <div class="main-container-title">
+                    <div class="form-container">
+                        <div class="title-section">
+                            <p class="title">Order Detail</p>
+                            <p class="description"><span>View your order detail.</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="results-container"> 
+                    <table class="table payment-history-table">
+                        <tr>
+                            <th>Total Item</th>
+                            <th>Total Cost</th>
+                        </tr>
+                        <tr>
+                            <td>{{totalItem}}</td>
+                            <td>{{totalCost.toFixed(2)}}</td>
+                        </tr>
+                    </table>             
+                    <div class="main-container-transaction">
+                        <table class="table payment-history-table">
+                            <thead>
+                                <tr>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Product Image</p>
+                                    </th>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Product Name</p>
+                                    </th>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Price</p>
+                                    </th>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Quantity</p>
+                                    </th>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Subtotal</p>
+                                    </th>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Detail</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="mobile-table-body" *ngFor="let od of orderDetails">
+                                <tr class="data-column">
+                                    <td class="table-data"><img src="{{od.product.imgUrl}}" style="height: 100px;width: 100px;"></td>
+                                    <td class="table-data">
+                                        <span class="order-description">
+                                            <span>
+                                                <p class="expand-btn" ><span>{{od.product.name}}
+                                                    </span>
+                                                </p>
+                                            </span>
+                                        </span>
+                                    </td>
+                                    <td class="price table-data non-credit">${{od.product.price}}</td>
+                                    <td class="table-data order-status">{{od.quantity}}</td>
+                                    <td class="table-data order-status">${{(od.product.price*od.quantity).toFixed(2)}}</td>
+                                    <td class="table-data order-status"><button routerLink="/products/{{od.product.id}}">View Product Info</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-4" style="margin-left: 6%;">
+                            <ngb-pagination [(page)]="pageNumber" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5"
+                                [boundaryLinks]=true (pageChange)="getPage()">
+                            </ngb-pagination>
+                        </div>
+                    </div>
+                    <div class="submit-section show-more-btn-section">
+                        <div class="submit-btns">
+                            <p type="p" class="btn btn-default btn-custom">Go back to Order history</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-footer></app-footer>

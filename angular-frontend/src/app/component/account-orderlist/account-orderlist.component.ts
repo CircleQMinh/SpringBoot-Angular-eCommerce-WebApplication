@@ -63,5 +63,8 @@ export class AccountOrderlistComponent implements OnInit {
     this.getPage()
   }
 
+  setInfo(sum:number,qua:number){
+    this.accountService.setInfoCurrentOrder(sum,qua)
+  }
 
 }

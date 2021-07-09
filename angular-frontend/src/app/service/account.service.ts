@@ -7,6 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class AccountService {
 
+  currentOrderQuantity:number=0
+  currentOrderCost:number=0
+
   constructor(private http: HttpClient) { }
 
 
@@ -21,6 +24,14 @@ export class AccountService {
 
   getUserOrder(id:number,order:string,page:number,pagesize:number):Observable<any>{
     return this.http.get(`http://localhost:8080/api/v1/getUserOrders?id=${id}&pageNumber=${page}&pageSize=${pagesize}&order=${order}`)
+  }
+  getOrderDetail(id:number,page:number):Observable<any>{
+    return this.http.get(`http://localhost:8080/api/v1/getOrderDetail?id=${id}&pageNumber=${page}`)
+  }
+
+  setInfoCurrentOrder(sum:number,qua:number){
+    this.currentOrderCost=sum
+    this.currentOrderQuantity=qua
   }
 
 }

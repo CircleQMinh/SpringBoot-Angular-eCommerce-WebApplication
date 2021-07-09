@@ -64,8 +64,11 @@ public class OrderController {
 
 
     @GetMapping("/getOrderDetail")
-    public List<OrderDetail> findOrderDetailById(@RequestParam(defaultValue = "0") long id){
-        List<OrderDetail> list=orderDetailRepository.findByOrderbill_Id(id);
-        return  list;
+    public Page<OrderDetail> getOrdersDetail(@RequestParam(defaultValue = "") Long id,
+                                         @RequestParam(defaultValue = "1") int pageNumber,
+                                         @RequestParam(defaultValue = "5") int pageSize){
+        Page<OrderDetail> page = null;
+        page=orderDetailRepository.findByOrderbill_Id(id,PageRequest.of(pageNumber-1,pageSize));
+        return page;
     }
 }
