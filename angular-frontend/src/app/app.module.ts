@@ -22,6 +22,10 @@ import { CheckoutComponent } from './component/checkout/checkout.component';
 import { AccountOrderlistComponent } from './component/account-orderlist/account-orderlist.component';
 import { AdministratorComponent } from './component/administrator/administrator.component';
 import { FooterComponent } from './component/footer/footer.component';
+import { AdministratorProductComponent } from './component/administrator-product/administrator-product.component';
+import { AdministratorOrderComponent } from './component/administrator-order/administrator-order.component';
+import { AdministratorUserComponent } from './component/administrator-user/administrator-user.component';
+import { AdministratorStatisticalComponent } from './component/administrator-statistical/administrator-statistical.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -32,6 +36,10 @@ const routes: Routes = [
   { path: 'account-newpassword', component: AccountNewpasswordComponent },
   { path: 'account-orderlist/:id', component: AccountOrderinfoComponent },
   { path: 'account-orderlist', component: AccountOrderlistComponent },
+  { path: 'Administrator-Statistical', component: AdministratorStatisticalComponent },
+  { path: 'Administrator-User', component: AdministratorUserComponent },
+  { path: 'Administrator-Order', component: AdministratorOrderComponent },
+  { path: 'Administrator-Product', component: AdministratorProductComponent },
   { path: 'Administrator', component: AdministratorComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'checkout', component: CheckoutComponent },
@@ -58,7 +66,11 @@ const routes: Routes = [
     CheckoutComponent,
     AccountOrderlistComponent,
     AdministratorComponent,
-    FooterComponent
+    FooterComponent,
+    AdministratorProductComponent,
+    AdministratorOrderComponent,
+    AdministratorUserComponent,
+    AdministratorStatisticalComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
