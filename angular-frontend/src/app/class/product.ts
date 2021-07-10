@@ -7,7 +7,7 @@ export class Product {
     unitsInStock!:number;
     category!:string;
     imgUrl!:string;
-    last_update!:Date;
+    lastUpdate!:Date;
 
 
 	constructor(id:string,name:string,price:number,des:string,unit:number,cate:string,img:string,last:Date) {
@@ -17,7 +17,7 @@ export class Product {
         this.unitsInStock=unit;
         this.category=cate;
         this.imgUrl=img;
-        this.last_update=last;
+        this.lastUpdate=last;
 	}
     
 

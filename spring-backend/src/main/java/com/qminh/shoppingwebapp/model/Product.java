@@ -29,7 +29,7 @@ public class Product {
     private String imgUrl;
 
     @Column(name = "last_update")
-    private java.sql.Timestamp lastUpdate;
+    private String lastUpdate;
 
     public Long getId() {
         return this.id;
@@ -87,11 +87,11 @@ public class Product {
         this.imgUrl = imgUrl;
     }
 
-    public java.sql.Timestamp getLastUpdate() {
+    public String getLastUpdate() {
         return this.lastUpdate;
     }
 
-    public void setLastUpdate(java.sql.Timestamp lastUpdate) {
+    public void setLastUpdate(String lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

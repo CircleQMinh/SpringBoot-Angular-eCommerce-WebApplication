@@ -5,6 +5,7 @@ import com.qminh.shoppingwebapp.repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -52,6 +53,36 @@ public class ProductController {
         return productRepository.findByNameContaining(keyword,PageRequest.of(0,1000));
     }
 
+
+    @GetMapping("/getProducts")
+    Page<Product> getProductPageForAdmin(@RequestParam(defaultValue = "1") int pageNumber,
+                                 @RequestParam(defaultValue = "12") int pageSize,
+                                 @RequestParam(defaultValue = "") String category, @RequestParam(defaultValue ="" ) String orderBy){
+        Page<Product> page;
+        String order="abc";
+        if(orderBy.equals("id")){
+            order="id";
+        }
+        else if(orderBy.equals("price")){
+            order="price";
+        }
+        else if(orderBy.equals("name")){
+            order="name";
+        }
+        else if(orderBy.equals("unit")){
+            order="unitsInStock";
+        }
+        else if(orderBy.equals("last")){
+            order="lastUpdate";
+        }
+        if(category.equals("all")){
+            page = (Page<Product>) productRepository.findAll(PageRequest.of(pageNumber-1,pageSize,Sort.by(Sort.Direction.ASC, order)));
+        }
+        else{
+            page=productRepository.findByCategory(category,PageRequest.of(pageNumber-1,pageSize,Sort.by(Sort.Direction.ASC, order)));
+        }
+        return page;
+    }
 
 
 }
