@@ -88,8 +88,7 @@
                                         <h3 class="lh-1" style="margin-bottom: 3%;">List of Products</h3>
                                         <img style="width: 40px;height: 40px;"
                                             src="https://image.flaticon.com/icons/png/128/1149/1149576.png"
-                                            ngbTooltip="Add a Product"
-                                            (click)="open(content)">Add a product
+                                            ngbTooltip="Add a Product" (click)="open(content)">Add a product
                                         <div style="
                                         display: inline-block;
                                         width: 25%; margin-left: 8%;">
@@ -159,11 +158,14 @@
                                                         <td><span class="text-success"><img
                                                                     style="width: 40px;height: 40px;"
                                                                     src="https://image.flaticon.com/icons/png/128/2910/2910768.png"
-                                                                    ngbTooltip="Edit"></span></td>
+                                                                    ngbTooltip="Edit"
+                                                                    (click)="openEditModal(product_edit,pro)"></span>
+                                                        </td>
                                                         <td><span class="text-success"><img
                                                                     style="width: 40px;height: 40px;"
                                                                     src="https://image.flaticon.com/icons/png/128/1632/1632602.png"
-                                                                    ngbTooltip="Delete"></span></td>
+                                                                    ngbTooltip="Delete"
+                                                                    (click)="openDeleteModal(product_delete,pro)"></span></td>
 
                                                     </tr>
                                                 </tbody>
@@ -206,39 +208,176 @@
 
 <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Add a product</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
+        <h4 class="modal-title" id="modal-basic-title">Add a product</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     <div class="modal-body">
-      <form>
-        <div class="form-group">
-          <label for="name">Product Name</label>
-          <div class="input-group">
-            <input id="name" class="form-control" placeholder="name..." name="dp" >
-          </div>
-          <label for="price">Price</label>
-          <div class="input-group">
-            <input id="price" class="form-control" placeholder="price..." name="dp" >
-          </div>
-          <label for="des">Description</label>
-          <div class="input-group">
-            <input id="des" class="form-control" placeholder="description..." name="dp" >
-          </div>
-          <label for="uis">Unit in stock</label>
-          <div class="input-group">
-            <input id="uis" class="form-control" placeholder="100" name="dp" >
-          </div>
-          <label for="uis">Product Image</label>
-          <div class="input-group">
-            <input type="file" id="img" class="form-control" placeholder="imgUrl" name="dp" (change)="uploadImage($event)" >
-          </div>
-          <img style="width: 100px;height: 100px;margin-top: 10px;" src="{{imgURL}}">
-        </div>
-      </form>
+        <form>
+            <div class="form-group">
+                <label for="name">Product Name</label>
+                <p class="text-center" *ngIf="nameError"><i class="fas fa-exclamation-triangle"></i>Product name not
+                    valid!</p>
+                <div class="input-group">
+                    <input id="name" class="form-control" placeholder="name..." name="name" [(ngModel)]="name">
+                </div>
+                <label for="price">Price</label>
+                <p class="text-center" *ngIf="priceError"><i class="fas fa-exclamation-triangle"></i>Product price not
+                    valid!</p>
+                <div class="input-group">
+                    <input id="price" class="form-control" placeholder="price..." name="price" [(ngModel)]="price"
+                        type="number">
+                </div>
+                <label for="des">Description</label>
+                <p class="text-center" *ngIf="desError"><i class="fas fa-exclamation-triangle"></i>Product description
+                    is empty!</p>
+                <div class="input-group">
+                    <textarea id="des" class="form-control" placeholder="description..." name="des" style="height: 80px;"
+                    [(ngModel)]="description" multiple></textarea>
+                </div>
+                <label for="uis">Unit in stock</label>
+                <p class="text-center" *ngIf="unitError"><i class="fas fa-exclamation-triangle"></i>Product unit not
+                    valid!</p>
+                <div class="input-group">
+                    <input id="uis" class="form-control" placeholder="unit in stock..." name="unit"
+                        [(ngModel)]="unitsInStock" (keypress)="numberOnly($event)">
+                </div>
+                <label for="cate">Category</label>
+                <div class="input-group">
+                    <select id="cate" class="form-control" placeholder="100" name="cate" [(ngModel)]="procategory">
+                        <option value="Fruit" selected>Fruit</option>
+                        <option value="Vegetable">Vegetable</option>
+                        <option value="Confectionery">Confectionery</option>
+                        <option value="Snack">Snack</option>
+                    </select>
+                </div>
+                <label for="img">Product Image</label>
+                <div class="input-group">
+                    <input type="file" id="img" class="form-control" placeholder="imgUrl" name="dp"
+                        (change)="uploadImage($event)">
+                </div>
+                <img style="width: 100px;height: 100px;margin-top: 10px;" src="{{imgURL}}">
+            </div>
+        </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+        <button type="button" class="btn btn-outline-dark" (click)="saveProduct()" *ngIf="!isUpload">Save</button>
     </div>
-  </ng-template>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ng-template #product_edit let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit a product</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="name">Product Name</label>
+                <p class="text-center" *ngIf="nameError"><i class="fas fa-exclamation-triangle"></i>Product name not
+                    valid!</p>
+                <div class="input-group">
+                    <input id="name" class="form-control" placeholder="name..." name="name" [(ngModel)]="name">
+                </div>
+                <label for="price">Price</label>
+                <p class="text-center" *ngIf="priceError"><i class="fas fa-exclamation-triangle"></i>Product price not
+                    valid!</p>
+                <div class="input-group">
+                    <input id="price" class="form-control" placeholder="price..." name="price" [(ngModel)]="price"
+                        type="number">
+                </div>
+                <label for="des">Description</label>
+                <p class="text-center" *ngIf="desError"><i class="fas fa-exclamation-triangle"></i>Product description
+                    is empty!</p>
+                <div class="input-group">
+                    <textarea id="des" class="form-control" placeholder="description..." name="des" style="height: 80px;"
+                        [(ngModel)]="description" multiple></textarea>
+                </div>
+                <label for="uis">Unit in stock</label>
+                <p class="text-center" *ngIf="unitError"><i class="fas fa-exclamation-triangle"></i>Product unit not
+                    valid!</p>
+                <div class="input-group">
+                    <input id="uis" class="form-control" placeholder="unit in stock..." name="unit"
+                        [(ngModel)]="unitsInStock" (keypress)="numberOnly($event)">
+                </div>
+                <label for="cate">Category</label>
+                <div class="input-group">
+                    <select id="cate" class="form-control" placeholder="100" name="cate" [(ngModel)]="procategory">
+                        <option value="Fruit" selected>Fruit</option>
+                        <option value="Vegetable">Vegetable</option>
+                        <option value="Confectionery">Confectionery</option>
+                        <option value="Snack">Snack</option>
+                    </select>
+                </div>
+                <label for="img">Product Image</label>
+                <div class="input-group">
+                    <input type="file" id="img" class="form-control" placeholder="imgUrl" name="dp"
+                        (change)="uploadImage($event)">
+                </div>
+                <img style="width: 100px;height: 100px;margin-top: 10px;" src="{{imgURL}}">
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="editProduct()" *ngIf="!isUpload">Edit</button>
+    </div>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+<ng-template #product_delete let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Delete this product?</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{name}}</p>
+        <img style="width: 100px;height: 100px;margin-top: 10px;" src="{{imgURL}}">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" style="background-color: red;" (click)="deleteProduct()">Delete</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cancel</button>
+    </div>
+</ng-template>

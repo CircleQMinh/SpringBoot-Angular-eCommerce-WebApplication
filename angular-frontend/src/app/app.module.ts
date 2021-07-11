@@ -26,6 +26,7 @@ import { AdministratorProductComponent } from './component/administrator-product
 import { AdministratorOrderComponent } from './component/administrator-order/administrator-order.component';
 import { AdministratorUserComponent } from './component/administrator-user/administrator-user.component';
 import { AdministratorStatisticalComponent } from './component/administrator-statistical/administrator-statistical.component';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -77,7 +78,7 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,FormsModule, NgbModule
+    ReactiveFormsModule,FormsModule, NgbModule, HotToastModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

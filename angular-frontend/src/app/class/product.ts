@@ -1,19 +1,20 @@
 export class Product {
 
-    id!:string;
+    id!:number;
     name!:string;
     price!:number;
     description!:string;
     unitsInStock!:number;
     category!:string;
     imgUrl!:string;
-    lastUpdate!:Date;
+    lastUpdate!:string;
 
 
-	constructor(id:string,name:string,price:number,des:string,unit:number,cate:string,img:string,last:Date) {
+	constructor(id:number,name:string,price:number,des:string,unit:number,cate:string,img:string,last:string) {
         this.id=id;
         this.name=name;
         this.description=des;
+        this.price=price
         this.unitsInStock=unit;
         this.category=cate;
         this.imgUrl=img;
