@@ -1,6 +1,7 @@
 package com.qminh.shoppingwebapp.controller;
 import com.qminh.shoppingwebapp.exception.ResourceNotFoundException;
 import com.qminh.shoppingwebapp.model.Product;
+import com.qminh.shoppingwebapp.model.User;
 import com.qminh.shoppingwebapp.repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -83,6 +86,37 @@ public class ProductController {
         }
         return page;
     }
+
+    @PostMapping("/Products/createProduct")
+    public Product createProduct(@RequestBody Product product) {
+        return productRepository.save(product);
+    }
+    @PutMapping("/Products/updateProduct")
+    public Map<String,Boolean> updateProduct(@RequestBody Product pro){
+        Map<String,Boolean> map=new HashMap<>();
+        try {
+            productRepository.save(pro);
+            map.put("success",Boolean.TRUE);
+        }
+        catch (Exception e){
+            map.put("success",Boolean.FALSE);
+        }
+        return map;
+    }
+    @DeleteMapping("/Products/deleteProduct/{id}")
+    public Map<String,Boolean> deleteProduct(@PathVariable Long id){
+        Map<String,Boolean> map=new HashMap<>();
+        Product pro = productRepository.getById(id);
+        try {
+            productRepository.delete(pro);
+            map.put("success",Boolean.TRUE);
+        }
+        catch (Exception e){
+            map.put("success",Boolean.FALSE);
+        }
+        return map;
+    }
+
 
 
 }

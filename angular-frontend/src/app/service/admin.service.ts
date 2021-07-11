@@ -16,4 +16,14 @@ export class AdminService {
     &category=${cate}&orderBy=${orderby}`)
   }
 
+  createProduct(pro: Object): Observable<any> {
+    return this.http.post(`http://localhost:8080/api/v1/Products/createProduct`, pro);
+  }
+  updateProduct(pro: Object): Observable<any> {
+    return this.http.put(`http://localhost:8080/api/v1/Products/updateProduct`,pro);
+  }
+  deleteProduct(id:number): Observable<any> {
+    return this.http.delete(`http://localhost:8080/api/v1/Products/deleteProduct/${id}`);
+  }
+
 }
