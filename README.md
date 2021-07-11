@@ -8,3 +8,4 @@
 08-07-2021 : thêm chức năng lưu đơn hàng và trang lịch sử đơn hàng.<br>
 09-07-2021 : thêm chức năng xem thông tin đơn hàng và thiết lập trang quản trị viên.<br>
 10-07-2021 : thêm trang quản lý sản phẩm và chức năng upload ảnh.<br>
+11-07-2021 : hoàn thành chức năng thêm, xóa và sửa cho trang quản lý sản phẩm.<br>
