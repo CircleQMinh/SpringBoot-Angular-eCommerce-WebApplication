@@ -26,4 +26,9 @@ export class AdminService {
     return this.http.delete(`http://localhost:8080/api/v1/Products/deleteProduct/${id}`);
   }
 
+  getUserForAdmin(page:number,pageSize:number,role:string,orderby:string):Observable<any>{
+    return this.http.get(`http://localhost:8080/api/v1/User/getUserList?pageNumber=${page}
+    &pageSize=${pageSize}&role=${role}&orderBy=${orderby}`)
+  }
+
 }
