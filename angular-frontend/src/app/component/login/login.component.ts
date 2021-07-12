@@ -18,15 +18,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  tryLogin(){
+  async tryLogin(){
     this.loginService.tryLogin(this.username!,this.password!)
     .subscribe(
-      data => {
+      async data => {
         this.dataRegister=data;
-        console.log(this.dataRegister.success);
         if(this.dataRegister.success==true){
           this.loginFailed=false;
-          this.getUserInfo();
+          await this.getUserInfo();
           this.router.navigate(['/home']);
           this.loginService.isLogin=true;
         }

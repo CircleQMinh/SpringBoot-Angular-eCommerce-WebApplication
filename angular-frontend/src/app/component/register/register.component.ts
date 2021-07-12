@@ -53,11 +53,11 @@ export class RegisterComponent implements OnInit {
       this.userRegister.email=this.email
       this.userRegister.phone=this.phone 
       this.userRegister.role="customer"
+      this.userRegister.status=1
+      this.userRegister.imgUrl="https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png"
 
       this.isLoading=true;
       this.verifyInfo= await this.loginService.sendEmailVerify(this.email).toPromise()
-      // console.log("send email roi")
-      // console.log(verifyInfo.code)
       this.verifyMode=true;
       this.isLoading=false
     }

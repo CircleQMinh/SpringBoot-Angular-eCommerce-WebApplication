@@ -5,12 +5,16 @@ import com.qminh.shoppingwebapp.exception.ResourceNotFoundException;
 import com.qminh.shoppingwebapp.model.User;
 import com.qminh.shoppingwebapp.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -45,29 +49,43 @@ public class UserController {
         return userRepository.save(User);
     }
 
-    @PutMapping("/Users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long UserId,
-                                                   @RequestBody User UserDetails) throws ResourceNotFoundException {
-        User user = userRepository.findById(UserId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + UserId));
-        user.setEmail(UserDetails.getEmail());
-        user.setPhone(UserDetails.getPhone());
-        user.setName(UserDetails.getName());
-        final User updatedUser = userRepository.save(user);
-        return ResponseEntity.ok(updatedUser);
+    @PutMapping("/Users/updateInfo/{uname}")
+    public Map<String,Boolean> updateUserInfo(@PathVariable(value = "uname") String un,
+                                                   @RequestBody User userDetails) throws ResourceNotFoundException {
+
+        Map<String,Boolean> map=new HashMap<>();
+        try{
+            User u = userRepository.findByUsername(un);
+            u.setPhone(userDetails.getPhone());
+            u.setName(userDetails.getName());
+            userRepository.save(u);
+            map.put("success",true);
+
+        }
+        catch (Exception e){
+            map.put("success",false);
+        }
+        return map;
+    }
+    @PutMapping("/Users/updateImg/{uname}")
+    public Map<String,Boolean> changeUserImg(@PathVariable(value = "uname") String un,
+                                             @RequestBody User userDetails){
+
+        Map<String,Boolean> map=new HashMap<>();
+        try{
+            User u = userRepository.findByUsername(un);
+            u.setImgUrl(userDetails.getImgUrl());
+            userRepository.save(u);
+            map.put("success",true);
+        }
+        catch (Exception e){
+            map.put("success",false);
+        }
+
+        return map;
     }
 
-    @DeleteMapping("/Users/{id}")
-    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long UserId)
-            throws ResourceNotFoundException {
-        User User = userRepository.findById(UserId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + UserId));
 
-        userRepository.delete(User);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
-    }
 
     @GetMapping("/User/login")
     public Map<String, Boolean> tryLogin(@RequestParam(defaultValue = "empty") String un, @RequestParam(defaultValue = "empty") String pw)
@@ -109,5 +127,38 @@ public class UserController {
             response.put("success", Boolean.TRUE);
         }
         return response;
+    }
+    @GetMapping("/User/getUserList")
+    public Page<User> getUserListSecure(@RequestParam(defaultValue = "1") int pageNumber,
+                                        @RequestParam(defaultValue = "12") int pageSize,
+                                        @RequestParam(defaultValue ="" ) String orderBy,
+                                        @RequestParam(defaultValue = "") String role){
+
+
+        Page<User> page;
+        String order="abc";
+        if(orderBy.equals("id")){
+            order="id";
+        }
+        else if(orderBy.equals("username")){
+            order="username";
+        }
+        else if(orderBy.equals("name")){
+            order="name";
+        }
+        else if(orderBy.equals("status")){
+            order="status";
+        }
+        if(role.equals("all")){
+            page=userRepository.findAll(PageRequest.of(pageNumber-1,pageSize, Sort.by(Sort.Direction.ASC, order)));
+
+        }
+        else{
+            page=userRepository.findByRole(role,PageRequest.of(pageNumber-1,pageSize,Sort.by(Sort.Direction.ASC, order)));
+        }
+        page.forEach(user -> {
+            user.setPassword("");
+        });
+        return page;
     }
 }

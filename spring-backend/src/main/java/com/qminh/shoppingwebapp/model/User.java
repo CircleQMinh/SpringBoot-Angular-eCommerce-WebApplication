@@ -29,6 +29,12 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "img_url")
+    private String imgUrl;
+
+    @Column(name = "status")
+    private Integer status;
+
     public Long getId() {
         return this.id;
     }
@@ -83,5 +89,21 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImgUrl() {
+        return this.imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public Integer getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

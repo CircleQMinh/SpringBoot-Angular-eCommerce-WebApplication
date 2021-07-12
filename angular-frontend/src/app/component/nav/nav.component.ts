@@ -9,6 +9,7 @@ import { LoginService } from 'src/app/service/login.service';
 export class NavComponent implements OnInit {
 
   username!:string;
+  url!:string;
 
   constructor(public loginService:LoginService) { }
 
@@ -17,6 +18,7 @@ export class NavComponent implements OnInit {
 
   isLogin():boolean{
     this.username=this.loginService.user.name;
+    this.url=this.loginService.user.imgUrl
     return this.loginService.isLogin;
   }
 
