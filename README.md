@@ -10,3 +10,4 @@
 10-07-2021 : thêm trang quản lý sản phẩm và chức năng upload ảnh.<br>
 11-07-2021 : hoàn thành chức năng thêm, xóa và sửa cho trang quản lý sản phẩm.<br>
 12-07-2021 : thêm chức năng update ảnh đại diện, thông tin cá nhân và thêm trang quản lý người dùng.<br>
+13-07-2021 : them chức năng thêm, xóa, sửa cho trang quản lý người dùng.<br>
