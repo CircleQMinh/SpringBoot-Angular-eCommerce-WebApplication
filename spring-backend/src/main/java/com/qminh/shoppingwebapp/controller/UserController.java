@@ -2,6 +2,7 @@ package com.qminh.shoppingwebapp.controller;
 
 
 import com.qminh.shoppingwebapp.exception.ResourceNotFoundException;
+import com.qminh.shoppingwebapp.model.Product;
 import com.qminh.shoppingwebapp.model.User;
 import com.qminh.shoppingwebapp.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,7 @@ public class UserController {
         return ResponseEntity.ok().body(user);
     }
     @GetMapping("/UserInfo/{uname}")
-    public ResponseEntity<User> getUserByUName(@PathVariable(value = "uname") String un)
-            throws ResourceNotFoundException {
+    public ResponseEntity<User> getUserByUName(@PathVariable(value = "uname") String un) {
         User user = userRepository.findByUsername(un);
 
         return ResponseEntity.ok().body(user);
@@ -51,7 +51,7 @@ public class UserController {
 
     @PutMapping("/Users/updateInfo/{uname}")
     public Map<String,Boolean> updateUserInfo(@PathVariable(value = "uname") String un,
-                                                   @RequestBody User userDetails) throws ResourceNotFoundException {
+                                                   @RequestBody User userDetails) {
 
         Map<String,Boolean> map=new HashMap<>();
         try{
@@ -88,8 +88,7 @@ public class UserController {
 
 
     @GetMapping("/User/login")
-    public Map<String, Boolean> tryLogin(@RequestParam(defaultValue = "empty") String un, @RequestParam(defaultValue = "empty") String pw)
-            throws ResourceNotFoundException {
+    public Map<String, Boolean> tryLogin(@RequestParam(defaultValue = "empty") String un, @RequestParam(defaultValue = "empty") String pw) {
         List<User> users = userRepository.findByUsernameAndPassword(un,pw);
         Map<String, Boolean> response = new HashMap<>();
         if(users.isEmpty()){
@@ -137,17 +136,19 @@ public class UserController {
 
         Page<User> page;
         String order="abc";
-        if(orderBy.equals("id")){
-            order="id";
-        }
-        else if(orderBy.equals("username")){
-            order="username";
-        }
-        else if(orderBy.equals("name")){
-            order="name";
-        }
-        else if(orderBy.equals("status")){
-            order="status";
+        switch (orderBy) {
+            case "id":
+                order = "id";
+                break;
+            case "username":
+                order = "username";
+                break;
+            case "name":
+                order = "name";
+                break;
+            case "status":
+                order = "status";
+                break;
         }
         if(role.equals("all")){
             page=userRepository.findAll(PageRequest.of(pageNumber-1,pageSize, Sort.by(Sort.Direction.ASC, order)));
@@ -160,5 +161,56 @@ public class UserController {
             user.setPassword("");
         });
         return page;
+    }
+
+
+    @PostMapping("/User/createNewUser")
+    public Map<String, Boolean> createUserAdmin(@RequestBody User u) {
+
+        Map<String, Boolean> response = new HashMap<>();
+        try{
+            userRepository.save(u);
+            response.put("success", Boolean.TRUE);
+        }
+        catch (Exception e){
+            response.put("success", Boolean.FALSE);
+        }
+        return response;
+    }
+
+    @PutMapping("/User/updateUser")
+    public Map<String,Boolean> updateUser(@RequestBody User u){
+        Map<String,Boolean> map=new HashMap<>();
+
+        try {
+            User user = userRepository.findByEmail(u.getEmail());
+            user.setName(u.getName());
+            user.setPhone(u.getPhone());
+            user.setStatus(u.getStatus());
+            user.setRole(u.getRole());
+            user.setImgUrl(u.getImgUrl());
+            userRepository.save(user);
+            map.put("success",Boolean.TRUE);
+        }
+        catch (Exception e){
+            map.put("success",Boolean.FALSE);
+        }
+        return map;
+    }
+
+    @DeleteMapping("/User/deleteUser/{id}")
+    public Map<String,String> deleteUser(@PathVariable Long id){
+        Map<String,String> map=new HashMap<>();
+        User pro = userRepository.getById(id);
+        try {
+            userRepository.delete(pro);
+            map.put("success","true");
+        }
+        catch (Exception e){
+            map.put("success","false");
+            map.put("error",e.getMessage());
+
+        }
+        return map;
     }
 }
