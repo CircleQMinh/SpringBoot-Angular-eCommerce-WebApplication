@@ -88,7 +88,7 @@
                                         <h3 class="lh-1" style="margin-bottom: 3%;">List of Users</h3>
                                         <img style="width: 40px;height: 40px;"
                                             src="https://image.flaticon.com/icons/png/128/1149/1149576.png"
-                                            ngbTooltip="Add a User">Add a user
+                                            ngbTooltip="Add a User" (click)="openAddModal(add_user)">Add a user
                                         <div style="
                                         display: inline-block;
                                         width: 25%; margin-left: 8%;">
@@ -149,19 +149,23 @@
                                                         <td>{{u.username}}</td>
                                                         <td><span class="text-success">{{u.email}}</span></td>
                                                         <td class="fw-600">{{u.phone}}</td>
-                                                        <td *ngIf="u.status==0"><span  class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c rounded-pill">Unactive</span>
+                                                        <td *ngIf="u.status==0"><span
+                                                                class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c rounded-pill">Unactive</span>
                                                         </td>
-                                                        <td *ngIf="u.status==1"><span  class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c rounded-pill">Active</span>
+                                                        <td *ngIf="u.status==1"><span
+                                                                class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c rounded-pill">Active</span>
                                                         </td>
                                                         <td><span class="text-success"><img
                                                                     style="width: 40px;height: 40px;"
                                                                     src="https://image.flaticon.com/icons/png/128/2910/2910768.png"
-                                                                    ngbTooltip="Edit"></span>
+                                                                    ngbTooltip="Edit"
+                                                                    (click)="openEditModal(edit_user,u)"></span>
                                                         </td>
-                                                        <td><span class="text-success"><img
+                                                        <td *ngIf="u.username!=user.username"><span class="text-success"><img
                                                                     style="width: 40px;height: 40px;"
                                                                     src="https://image.flaticon.com/icons/png/128/1632/1632602.png"
-                                                                    ngbTooltip="Delete"></span></td>
+                                                                    ngbTooltip="Delete" (click)="openDeleteModal(user_delete,u)"></span></td>
+                                                        <td *ngIf="u.username==user.username"></td>
 
                                                     </tr>
                                                 </tbody>
@@ -200,3 +204,151 @@
                 reserved.</span></footer> -->
     </div>
 </div>
+
+
+
+
+<ng-template #add_user let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add a user</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="uname">Username</label>
+                <p class="text-center" *ngIf="unameError"><i class="fas fa-exclamation-triangle"></i>Username not
+                    valid!</p>
+                <div class="input-group">
+                    <input id="uname" class="form-control" placeholder="Username..." name="uname" [(ngModel)]="uname">
+                </div>
+                <label for="pass">Password</label>
+                <p class="text-center" *ngIf="passError"><i class="fas fa-exclamation-triangle"></i>Password not
+                    valid!</p>
+                <div class="input-group">
+                    <input id="pass" class="form-control" placeholder="Password..." name="pass" [(ngModel)]="pass"
+                        type="password">
+                </div>
+                <label for="des">Name</label>
+                <p class="text-center" *ngIf="nameError"><i class="fas fa-exclamation-triangle"></i>Name
+                    is not valid!</p>
+                <div class="input-group">
+                    <input id="des" class="form-control" placeholder="Name..." name="name" [(ngModel)]="name">
+                </div>
+                <label for="uis">Phone</label>
+                <p class="text-center" *ngIf="phoneError"><i class="fas fa-exclamation-triangle"></i>Phone is not
+                    valid!</p>
+                <div class="input-group">
+                    <input id="uis" class="form-control" placeholder="Phone..." name="phone" [(ngModel)]="phone"
+                        (keypress)="numberOnly($event)">
+                </div>
+                <label for="email">Email</label>
+                <p class="text-center" *ngIf="emailError"><i class="fas fa-exclamation-triangle"></i>Email
+                    is not valid!</p>
+                <div class="input-group">
+                    <input id="email" class="form-control" placeholder="Email..." name="email" [(ngModel)]="email">
+                </div>
+                <label for="cate">Role</label>
+                <div class="input-group">
+                    <select id="cate" class="form-control" placeholder="100" name="cate" [(ngModel)]="urole">
+                        <option value="customer" selected>Customer</option>
+                        <option value="admin">Admin</option>
+                        <option value="employee">Employee</option>
+                        <option value="shipper">Shipper</option>
+                    </select>
+                </div>
+                <label for="img">Profile Image</label>
+                <div class="input-group">
+                    <input type="file" id="img" class="form-control" placeholder="imgUrl" name="dp"
+                        (change)="uploadImage($event)">
+                </div>
+                <img style="width: 100px;height: 100px;margin-top: 10px;" src="{{imgURL}}">
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="saveUser()" *ngIf="!isUpload">Save</button>
+    </div>
+</ng-template>
+
+
+
+<ng-template #edit_user let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit a user</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+
+                <label for="des">Name</label>
+                <p class="text-center" *ngIf="nameError"><i class="fas fa-exclamation-triangle"></i>Name
+                    is not valid!</p>
+                <div class="input-group">
+                    <input id="des" class="form-control" placeholder="Name..." name="name" [(ngModel)]="name">
+                </div>
+                <label for="uis">Phone</label>
+                <p class="text-center" *ngIf="phoneError"><i class="fas fa-exclamation-triangle"></i>Phone is not
+                    valid!</p>
+                <div class="input-group">
+                    <input id="uis" class="form-control" placeholder="Phone..." name="phone" [(ngModel)]="phone"
+                        (keypress)="numberOnly($event)">
+                </div>
+
+                <label for="cate">Role</label>
+                <div class="input-group">
+                    <select id="cate" class="form-control" placeholder="100" name="cate" [(ngModel)]="urole">
+                        <option value="customer" selected>Customer</option>
+                        <option value="admin">Admin</option>
+                        <option value="employee">Employee</option>
+                        <option value="shipper">Shipper</option>
+                    </select>
+                </div>
+
+                <label for="status">Status</label>
+                <div class="input-group">
+                    <select id="status" class="form-control" placeholder="100" name="status" [(ngModel)]="status">
+                        <option value="1" selected>Active</option>
+                        <option value="0">Unactive</option>
+                    </select>
+                </div>
+                <label for="img">Profile Image</label>
+                <div class="input-group">
+                    <input type="file" id="img" class="form-control" placeholder="imgUrl" name="dp"
+                        (change)="uploadImage($event)">
+                </div>
+                <img style="width: 100px;height: 100px;margin-top: 10px;" src="{{imgURL}}">
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="editUser()" *ngIf="!isUpload">Save</button>
+    </div>
+</ng-template>
+
+
+<ng-template #user_delete let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Delete this user?</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="text-center"><i class="fas fa-exclamation-triangle"></i>Any order and other infomation associate with this user will also be deleted!</p>
+        <p>Name : {{name}}</p>
+        <p>Role : {{urole}}</p>
+        <p>User Image :</p>
+        <img style="width: 100px;height: 100px;margin-top: 10px;" src="{{imgURL}}">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" style="background-color: red;"
+            (click)="deleteUser()">Delete</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cancel</button>
+    </div>
+</ng-template>

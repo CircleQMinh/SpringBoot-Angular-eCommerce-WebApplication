@@ -30,5 +30,14 @@ export class AdminService {
     return this.http.get(`http://localhost:8080/api/v1/User/getUserList?pageNumber=${page}
     &pageSize=${pageSize}&role=${role}&orderBy=${orderby}`)
   }
+  createUser(u: Object): Observable<any> {
+    return this.http.post(`http://localhost:8080/api/v1/User/createNewUser`, u);
+  }
+  updateUser(u: Object): Observable<any> {
+    return this.http.put(`http://localhost:8080/api/v1/User/updateUser`,u);
+  }
+  deleteUser(id:number): Observable<any> {
+    return this.http.delete(`http://localhost:8080/api/v1/User/deleteUser/${id}`);
+  }
 
 }

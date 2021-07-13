@@ -77,6 +77,9 @@ export class RegisterComponent implements OnInit {
     if(this.username==undefined){
       this.usernameError=true
     }
+    if(this.username.trim().length==0){
+      this.usernameError=true
+    }
     else{
       const response = await this.loginService.checkIfUsernameExist(this.username).toPromise();
       this.usernameError=response.success
