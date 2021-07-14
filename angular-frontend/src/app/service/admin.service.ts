@@ -39,5 +39,17 @@ export class AdminService {
   deleteUser(id:number): Observable<any> {
     return this.http.delete(`http://localhost:8080/api/v1/User/deleteUser/${id}`);
   }
-
+  getOrderForAdmin(page:number,pageSize:number,status:number,orderby:string,sort:string):Observable<any>{
+    return this.http.get(`http://localhost:8080/api/v1/getOrderList?pageNumber=${page}&pageSize=${pageSize}
+    &status=${status}&orderBy=${orderby}&sort=${sort}`)
+  }
+  updateOrder(u: Object): Observable<any> {
+    return this.http.put(`http://localhost:8080/api/v1/editOrder`,u);
+  }
+  getOrderDetail(id:number):Observable<any>{
+    return this.http.get(`http://localhost:8080/api/v1/getOrderDetail?id=${id}&pageNumber=1&pageSize=1000`)
+  }
+  deleteOrder(id:number): Observable<any> {
+    return this.http.delete(`http://localhost:8080/api/v1/deleteOrder/${id}`);
+  }
 }

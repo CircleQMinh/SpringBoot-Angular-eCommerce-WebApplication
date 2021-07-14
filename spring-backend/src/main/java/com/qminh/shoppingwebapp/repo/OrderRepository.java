@@ -9,11 +9,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderRepository extends JpaRepository<OrderBill, Long> {
 
-
     Page<OrderBill> findByUserIdOrderByOrderDate(Long id, Pageable pageable);
     Page<OrderBill> findByUserIdOrderByTotalPriceDesc(Long id, Pageable pageable);
     Page<OrderBill> findByUserIdOrderByPaymentMethod(Long id, Pageable pageable);
 
-
+    Page<OrderBill> findByStatus(int status,Pageable pageable);
 
 }
