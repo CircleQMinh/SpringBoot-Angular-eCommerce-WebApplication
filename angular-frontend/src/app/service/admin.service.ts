@@ -52,4 +52,12 @@ export class AdminService {
   deleteOrder(id:number): Observable<any> {
     return this.http.delete(`http://localhost:8080/api/v1/deleteOrder/${id}`);
   }
+
+  getEventForAdmin(userid:number,from:string,to:string):Observable<any>{
+    return this.http.get(`http://localhost:8080/api/v1/event/getEventOfUser?id=${userid}&from=${from}&to=${to}`)
+  }
+  createEvent(u: Object): Observable<any> {
+    return this.http.post(`http://localhost:8080/api/v1/event/saveEvent`, u);
+  }
+
 }
