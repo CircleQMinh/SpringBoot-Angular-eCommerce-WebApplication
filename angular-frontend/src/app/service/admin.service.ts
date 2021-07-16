@@ -53,9 +53,14 @@ export class AdminService {
     return this.http.delete(`http://localhost:8080/api/v1/deleteOrder/${id}`);
   }
 
-  getEventForAdmin(userid:number,from:string,to:string):Observable<any>{
-    return this.http.get(`http://localhost:8080/api/v1/event/getEventOfUser?id=${userid}&from=${from}&to=${to}`)
+  getEventForAdmin(userid:number,from:string,to:string,page:number,pagesize:number):Observable<any>{
+    return this.http.get(`http://localhost:8080/api/v1/event/getEventOfUser?
+    id=${userid}&from=${from}&to=${to}&pageNumber=${page}&pageSize=${pagesize}`)
   }
+  getDBInfo():Observable<any>{
+    return this.http.get(`http://localhost:8080/api/v1/Dashboard/getSummaryInfo`)
+  }
+  
   createEvent(u: Object): Observable<any> {
     return this.http.post(`http://localhost:8080/api/v1/event/saveEvent`, u);
   }

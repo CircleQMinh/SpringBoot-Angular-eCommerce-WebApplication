@@ -1,17 +1,19 @@
+
 <div>
     <div class="sidebar">
         <div class="sidebar-inner">
-            <div class="sidebar-logo">
+            <div class="sidebar-logo" style="    background: linear-gradient(to bottom, #16c1f6 0%, #e7fff7 80%);
+            border-bottom: black solid;">
                 <div class="peers ai-c fxw-nw">
                     <div class="peer peer-greed"><a class="sidebar-link td-n">
                             <div class="peers ai-c fxw-nw">
                                 <div class="peer">
-                                    <div class="logo"><img
-                                            src="https://colorlib.com/polygon/adminator/assets/static/images/logo.png"
+                                    <div class="logo"><img style="height: 63px;"
+                                            src="https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626422949/1af75c73d98c2c6b8217294e65a603a9_k8tsz8.png"
                                             alt=""></div>
                                 </div>
-                                <div class="peer peer-greed">
-                                    <h5 class="lh-1 mB-0 logo-text">Administrator</h5>
+                                <div class="peer peer-greed" style="height: 64px;">
+                                    <p style="margin-top: 20%;" routerLink="/home">Home</p>
                                 </div>
                             </div>
                         </a></div>
@@ -21,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <ul class="sidebar-menu scrollable pos-r ps">
+            <ul class="sidebar-menu scrollable pos-r ps" style="background:honeydew;">
                 <li class="nav-item "><a class="sidebar-link" routerLink="/Administrator"><span class="icon-holder"><i
                                 class="fas fa-home"></i></span><span class="title">Dashboard</span></a></li>
                 <li class="nav-item"><a class="sidebar-link" routerLink="/Administrator-Product"><span
@@ -52,23 +54,23 @@
     </div>
     <div class="page-container">
         <div class="header navbar">
-            <div class="header-container">
+            <div class="header-container" style="background: linear-gradient(to bottom, #16c1f6 0%, #e7fff7 80%);
+            border-bottom: black solid;
+            height: 66px;">
                 <ul class="nav-left">
-                    <li><a><i></i> Dashboard</a></li>
+                    <li><a><h3 style="margin-top: 10%;">Dashboard</h3></a></li>
                 </ul>
                 <ul class="nav-right">
                     <li class="notifications dropdown"><span class="counter bgc-red">3</span> <a
-                            class="dropdown-toggle no-after" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="ti-bell"></i></a>
+                            class="dropdown-toggle no-after" id="dropdownMenuButton1" aria-expanded="false"><i
+                                class="ti-bell"></i></a>
                     </li>
                     <li class="notifications dropdown"><span class="counter bgc-blue">3</span> <a
-                            class="dropdown-toggle no-after" data-bs-toggle="dropdown"><i class="ti-email"></i></a>
+                            class="dropdown-toggle no-after"><i class="ti-email"></i></a>
 
                     </li>
-                    <li class="dropdown"><a class="dropdown-toggle no-after peers fxw-nw ai-c lh-1"
-                            data-bs-toggle="dropdown">
-                            <div class="peer mR-10"><img class="w-2r bdrs-50p"
-                                    src="https://image.flaticon.com/icons/png/128/1144/1144760.png" alt=""></div>
+                    <li class="dropdown"><a class="dropdown-toggle no-after peers fxw-nw ai-c lh-1">
+                            <div class="peer mR-10"><img class="w-2r bdrs-50p" src="{{user.imgUrl}}" alt=""></div>
                             <div class="peer"><span class="fsz-sm c-grey-900">{{user.name}}</span></div>
                         </a>
                     </li>
@@ -82,14 +84,15 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>150</h3>
+                                <h3>{{dbInfo.productCount}}</h3>
 
-                                <p>New Orders</p>
+                                <p>Products</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-box-open"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a routerLink="/Administrator-Product" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -97,14 +100,15 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                                <h3>{{dbInfo.orderCount}}</h3>
 
-                                <p>Bounce Rate</p>
+                                <p>Pending Orders</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-file-invoice-dollar"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a routerLink="/Administrator-Order" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -112,19 +116,19 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>{{dbInfo.userCount}}</h3>
 
-                                <p>User Registrations</p>
+                                <p>Users</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-user-check"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a routerLink="/Administrator-User" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
                     <div class="col-lg-3 col-6">
-                        <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
                                 <h3>65</h3>
@@ -140,17 +144,18 @@
                     <!-- ./col -->
                 </div>
                 <div class="row">
-                    <div class="col-xl-8">
+                    <div class="col-xl-8" style="
+                    border-right: 1px solid black;">
                         <div class="layer w-100 mB-10">
                             <h6 class="lh-1">Upcoming event</h6>
                             <div style="
                                         display: inline-block;
                                         width: 25%;">
-                                <div>Page size : <select class="select select-history select-lg"
-                                        [(ngModel)]="numberOfDay"  >
-                                        <option value="7" selected>7</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
+                                <div>Next Event In : <select class="select select-history select-lg"
+                                        [(ngModel)]="numberOfDay" name="day" (change)="getNewEventByDate()">
+                                        <option value="7" selected>7 day</option>
+                                        <option value="15">15 day</option>
+                                        <option value="30">30 day</option>
                                         <option value="99999">All</option>
                                     </select></div>
                             </div>
@@ -158,7 +163,7 @@
                                         display: inline-block;
                                         width: 25%;">
                                 <div>Page size : <select class="select select-history select-lg" [(ngModel)]="pageSize"
-                                     >
+                                        name="pagesize" (change)="getNewEventByDate()">
                                         <option value="5" selected>5</option>
                                         <option value="10">10</option>
                                         <option value="15">15</option>
@@ -184,17 +189,27 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="row justify-content-center">
+                                <div class="col-4" style="margin-left: 69%;">
+                                    <ngb-pagination [(page)]="pageNumber" [pageSize]="pageSize"
+                                        [collectionSize]="collectionSize" [maxSize]="5" [boundaryLinks]=true
+                                        (pageChange)=" getEventByDate()">
+                                    </ngb-pagination>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-xl-4">
-                        <p>Schedule</p>
+                        <p style="margin-left: 44%;">Calendar</p>
 
                         <ngb-datepicker #dp [(ngModel)]="dateModel" (navigate)="date = $event.next"
-                            [minDate]="{year: 2010, month: 1, day: 1}" [maxDate]="{year: 2048, month: 12, day: 31}">
+                            [minDate]="{year: 2010, month: 1, day: 1}" [maxDate]="{year: 2048, month: 12, day: 31}"
+                            style="margin-left: 25%;">
                         </ngb-datepicker>
 
                         <hr />
-                        <button class="btn btn-sm btn-outline-primary mr-2" (click)="openAddEventModal(addEvent)">Add
+                        <button class="btn btn-sm btn-outline-primary mr-2" style="margin-left: 10%;"
+                            (click)="openAddEventModal(addEvent)">Add
                             event</button>
                         <button class="btn btn-sm btn-outline-primary mr-2" (click)="selectToday()">Select
                             Today</button>
@@ -203,16 +218,16 @@
 
                         <hr />
 
-                        <pre>Month: {{ date.month }}.{{ date.year }}</pre>
-                        <pre>Model: {{ dateModel | json }}</pre>
+                        <!-- <pre>Month: {{ date.month }}.{{ date.year }}</pre>
+                        <pre>Model: {{ dateModel | json }}</pre> -->
                     </div>
                 </div>
 
             </div>
         </main>
-        <!-- <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600"><span>Copyright © 2021 Designed by <a
-                    href="https://colorlib.com" target="_blank" title="Colorlib">Colorlib</a>. All rights
-                reserved.</span></footer> -->
+        <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600"><span>Copyright © 2021 Designed by <a
+                    href="https://tron.com" target="_blank" title="Colorlib">Tròn</a>. All rights
+                reserved.</span></footer>
     </div>
 </div>
 

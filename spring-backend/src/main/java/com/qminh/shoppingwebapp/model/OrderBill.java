@@ -2,6 +2,7 @@ package com.qminh.shoppingwebapp.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "orderbill", schema = "dbtmdt")
@@ -36,7 +37,7 @@ public class OrderBill {
     private String email;
 
     @Column(name = "order_date")
-    private String orderDate;
+    private LocalDate orderDate;
 
     @Column(name = "payment_method")
     private String paymentMethod;
@@ -64,11 +65,11 @@ public class OrderBill {
     public void setContactName(String contactName) {
         this.contactName = contactName;
     }
-    public String getOrderDate() {
+    public LocalDate getOrderDate() {
         return this.orderDate;
     }
 
-    public void setOrderDate(String orderDate) {
+    public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
     }
 

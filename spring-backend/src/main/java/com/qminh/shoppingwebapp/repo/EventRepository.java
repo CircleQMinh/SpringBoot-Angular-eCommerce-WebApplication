@@ -1,6 +1,8 @@
 package com.qminh.shoppingwebapp.repo;
 
 import com.qminh.shoppingwebapp.model.Event;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
@@ -11,5 +13,5 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     List<Event> findByUserId(Long id);
 
-    List<Event> findByUserIdAndAndDateBetween(Long id, LocalDate Start, LocalDate End);
+    Page<Event> findByUserIdAndAndDateBetweenOrderByDateAscTimeAsc(Long id, LocalDate Start, LocalDate End, Pageable pageable);
 }
