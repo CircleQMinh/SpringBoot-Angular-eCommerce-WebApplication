@@ -3,6 +3,8 @@ package com.qminh.shoppingwebapp.controller;
 import com.qminh.shoppingwebapp.model.Event;
 import com.qminh.shoppingwebapp.repo.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -18,42 +20,41 @@ import java.util.Map;
 @RequestMapping("/api/v1")
 public class EventController {
     @Autowired
-    private EventRepository eventRepository ;
+    private EventRepository eventRepository;
 
 
     @GetMapping("/getEvent")
-    List<Event> getEventById(@RequestParam(defaultValue = "1") Long id){
+    List<Event> getEventById(@RequestParam(defaultValue = "1") Long id) {
         List<Event> list = eventRepository.findByUserId(id);
         list.forEach(event -> {
             event.getUser().setPassword("");
         });
-        return  list;
+        return list;
     }
 
     @GetMapping("/event/getEventOfUser")
-    List<Event> getEventByIdAndBetween(@RequestParam(defaultValue = "1") Long id,
+    Page<Event> getEventByIdAndBetween(@RequestParam(defaultValue = "1") Long id,
                                        @RequestParam(defaultValue = "") String from,
-                                       @RequestParam(defaultValue = "") String to) {
+                                       @RequestParam(defaultValue = "") String to,
+                                       @RequestParam(defaultValue = "1") int pageNumber,
+                                       @RequestParam(defaultValue = "7") int pageSize) {
+        Page<Event> page;
         LocalDate dateFrom = LocalDate.parse(from);
         LocalDate dateTo = LocalDate.parse(to);
-        List<Event> list = eventRepository.findByUserIdAndAndDateBetween(id,dateFrom,dateTo);
-        list.forEach(event -> {
-            event.getUser().setPassword("");
-        });
-        return  list;
+        page=eventRepository.findByUserIdAndAndDateBetweenOrderByDateAscTimeAsc(id,dateFrom,dateTo, PageRequest.of(pageNumber-1,pageSize));
+        return page;
     }
 
     @PostMapping("/event/saveEvent")
-    public Map<String,String> saveEvent(@RequestBody Event event){
+    public Map<String, String> saveEvent(@RequestBody Event event) {
 
-        Map<String,String> map = new HashMap<>();
-        try{
+        Map<String, String> map = new HashMap<>();
+        try {
             eventRepository.save(event);
-            map.put("succes","true");
-        }
-        catch (Exception e){
-            map.put("succes","false");
-            map.put("error",e.getMessage());
+            map.put("succes", "true");
+        } catch (Exception e) {
+            map.put("succes", "false");
+            map.put("error", e.getMessage());
         }
         return map;
     }

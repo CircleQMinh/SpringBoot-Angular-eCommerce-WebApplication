@@ -178,7 +178,7 @@ export class CheckoutComponent implements OnInit {
       this.order.email = this.email
       this.order.paymentMethod = "cash"
       this.order.status = 1
-      this.today=formatDate(Date.now(), 'dd-MM-yyyy', 'en');
+      this.today=formatDate(Date.now(), 'yyyy-MM-dd', 'en');
       this.order.orderDate=this.today
       this.order.totalItem=this.totalQuantity
       this.order.totalPrice=this.totalPrice

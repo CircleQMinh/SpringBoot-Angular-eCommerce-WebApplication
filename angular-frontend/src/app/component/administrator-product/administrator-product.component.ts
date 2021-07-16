@@ -48,6 +48,9 @@ export class AdministratorProductComponent implements OnInit {
 
   isUpload:boolean=false
 
+
+
+
   constructor(private loginService: LoginService,
     private adminService: AdminService, private http: HttpClient,
     private router: Router, private modalService: NgbModal,private toast: HotToastService

@@ -1,39 +1,44 @@
 <div>
     <div class="sidebar">
         <div class="sidebar-inner">
-            <div class="sidebar-logo">
+            <div class="sidebar-logo" style="    background: linear-gradient(to bottom, #16c1f6 0%, #e7fff7 80%);
+            border-bottom: black solid;">
                 <div class="peers ai-c fxw-nw">
-                    <div class="peer peer-greed"><a class="sidebar-link td-n" >
+                    <div class="peer peer-greed"><a class="sidebar-link td-n">
                             <div class="peers ai-c fxw-nw">
                                 <div class="peer">
-                                    <div class="logo"><img
-                                            src="https://colorlib.com/polygon/adminator/assets/static/images/logo.png"
+                                    <div class="logo"><img style="height: 63px;"
+                                            src="https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626422949/1af75c73d98c2c6b8217294e65a603a9_k8tsz8.png"
                                             alt=""></div>
                                 </div>
-                                <div class="peer peer-greed">
-                                    <h5 class="lh-1 mB-0 logo-text">Administrator</h5>
+                                <div class="peer peer-greed" style="height: 64px;">
+                                    <p style="margin-top: 20%;" routerLink="/home">Home</p>
                                 </div>
                             </div>
                         </a></div>
                     <div class="peer">
-                        <div class="mobile-toggle sidebar-toggle"><a  class="td-n"><i
+                        <div class="mobile-toggle sidebar-toggle"><a class="td-n"><i
                                     class="ti-arrow-circle-left"></i></a></div>
                     </div>
                 </div>
             </div>
-            <ul class="sidebar-menu scrollable pos-r ps">
+            <ul class="sidebar-menu scrollable pos-r ps" style="background:honeydew;">
                 <li class="nav-item "><a class="sidebar-link" routerLink="/Administrator"><span class="icon-holder"><i
                                 class="fas fa-home"></i></span><span class="title">Dashboard</span></a></li>
-                <li class="nav-item"><a class="sidebar-link" routerLink="/Administrator-Product" ><span class="icon-holder"><i
-                                class="fas fa-box-open"></i></span><span class="title">Product</span></a></li>
-                <li class="nav-item"><a class="sidebar-link" routerLink="/Administrator-Order"><span class="icon-holder"><i
-                                class="fas fa-clipboard-check"></i> </span><span class="title">Order</span></a></li>
-                <li class="nav-item"><a class="sidebar-link" routerLink="/Administrator-User"><span class="icon-holder"><i
-                                class="fas fa-user"></i> </span><span class="title">User</span></a></li>
-                <li class="nav-item"><a class="sidebar-link" routerLink="/Administrator-Statistical"><span class="icon-holder"><i
-                                class="fas fa-chart-line"></i> </span><span class="title">Statistical</span></a>
+                <li class="nav-item"><a class="sidebar-link" routerLink="/Administrator-Product"><span
+                            class="icon-holder"><i class="fas fa-box-open"></i></span><span
+                            class="title">Product</span></a></li>
+                <li class="nav-item"><a class="sidebar-link" routerLink="/Administrator-Order"><span
+                            class="icon-holder"><i class="fas fa-clipboard-check"></i> </span><span
+                            class="title">Order</span></a></li>
+                <li class="nav-item"><a class="sidebar-link" routerLink="/Administrator-User"><span
+                            class="icon-holder"><i class="fas fa-user"></i> </span><span class="title">User</span></a>
                 </li>
-                <li class="nav-item"><a class="sidebar-link" ><span class="icon-holder"><i
+                <li class="nav-item"><a class="sidebar-link" routerLink="/Administrator-Statistical"><span
+                            class="icon-holder"><i class="fas fa-chart-line"></i> </span><span
+                            class="title">Statistical</span></a>
+                </li>
+                <li class="nav-item"><a class="sidebar-link"><span class="icon-holder"><i
                                 class="fas fa-sign-out-alt"></i> </span><span class="title">Logout</span></a></li>
 
 
@@ -48,23 +53,23 @@
     </div>
     <div class="page-container">
         <div class="header navbar">
-            <div class="header-container">
+            <div class="header-container" style="background: linear-gradient(to bottom, #16c1f6 0%, #e7fff7 80%);
+            border-bottom: black solid;
+            height: 66px;">
                 <ul class="nav-left">
-                    <li><a ><i></i> Statistical</a></li>
+                    <li><a>Dashboard</a></li>
                 </ul>
                 <ul class="nav-right">
-                    <li class="notifications dropdown"><span class="counter bgc-red">3</span> <a 
-                            class="dropdown-toggle no-after" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="ti-bell"></i></a>
+                    <li class="notifications dropdown"><span class="counter bgc-red">3</span> <a
+                            class="dropdown-toggle no-after" id="dropdownMenuButton1" aria-expanded="false"><i
+                                class="ti-bell"></i></a>
                     </li>
-                    <li class="notifications dropdown"><span class="counter bgc-blue">3</span> <a 
-                            class="dropdown-toggle no-after" data-bs-toggle="dropdown"><i class="ti-email"></i></a>
+                    <li class="notifications dropdown"><span class="counter bgc-blue">3</span> <a
+                            class="dropdown-toggle no-after"><i class="ti-email"></i></a>
 
                     </li>
-                    <li class="dropdown"><a  class="dropdown-toggle no-after peers fxw-nw ai-c lh-1"
-                            data-bs-toggle="dropdown">
-                            <div class="peer mR-10"><img class="w-2r bdrs-50p"
-                                    src="https://image.flaticon.com/icons/png/128/1144/1144760.png" alt=""></div>
+                    <li class="dropdown"><a class="dropdown-toggle no-after peers fxw-nw ai-c lh-1">
+                            <div class="peer mR-10"><img class="w-2r bdrs-50p" src="{{user.imgUrl}}" alt=""></div>
                             <div class="peer"><span class="fsz-sm c-grey-900">{{user.name}}</span></div>
                         </a>
                     </li>

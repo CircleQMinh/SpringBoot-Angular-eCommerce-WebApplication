@@ -18,23 +18,23 @@ export class AdministratorComponent implements OnInit {
 
   dateModel!: NgbDateStruct;
   date!: { year: number, month: number };
-  time:NgbTimeStruct = {hour: 13, minute: 30,second:0};
+  time: NgbTimeStruct =  { hour: 0, minute: 0, second: 0 }
   meridian = true;
 
   eventName: string = ""
   eventDes: string = ""
   isSelected: boolean = false
   todayString: string = formatDate(Date.now(), 'yyyy-MM-dd', 'en');
-  numberOfDay: number = 30
+  numberOfDay: number = 7
   endDay: string = ""
   eventList: Event[] = []
 
 
-  
+
   pageNumber: number = 1;
   pageSize: number = 5;
   collectionSize: number = 50;
-
+  dbInfo:any={}
 
   constructor(private loginService: LoginService,
     private adminService: AdminService,
@@ -44,34 +44,30 @@ export class AdministratorComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLogin()
-    
+
 
   }
-  getEventByDate(){
-    let date = new Date();
-    // add a day
-    date.setDate(date.getDate() + this.numberOfDay);
-    this.endDay = formatDate(date,'yyyy-MM-dd','en')
-    this.adminService.getEventForAdmin(this.user.id,this.todayString,this.endDay).subscribe(
+  getEventByDate() {
+    let date =new Date(new Date().getTime()+(this.numberOfDay*24*60*60*1000));
+    this.endDay = formatDate(date, 'yyyy-MM-dd', 'en')
+    this.adminService.getEventForAdmin(this.user.id, this.todayString, this.endDay, this.pageNumber, this.pageSize).subscribe(
       data => {
-        this.eventList = data
+        this.eventList = data.content
         this.collectionSize = data.totalElements;
-        this.pageNumber = data.number
-        this.pageSize = data.size
       },
       error => {
         console.log(error)
       }
     )
   }
-  getNewEventByDate(){
-    let date = new Date();
-    // add a day
-    date.setDate(date.getDate() + this.numberOfDay);
-    this.endDay = formatDate(date,'yyyy-MM-dd','en')
-    this.adminService.getEventForAdmin(this.user.id,this.todayString,this.endDay).subscribe(
+  getNewEventByDate() {
+    this.pageNumber = 1
+    let date =new Date(new Date().getTime()+(this.numberOfDay*24*60*60*1000));
+    this.endDay = formatDate(date, 'yyyy-MM-dd', 'en')
+    this.adminService.getEventForAdmin(this.user.id, this.todayString, this.endDay, this.pageNumber, this.pageSize).subscribe(
       data => {
-        this.eventList = data
+        this.eventList = data.content
+        this.collectionSize = data.totalElements;
       },
       error => {
         console.log(error)
@@ -88,13 +84,23 @@ export class AdministratorComponent implements OnInit {
         this.router.navigateByUrl("/home")
       }
       this.getEventByDate()
+      this.adminService.getDBInfo().subscribe(
+        data=>{
+          this.dbInfo=data
+        }
+      )
     }
   }
   selectToday() {
     this.dateModel = this.calendar.getToday();
   }
 
+  addDays(date: Date, days: number): Date {
+    date.setDate(date.getDate() + days);
+    return date;
+  }
   openAddEventModal(modal: any) {
+    this.clearInput()
     if (this.dateModel == undefined) {
       this.toast.error("Select a day to add event!")
     }
@@ -114,8 +120,8 @@ export class AdministratorComponent implements OnInit {
     e.date = stringDate
     e.user = this.user
     e.user.password = ""
-    e.time=this.toTimeString(this.time)
-    
+    e.time = this.toTimeString(this.time)
+
     console.log(e)
     this.adminService.createEvent(e).subscribe(
       data => {
@@ -130,18 +136,32 @@ export class AdministratorComponent implements OnInit {
     this.modalService.dismissAll()
   }
 
-  toDateString(date: NgbDateStruct): string // from internal model -> your mode
+  toDateString(date: NgbDateStruct): string 
   {
     return date ? date.year + "-" + ('0' + date.month).slice(-2)
       + "-" + ('0' + date.day).slice(-2) : ""
   }
-  toTimeString(time:NgbTimeStruct):string{
-    let stringTime=""
-    if(time.hour>12){
-      return "0"+(time.hour-12)+":"+time.minute+":"+"00"+" PM"
+  toTimeString(time: NgbTimeStruct): string {
+    let stringTime = ""
+    let h:string =""
+    let m:string =""
+    if (time.hour > 12) {
+      return  this.convertTime((time.hour - 12)) + ":" + this.convertTime(time.minute) + ":" + "00" + " PM"
     }
-    else{
-      return time.hour+":"+time.minute+":"+"00"+" AM"
-    } 
+    else {
+      return this.convertTime((time.hour )) + ":" + this.convertTime(time.minute) + ":" + "00" + " AM"
+    }
+  }
+  convertTime(num:number):string{
+    if (num >= 10) {
+      return String(num);
+    } else {
+      return "0" + String(num);
+    }
+  }
+
+  clearInput(){
+    this.eventDes = ""
+    this.time= { hour: 0, minute: 0, second: 0 }
   }
 }
