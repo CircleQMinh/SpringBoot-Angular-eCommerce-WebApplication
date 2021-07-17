@@ -14,5 +14,6 @@ public interface OrderRepository extends JpaRepository<OrderBill, Long> {
     Page<OrderBill> findByUserIdOrderByPaymentMethod(Long id, Pageable pageable);
 
     Page<OrderBill> findByStatus(int status,Pageable pageable);
+    Page<OrderBill> findByShipperId(Long id,Pageable pageable);
 
 }

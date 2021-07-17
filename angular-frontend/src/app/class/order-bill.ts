@@ -12,4 +12,5 @@ export class OrderBill {
     status!: number
     totalItem!:number
     totalPrice!:number
+    shipper!:User
 }

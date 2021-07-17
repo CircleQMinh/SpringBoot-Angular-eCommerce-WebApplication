@@ -1,0 +1,178 @@
+<div>
+    <div class="sidebar">
+        <div class="sidebar-inner">
+            <div class="sidebar-logo" style="    background: linear-gradient(to bottom, #16c1f6 0%, #e7fff7 80%);
+            border-bottom: black solid;">
+                <div class="peers ai-c fxw-nw">
+                    <div class="peer peer-greed"><a class="sidebar-link td-n">
+                            <div class="peers ai-c fxw-nw">
+                                <div class="peer">
+                                    <div class="logo"><img style="height: 63px;"
+                                            src="https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626422949/1af75c73d98c2c6b8217294e65a603a9_k8tsz8.png"
+                                            alt=""></div>
+                                </div>
+                                <div class="peer peer-greed" style="height: 64px;">
+                                    <p style="margin-top: 20%;" routerLink="/home">Home</p>
+                                </div>
+                            </div>
+                        </a></div>
+                    <div class="peer">
+                        <div class="mobile-toggle sidebar-toggle"><a class="td-n"><i
+                                    class="ti-arrow-circle-left"></i></a></div>
+                    </div>
+                </div>
+            </div>
+            <ul class="sidebar-menu scrollable pos-r ps" style="background:honeydew;">
+                <li class="nav-item "><a class="sidebar-link" routerLink="/Shipper"><span class="icon-holder"><i
+                                class="fas fa-dolly-flatbed"></i></span><span class="title">Available Order</span></a>
+                </li>
+                <li class="nav-item "><a class="sidebar-link" routerLink="/Shipper-Accepted"><span
+                            class="icon-holder"><i class="fas fa-shipping-fast"></i></span><span class="title">Accepted
+                            Order</span></a></li>
+                <li class="nav-item "><a class="sidebar-link" routerLink="/Shiper-History"><span class="icon-holder"><i
+                                class="fas fa-history"></i></span><span class="title">Order History</span></a></li>
+                <li class="nav-item"><a class="sidebar-link"><span class="icon-holder"><i
+                                class="fas fa-sign-out-alt"></i> </span><span class="title">Logout</span></a></li>
+
+
+                <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                </div>
+                <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <div class="page-container">
+        <div class="header navbar">
+            <div class="header-container" style="background: linear-gradient(to bottom, #16c1f6 0%, #e7fff7 80%);
+            border-bottom: black solid;
+            height: 66px;">
+                <ul class="nav-left">
+                    <li><a>
+                            <h3 style="margin-top: 10%;">Order Management</h3>
+                        </a></li>
+                </ul>
+                <ul class="nav-right">
+                    <li class="notifications dropdown"><span class="counter bgc-red">3</span> <a
+                            class="dropdown-toggle no-after" id="dropdownMenuButton1" aria-expanded="false"><i
+                                class="ti-bell"></i></a>
+                    </li>
+                    <li class="notifications dropdown"><span class="counter bgc-blue">3</span> <a
+                            class="dropdown-toggle no-after"><i class="ti-email"></i></a>
+
+                    </li>
+                    <li class="dropdown"><a class="dropdown-toggle no-after peers fxw-nw ai-c lh-1">
+                            <div class="peer mR-10"><img class="w-2r bdrs-50p" src="{{user.imgUrl}}" alt=""></div>
+                            <div class="peer"><span class="fsz-sm c-grey-900">{{user.name}}</span></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <main class="main-content bgc-grey-100">
+            <div id="mainContent">
+                <div class="row gap-20 masonry pos-r" style="position: relative; height: 1806px;">
+                    <div class="masonry-sizer col-md-6"></div>
+                    <div class="masonry-item w-100" style="position: absolute; left: 0%; top: 0px;">
+                        <div class="row gap-20">
+                            <div class="col-md-3">
+                                <div class="layers bd bgc-white p-20">
+                                    <!--  -->
+                                    <div class="layer w-100 mB-10">
+                                        <h6 class="lh-1">Order History</h6>
+                                        <div class="table-responsive p-20">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="bdwT-0">Name</th>
+                                                        <th class="bdwT-0">Status</th>
+                                                        <th class="bdwT-0">Date</th>
+                                                        <th class="bdwT-0">Price</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="fw-600">Item #1 Name</td>
+                                                        <td><span
+                                                                class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c rounded-pill">Unavailable</span>
+                                                        </td>
+                                                        <td>Nov 18</td>
+                                                        <td><span class="text-success">$12</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="fw-600">Item #2 Name</td>
+                                                        <td><span
+                                                                class="badge bgc-deep-purple-50 c-deep-purple-700 p-10 lh-0 tt-c rounded-pill">New</span>
+                                                        </td>
+                                                        <td>Nov 19</td>
+                                                        <td><span class="text-info">$34</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="fw-600">Item #3 Name</td>
+                                                        <td><span
+                                                                class="badge bgc-pink-50 c-pink-700 p-10 lh-0 tt-c rounded-pill">New</span>
+                                                        </td>
+                                                        <td>Nov 20</td>
+                                                        <td><span class="text-danger">-$45</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="fw-600">Item #4 Name</td>
+                                                        <td><span
+                                                                class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c rounded-pill">Unavailable</span>
+                                                        </td>
+                                                        <td>Nov 21</td>
+                                                        <td><span class="text-success">$65</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="fw-600">Item #5 Name</td>
+                                                        <td><span
+                                                                class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c rounded-pill">Used</span>
+                                                        </td>
+                                                        <td>Nov 22</td>
+                                                        <td><span class="text-success">$78</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="fw-600">Item #6 Name</td>
+                                                        <td><span
+                                                                class="badge bgc-orange-50 c-orange-700 p-10 lh-0 tt-c rounded-pill">Used</span>
+                                                        </td>
+                                                        <td>Nov 23</td>
+                                                        <td><span class="text-danger">-$88</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="fw-600">Item #7 Name</td>
+                                                        <td><span
+                                                                class="badge bgc-yellow-50 c-yellow-700 p-10 lh-0 tt-c rounded-pill">Old</span>
+                                                        </td>
+                                                        <td>Nov 22</td>
+                                                        <td><span class="text-success">$56</span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="layer w-100">
+                                        <div class="peers ai-sb fxw-nw">
+                                            <div class="peer peer-greed"><span id="sparklinedash"><canvas width="45"
+                                                        height="20"
+                                                        style="display: inline-block; width: 45px; height: 20px; vertical-align: top;"></canvas></span>
+                                            </div>
+                                            <div class="peer"><span
+                                                    class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">+10%</span>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600"><span>Copyright © 2021 Designed by <a
+                    href="https://colorlib.com" target="_blank" title="Colorlib">Colorlib</a>. All rights
+                reserved.</span></footer> -->
+    </div>
+</div>

@@ -1,4 +1,3 @@
-
 <div>
     <div class="sidebar">
         <div class="sidebar-inner">
@@ -24,21 +23,14 @@
                 </div>
             </div>
             <ul class="sidebar-menu scrollable pos-r ps" style="background:honeydew;">
-                <li class="nav-item "><a class="sidebar-link" routerLink="/Administrator"><span class="icon-holder"><i
-                                class="fas fa-home"></i></span><span class="title">Dashboard</span></a></li>
-                <li class="nav-item"><a class="sidebar-link" routerLink="/Administrator-Product"><span
-                            class="icon-holder"><i class="fas fa-box-open"></i></span><span
-                            class="title">Product</span></a></li>
-                <li class="nav-item"><a class="sidebar-link" routerLink="/Administrator-Order"><span
-                            class="icon-holder"><i class="fas fa-clipboard-check"></i> </span><span
-                            class="title">Order</span></a></li>
-                <li class="nav-item"><a class="sidebar-link" routerLink="/Administrator-User"><span
-                            class="icon-holder"><i class="fas fa-user"></i> </span><span class="title">User</span></a>
+                <li class="nav-item "><a class="sidebar-link" routerLink="/Shipper"><span class="icon-holder"><i
+                                class="fas fa-dolly-flatbed"></i></span><span class="title">Available Order</span></a>
                 </li>
-                <li class="nav-item"><a class="sidebar-link" routerLink="/Administrator-Statistical"><span
-                            class="icon-holder"><i class="fas fa-chart-line"></i> </span><span
-                            class="title">Statistical</span></a>
-                </li>
+                <li class="nav-item "><a class="sidebar-link" routerLink="/Shipper-Accepted"><span
+                            class="icon-holder"><i class="fas fa-shipping-fast"></i></span><span class="title">Accepted
+                            Order</span></a></li>
+                <li class="nav-item "><a class="sidebar-link" routerLink="/Shiper-History"><span class="icon-holder"><i
+                                class="fas fa-history"></i></span><span class="title">Order History</span></a></li>
                 <li class="nav-item"><a class="sidebar-link"><span class="icon-holder"><i
                                 class="fas fa-sign-out-alt"></i> </span><span class="title">Logout</span></a></li>
 
@@ -58,7 +50,9 @@
             border-bottom: black solid;
             height: 66px;">
                 <ul class="nav-left">
-                    <li><a><h3 style="margin-top: 10%;">Order Management</h3></a></li>
+                    <li><a>
+                            <h3 style="margin-top: 10%;">Shipping Info</h3>
+                        </a></li>
                 </ul>
                 <ul class="nav-right">
                     <li class="notifications dropdown"><span class="counter bgc-red">3</span> <a
@@ -87,43 +81,11 @@
                                 <div class="layers bd bgc-white p-20">
                                     <!--  -->
                                     <div class="layer w-100 mB-10">
-                                        <h3 class="lh-1" style="margin-bottom: 3%;">List of Order</h3>
+                                        <h3 class="lh-1" style="margin-bottom: 3%;">List of Accepted Orders</h3>
                                         <!-- <img style="width: 40px;height: 40px;"
                                             src="https://image.flaticon.com/icons/png/128/1149/1149576.png"
                                             ngbTooltip="Add a User" (click)="openAddModal(add_user)">Add a user -->
-                                        <div style="
-                                        display: inline-block;
-                                        width: 25%; ">
-                                            <div>Status : <select class="select select-history select-lg"
-                                                    [(ngModel)]="status" (change)="getNewPage()">
-                                                    <option value="0" selected="true">All</option>
-                                                    <option value="1">Not approved</option>
-                                                    <option value="2">Approved</option>
-                                                    <option value="3">Shipping</option>
-                                                    <option value="4">Finished</option>
-                                                </select></div>
-                                        </div>
-                                        <div style="
-                                        display: inline-block;
-                                        width: 25%;">
-                                            <div>Order by: <select class="select select-history select-lg"
-                                                    [(ngModel)]="orderby" (change)="getNewPage()">
-                                                    <option value="totalPrice">Total Price</option>
-                                                    <option value="id" selected="">Id</option>
-                                                    <option value="payment">Payment Method</option>
-                                                    <option value="orderDate">Order Date</option>
-                                                </select></div>
-                                        </div>
-                                        <div style="
-                                        display: inline-block;
-                                        width: 25%;">
-                                            <div>Page size : <select class="select select-history select-lg"
-                                                    [(ngModel)]="sortDirect" (change)="getNewPage()">
-                                                    <option value="a" selected>Ascending</option>
-                                                    <option value="d">Descending</option>
 
-                                                </select></div>
-                                        </div>
                                         <div style="
                                         display: inline-block;
                                         width: 25%;">
@@ -158,7 +120,7 @@
                                                         max-width: 50px;">Items</th>
                                                         <th class="bdwT-0" style="word-wrap: break-word;
                                                         max-width: 50px;">T.Price</th>
-                                                        <th class="bdwT-0" colspan="3">Action</th>
+                                                        <th class="bdwT-0" colspan="2">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody *ngFor="let u of orders">
@@ -193,19 +155,14 @@
                                                                     src="https://image.flaticon.com/icons/png/128/4108/4108276.png"
                                                                     ngbTooltip="View Detail"
                                                                     (click)="openInfoModal(order_info,u)"></span></td>
-                                                        <td *ngIf="u.status==1||u.status==2"><span
-                                                                class="text-success"><img
-                                                                    style="width: 40px;height: 40px;"
-                                                                    src="https://image.flaticon.com/icons/png/128/2910/2910768.png"
-                                                                    ngbTooltip="Edit"
-                                                                    (click)="openEditModal(edit_order,u)"></span>
-                                                        </td>
                                                         <td><span class="text-success"><img
                                                                     style="width: 40px;height: 40px;"
-                                                                    src="https://image.flaticon.com/icons/png/128/1632/1632602.png"
-                                                                    ngbTooltip="Delete"
-                                                                    (click)="openDeleteModal(order_delete,u)"></span></td>
-
+                                                                    src="https://image.flaticon.com/icons/png/128/2550/2550322.png"
+                                                                    ngbTooltip="Finish this order"></span></td>
+                                                        <td><span class="text-success"><img
+                                                                    style="width: 40px;height: 40px;"
+                                                                    src="https://image.flaticon.com/icons/png/128/1008/1008927.png"
+                                                                    ngbTooltip="Cancel this order"></span></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -245,35 +202,6 @@
 </div>
 
 
-<ng-template #edit_order let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Edit this order</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form>
-            <div class="form-group">
-
-
-                <label for="status">Status</label>
-                <div class="input-group">
-                    <select id="status" class="form-control" placeholder="100" name="status"
-                        [(ngModel)]="selectedStatus">
-                        <option value="1">Not approved</option>
-                        <option value="2">Approved</option>
-                    </select>
-                </div>
-
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="editOrder()">Save</button>
-    </div>
-</ng-template>
-
 
 <ng-template #order_info let-modal>
     <div class="modal-header">
@@ -303,30 +231,12 @@
                         <td>${{ od.product.price }}</td>
                         <td>{{ od.quantity }}</td>
                         <td>${{ (od.product.price*od.quantity).toFixed(2) }}</td>
-                    </tr> 
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Close</button>
-    </div>
-</ng-template>
-
-
-<ng-template #order_delete let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Delete this order?</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-
-        <p class="text-center"><i class="fas fa-exclamation-triangle"></i>Any order and other infomation associate with this order will also be deleted!</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" style="background-color: red;" (click)="deleteOrder()">Delete</button>
-        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cancel</button>
     </div>
 </ng-template>
