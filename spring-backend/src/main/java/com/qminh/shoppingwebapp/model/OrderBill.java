@@ -50,6 +50,11 @@ public class OrderBill {
 
     @Column(name = "total_price")
     private BigDecimal totalPrice;
+
+    @ManyToOne
+    @JoinColumn(name = "shipperid")
+    private User shipper;
+
     public Long getId() {
         return this.id;
     }
@@ -126,5 +131,13 @@ public class OrderBill {
 
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public User getShipper() {
+        return this.shipper;
+    }
+
+    public void setShipper(User shipper_id) {
+        this.shipper = shipper_id;
     }
 }

@@ -27,6 +27,11 @@ import { AdministratorOrderComponent } from './component/administrator-order/adm
 import { AdministratorUserComponent } from './component/administrator-user/administrator-user.component';
 import { AdministratorStatisticalComponent } from './component/administrator-statistical/administrator-statistical.component';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { ShipperComponent } from './component/shipper/shipper.component';
+import { ShipperAcceptedOrderComponent } from './component/shipper-accepted-order/shipper-accepted-order.component';
+import { ShipperOrderHistoryComponent } from './component/shipper-order-history/shipper-order-history.component';
+
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -42,6 +47,10 @@ const routes: Routes = [
   { path: 'Administrator-Order', component: AdministratorOrderComponent },
   { path: 'Administrator-Product', component: AdministratorProductComponent },
   { path: 'Administrator', component: AdministratorComponent },
+  { path: 'Shipper', component: ShipperComponent },
+  { path: 'Shipper-Accepted', component: ShipperAcceptedOrderComponent },
+  { path: 'Shiper-History', component: ShipperOrderHistoryComponent },
+
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'products/:id', component: ProductInfoComponent },
@@ -71,7 +80,10 @@ const routes: Routes = [
     AdministratorProductComponent,
     AdministratorOrderComponent,
     AdministratorUserComponent,
-    AdministratorStatisticalComponent
+    AdministratorStatisticalComponent,
+    ShipperComponent,
+    ShipperAcceptedOrderComponent,
+    ShipperOrderHistoryComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

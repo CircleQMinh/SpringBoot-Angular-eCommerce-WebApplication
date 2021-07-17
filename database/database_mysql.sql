@@ -93,10 +93,13 @@ CREATE TABLE `orderbill` (
   `status` int DEFAULT NULL,
   `total_item` int DEFAULT NULL,
   `total_price` decimal(13,2) DEFAULT NULL,
+  `shipperid` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_1_idx` (`userid`),
-  CONSTRAINT `fk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fk_2_idx` (`shipperid`),
+  CONSTRAINT `fk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_2` FOREIGN KEY (`shipperid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -106,7 +109,7 @@ CREATE TABLE `orderbill` (
 
 LOCK TABLES `orderbill` WRITE;
 /*!40000 ALTER TABLE `orderbill` DISABLE KEYS */;
-INSERT INTO `orderbill` VALUES (1,3,'Minh Vũ Trần Quốc','38 Chiến Thắng','0788283307','quocminh.vutran3105@gmail.com','2021-07-13','cash',1,14,338.75),(2,3,'Tròn','38 Chiến Thắng Phường 9 Quận Phú Nhuận TP.HCM','0788283307','quocminh.vutran3105@gmail.com','2021-07-13','paypal',2,4,114.10),(3,3,'Chi','89 Hồ Văn Huê Phường 9 Quận Phú Nhuận TP.HCM','0786789330','tron@gmail.com','2021-07-13','cash',2,12,175.70),(4,3,'Tròn','99 Hoàng Văn Thụ Phường 11 Quận Phú Nhuận TP.HCM','0789999999','qwe@gmail.com','2021-07-13','paypal',1,3,144.00),(5,3,'Minh','56 Võ Văn Ngân Phường 8 Quận Thủ Đức TP.HCM','07892336600','m@gmail.com','2021-07-13','cash',1,5,49.65),(6,3,'Chi','547 Lê Văn Việt Phường 12 Quận Tân Bình TP.HCM','0789999000','chi@gmail.com','2021-07-13','cash',3,6,178.55),(8,3,'Minh Mâm','83 Thắng Chiến Phường 9 Quận Phú Nhuận TP.HCM','0789900099','mm@gmail.com','2021-07-13','cash',1,6,180.45),(9,3,'Tờ Ròn','39 Chiến Thắng Phường 9 Quận Phú Nhuận TP.HCM','0788283307','toron@gmail.com','2021-07-13','cash',4,22,341.20),(11,4,'Gold','45 Bạch Đằng Phường 12 Quận Bình Thạnh TP.HCM','0782934059','geo@gmail.com','2021-07-16','cash',1,15,306.55);
+INSERT INTO `orderbill` VALUES (1,3,'Minh Vũ Trần Quốc','38 Chiến Thắng','0788283307','quocminh.vutran3105@gmail.com','2021-07-13','cash',1,14,338.75,NULL),(2,3,'Tròn','38 Chiến Thắng Phường 9 Quận Phú Nhuận TP.HCM','0788283307','quocminh.vutran3105@gmail.com','2021-07-13','paypal',3,4,114.10,11),(3,3,'Chi','89 Hồ Văn Huê Phường 9 Quận Phú Nhuận TP.HCM','0786789330','tron@gmail.com','2021-07-13','cash',2,12,175.70,NULL),(4,3,'Tròn','99 Hoàng Văn Thụ Phường 11 Quận Phú Nhuận TP.HCM','0789999999','qwe@gmail.com','2021-07-13','paypal',2,3,144.00,NULL),(5,3,'Minh','56 Võ Văn Ngân Phường 8 Quận Thủ Đức TP.HCM','07892336600','m@gmail.com','2021-07-13','cash',2,5,49.65,NULL),(6,3,'Chi','547 Lê Văn Việt Phường 12 Quận Tân Bình TP.HCM','0789999000','chi@gmail.com','2021-07-13','cash',2,6,178.55,NULL),(8,3,'Minh Mâm','83 Thắng Chiến Phường 9 Quận Phú Nhuận TP.HCM','0789900099','mm@gmail.com','2021-07-13','cash',1,6,180.45,NULL),(9,3,'Tờ Ròn','39 Chiến Thắng Phường 9 Quận Phú Nhuận TP.HCM','0788283307','toron@gmail.com','2021-07-13','cash',2,22,341.20,NULL),(11,4,'Gold','45 Bạch Đằng Phường 12 Quận Bình Thạnh TP.HCM','0782934059','geo@gmail.com','2021-07-16','cash',1,15,306.55,NULL);
 /*!40000 ALTER TABLE `orderbill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,7 +162,7 @@ CREATE TABLE `user` (
   `img_url` varchar(500) DEFAULT NULL,
   `status` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +171,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'tron','1','admin','Minh Mâm','0788283308','trondeptrai@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(2,'user1','1','customer','Trần Thiên Hoàng','0789833700','hoang@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(3,'tronMM','87654321','customer','Tròn','0788283307','quocminh.vutran3105@gmail.com','http://res.cloudinary.com/dkmk9tdwx/image/upload/v1626077488/swum8dmsrduywz5r5mq5.jpg',1),(4,'namu','12345678','customer','Việt Name','0788283302','nam@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',0),(5,'bao','12345678','employee','Bảo','0788283303','bao@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(6,'toan','12345678','customer','Toàn','0788283304','toan@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',0),(7,'linh','12345678','customer','Linh','0788283305','linh@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(8,'hoang','12345678','customer','Hoàng','0788283306','hoang@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(9,'tuan','12345678','customer','Tuấn','0788283307','tuan@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(10,'dat','12345678','employee','Đạt','0788283308','dat@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',0),(11,'vinh','12345678','shipper','Vinh Xô','0788283309','vinh@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',0),(12,'lan','12345678','customer','Lan','0788283310','lan@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(13,'hung','12345678','customer','Hùng','0788283311','hung@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1);
+INSERT INTO `user` VALUES (1,'tron','1','admin','Minh Mâm','0788283308','trondeptrai@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(2,'user1','1','customer','Trần Thiên Hoàng','0789833700','hoang@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(3,'tronMM','87654321','customer','Tròn','0788283307','quocminh.vutran3105@gmail.com','http://res.cloudinary.com/dkmk9tdwx/image/upload/v1626077488/swum8dmsrduywz5r5mq5.jpg',1),(4,'namu','12345678','customer','Việt Name','0788283302','nam@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',0),(5,'bao','12345678','employee','Bảo','0788283303','bao@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(6,'toan','12345678','customer','Toàn','0788283304','toan@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',0),(7,'linh','12345678','customer','Linh','0788283305','linh@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(8,'hoang','12345678','customer','Hoàng','0788283306','hoang@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(9,'tuan','12345678','customer','Tuấn','0788283307','tuan@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(10,'dat','12345678','employee','Đạt','0788283308','dat@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',0),(11,'vinh','1','shipper','Vinh Xô','0788283309','vinh@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(12,'lan','12345678','customer','Lan','0788283310','lan@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(13,'hung','12345678','customer','Hùng','0788283311','hung@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1),(15,'tai','1','shipper','Tài','0789877033','tai@gmail.com','https://res.cloudinary.com/dkmk9tdwx/image/upload/v1626066284/106423_user_512x512_qyhovd.png',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,4 +209,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-16 17:02:09
+-- Dump completed on 2021-07-17 16:17:13

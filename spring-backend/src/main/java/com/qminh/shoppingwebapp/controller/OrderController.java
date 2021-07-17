@@ -5,6 +5,7 @@ import com.qminh.shoppingwebapp.model.OrderDetail;
 import com.qminh.shoppingwebapp.model.User;
 import com.qminh.shoppingwebapp.repo.OrderDetailRepository;
 import com.qminh.shoppingwebapp.repo.OrderRepository;
+import com.qminh.shoppingwebapp.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +26,8 @@ public class OrderController {
     private OrderRepository orderRepository;
     @Autowired
     private OrderDetailRepository orderDetailRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/Orders")
     public List<OrderBill> getAllOrders() {
@@ -133,7 +136,7 @@ public class OrderController {
     }
 
     @DeleteMapping("deleteOrder/{id}")
-    public Map<String, String> deleteUser(@PathVariable Long id) {
+    public Map<String, String> deleteOrder(@PathVariable Long id) {
         Map<String, String> map = new HashMap<>();
         OrderBill pro = orderRepository.getById(id);
         try {
@@ -144,6 +147,38 @@ public class OrderController {
             map.put("error", e.getMessage());
         }
         return map;
+    }
+
+    @GetMapping("/Order/acceptOrder")
+    public Map<String,String> acceptOrder(@RequestParam(defaultValue = "") Long id,
+                                          @RequestParam(defaultValue = "") Long bill_id){
+        Map<String, String> map = new HashMap<>();
+
+        try {
+            OrderBill orderBill = orderRepository.findById(bill_id).orElse(new OrderBill());
+            if(orderBill.getStatus()!=2){
+                map.put("error","Order is not available!");
+            }
+            else{
+                User u = userRepository.findById(id).orElse(new User());
+                orderBill.setShipper(u);
+                orderBill.setStatus(3);
+                orderRepository.save(orderBill);
+                map.put("success", "true");
+            }
+        } catch (Exception e) {
+            map.put("success", "false");
+            map.put("error", e.getMessage());
+        }
+        return map;
+    }
+
+    @GetMapping("/Order/getShipperAcceptedOrder")
+    public Page<OrderBill> getShipperAcceptedOrder(@RequestParam(defaultValue = "") long id,
+                                                   @RequestParam(defaultValue = "1") int pageNumber,
+                                                   @RequestParam(defaultValue = "5") int pageSize
+                                                   ){
+        return orderRepository.findByShipperId(id,PageRequest.of(pageNumber - 1, pageSize));
     }
 
 }
