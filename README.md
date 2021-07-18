@@ -15,3 +15,4 @@
 15-07-2021 : thêm trang dashboard. (Lười quá :v) .!<br>
 16-07-2021 : hoàn thành trang dashboard.<br>
 17-07-2021 : thêm trang cho shipper và chức năng nhận đơn hàng.<br>
+18-07-2021 : hoàn thành trang shipper và thêm chức năng ghi chú cho đơn hàng.<br>
