@@ -127,6 +127,7 @@ public class OrderController {
         OrderBill order = orderRepository.findById(o.getId()).orElse(new OrderBill());
         try {
             order.setStatus(o.getStatus());
+            order.setNote(o.getNote());
             orderRepository.save(order);
             map.put("success", Boolean.TRUE.toString());
         } catch (Exception e) {
@@ -178,7 +179,56 @@ public class OrderController {
                                                    @RequestParam(defaultValue = "1") int pageNumber,
                                                    @RequestParam(defaultValue = "5") int pageSize
                                                    ){
-        return orderRepository.findByShipperId(id,PageRequest.of(pageNumber - 1, pageSize));
+        return orderRepository.findByShipperIdAndStatus(id,3,PageRequest.of(pageNumber - 1, pageSize));
     }
 
+    @PutMapping("/Order/finishOrder")
+    public Map<String,String> finishOrder(@RequestBody OrderBill ob){
+        Map<String, String> map = new HashMap<>();
+
+        try {
+            OrderBill order = orderRepository.findById(ob.getId()).orElse(new OrderBill());
+            if(order.getStatus()!=3){
+                map.put("error","Order is not available!");
+            }
+            else{
+                order.setStatus(ob.getStatus());
+                order.setNote(ob.getNote());
+                map.put("success", "true");
+                orderRepository.save(order);
+            }
+        } catch (Exception e) {
+            map.put("success", "false");
+            map.put("error", e.getMessage());
+        }
+        return map;
+    }
+    @PutMapping("/Order/cancelOrder")
+    public Map<String,String> cancelOrder(@RequestBody OrderBill ob){
+        Map<String, String> map = new HashMap<>();
+        try {
+            OrderBill order = orderRepository.findById(ob.getId()).orElse(new OrderBill());
+            if(order.getStatus()!=3){
+                map.put("error","Order is not available!");
+            }
+            else{
+                order.setStatus(ob.getStatus());
+                order.setNote(ob.getNote());
+                map.put("success", "true");
+                orderRepository.save(order);
+            }
+        } catch (Exception e) {
+            map.put("success", "false");
+            map.put("error", e.getMessage());
+        }
+        return map;
+    }
+
+    @GetMapping("/Order/getShipperOrderHistory")
+    public Page<OrderBill> getShipperOrderHistory(@RequestParam(defaultValue = "") long id,
+                                                   @RequestParam(defaultValue = "1") int pageNumber,
+                                                   @RequestParam(defaultValue = "5") int pageSize
+    ){
+        return orderRepository.findByShipperIdAndStatusOrStatus(id,4,5,PageRequest.of(pageNumber - 1, pageSize));
+    }
 }

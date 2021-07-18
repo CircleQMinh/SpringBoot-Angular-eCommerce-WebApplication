@@ -61,7 +61,7 @@ CREATE TABLE `order_detail` (
   KEY `fk_order_idx` (`order_id`),
   CONSTRAINT `fk_order` FOREIGN KEY (`order_id`) REFERENCES `orderbill` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_pro` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `order_detail` (
 
 LOCK TABLES `order_detail` WRITE;
 /*!40000 ALTER TABLE `order_detail` DISABLE KEYS */;
-INSERT INTO `order_detail` VALUES (1,4,5,1),(2,45,7,1),(3,89,2,1),(14,2,2,2),(15,1,2,2),(16,58,1,3),(17,84,2,3),(18,87,1,3),(19,59,1,3),(20,55,2,3),(21,83,1,3),(22,80,2,3),(23,86,2,3),(24,2,1,4),(25,12,2,4),(26,96,2,5),(27,93,1,5),(28,77,2,5),(29,8,2,6),(30,87,2,6),(31,54,1,6),(32,30,1,6),(34,4,2,8),(35,81,1,8),(36,58,1,8),(37,53,1,8),(38,55,1,8),(39,86,1,9),(40,96,2,9),(41,77,2,9),(42,84,3,9),(43,76,2,9),(44,78,2,9),(45,82,2,9),(46,65,2,9),(47,6,1,9),(48,93,1,9),(49,51,2,9),(50,4,2,9),(52,95,2,11),(53,98,2,11),(54,56,1,11),(55,90,1,11),(56,97,1,11),(57,53,2,11),(58,62,1,11),(59,102,1,11),(60,17,1,11),(61,15,2,11),(62,57,1,11);
+INSERT INTO `order_detail` VALUES (1,4,5,1),(2,45,7,1),(3,89,2,1),(14,2,2,2),(15,1,2,2),(16,58,1,3),(17,84,2,3),(18,87,1,3),(19,59,1,3),(20,55,2,3),(21,83,1,3),(22,80,2,3),(23,86,2,3),(24,2,1,4),(25,12,2,4),(26,96,2,5),(27,93,1,5),(28,77,2,5),(29,8,2,6),(30,87,2,6),(31,54,1,6),(32,30,1,6),(34,4,2,8),(35,81,1,8),(36,58,1,8),(37,53,1,8),(38,55,1,8),(39,86,1,9),(40,96,2,9),(41,77,2,9),(42,84,3,9),(43,76,2,9),(44,78,2,9),(45,82,2,9),(46,65,2,9),(47,6,1,9),(48,93,1,9),(49,51,2,9),(50,4,2,9),(52,95,2,11),(53,98,2,11),(54,56,1,11),(55,90,1,11),(56,97,1,11),(57,53,2,11),(58,62,1,11),(59,102,1,11),(60,17,1,11),(61,15,2,11),(62,57,1,11),(63,12,2,12),(64,5,1,12);
 /*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,13 +94,14 @@ CREATE TABLE `orderbill` (
   `total_item` int DEFAULT NULL,
   `total_price` decimal(13,2) DEFAULT NULL,
   `shipperid` int DEFAULT NULL,
+  `note` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_1_idx` (`userid`),
   KEY `fk_2_idx` (`shipperid`),
   CONSTRAINT `fk_1` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_2` FOREIGN KEY (`shipperid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +110,7 @@ CREATE TABLE `orderbill` (
 
 LOCK TABLES `orderbill` WRITE;
 /*!40000 ALTER TABLE `orderbill` DISABLE KEYS */;
-INSERT INTO `orderbill` VALUES (1,3,'Minh Vũ Trần Quốc','38 Chiến Thắng','0788283307','quocminh.vutran3105@gmail.com','2021-07-13','cash',1,14,338.75,NULL),(2,3,'Tròn','38 Chiến Thắng Phường 9 Quận Phú Nhuận TP.HCM','0788283307','quocminh.vutran3105@gmail.com','2021-07-13','paypal',3,4,114.10,11),(3,3,'Chi','89 Hồ Văn Huê Phường 9 Quận Phú Nhuận TP.HCM','0786789330','tron@gmail.com','2021-07-13','cash',2,12,175.70,NULL),(4,3,'Tròn','99 Hoàng Văn Thụ Phường 11 Quận Phú Nhuận TP.HCM','0789999999','qwe@gmail.com','2021-07-13','paypal',2,3,144.00,NULL),(5,3,'Minh','56 Võ Văn Ngân Phường 8 Quận Thủ Đức TP.HCM','07892336600','m@gmail.com','2021-07-13','cash',2,5,49.65,NULL),(6,3,'Chi','547 Lê Văn Việt Phường 12 Quận Tân Bình TP.HCM','0789999000','chi@gmail.com','2021-07-13','cash',2,6,178.55,NULL),(8,3,'Minh Mâm','83 Thắng Chiến Phường 9 Quận Phú Nhuận TP.HCM','0789900099','mm@gmail.com','2021-07-13','cash',1,6,180.45,NULL),(9,3,'Tờ Ròn','39 Chiến Thắng Phường 9 Quận Phú Nhuận TP.HCM','0788283307','toron@gmail.com','2021-07-13','cash',2,22,341.20,NULL),(11,4,'Gold','45 Bạch Đằng Phường 12 Quận Bình Thạnh TP.HCM','0782934059','geo@gmail.com','2021-07-16','cash',1,15,306.55,NULL);
+INSERT INTO `orderbill` VALUES (1,3,'Minh Vũ Trần Quốc','38 Chiến Thắng','0788283307','quocminh.vutran3105@gmail.com','2021-07-13','cash',1,14,338.75,NULL,'Backedn test'),(2,3,'Tròn','38 Chiến Thắng Phường 9 Quận Phú Nhuận TP.HCM','0788283307','quocminh.vutran3105@gmail.com','2021-07-13','paypal',4,4,114.10,11,'OK!'),(3,3,'Chi','89 Hồ Văn Huê Phường 9 Quận Phú Nhuận TP.HCM','0786789330','tron@gmail.com','2021-07-13','cash',3,12,175.70,11,NULL),(4,3,'Tròn','99 Hoàng Văn Thụ Phường 11 Quận Phú Nhuận TP.HCM','0789999999','qwe@gmail.com','2021-07-13','paypal',5,3,144.00,11,'Got trolled!'),(5,3,'Minh','56 Võ Văn Ngân Phường 8 Quận Thủ Đức TP.HCM','07892336600','m@gmail.com','2021-07-13','cash',2,5,49.65,NULL,NULL),(6,3,'Chi','547 Lê Văn Việt Phường 12 Quận Tân Bình TP.HCM','0789999000','chi@gmail.com','2021-07-13','cash',2,6,178.55,NULL,NULL),(8,3,'Minh Mâm','83 Thắng Chiến Phường 9 Quận Phú Nhuận TP.HCM','0789900099','mm@gmail.com','2021-07-13','cash',1,6,180.45,NULL,NULL),(9,3,'Tờ Ròn','39 Chiến Thắng Phường 9 Quận Phú Nhuận TP.HCM','0788283307','toron@gmail.com','2021-07-13','cash',2,22,341.20,NULL,NULL),(11,4,'Gold','45 Bạch Đằng Phường 12 Quận Bình Thạnh TP.HCM','0782934059','geo@gmail.com','2021-07-16','cash',1,15,306.55,NULL,NULL),(12,6,'Toàn','567 Phan Văn Trị Phường 10 Quận Gò Vấp TP.HCM','0782293423','t@gmail.com','2021-07-18','cash',1,3,136.10,NULL,'Xoài phải chín nha :))');
 /*!40000 ALTER TABLE `orderbill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,4 +210,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-17 16:17:13
+-- Dump completed on 2021-07-18 15:10:11

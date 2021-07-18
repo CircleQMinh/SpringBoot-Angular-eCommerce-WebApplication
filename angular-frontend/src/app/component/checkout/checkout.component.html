@@ -3,7 +3,7 @@
 <div class="main-content page-m" *ngIf="!orderComplete">
 
     <h1>Order infomation</h1>
-    <div class="section-content section-content-p30" style="margin-top: 5%;padding: 5%;
+    <div class="section-content section-content-p30" style="margin-top: 10%;padding: 5%;
     border: solid;
     background-color: darkslateblue;">
         <div class="container-fluid">
@@ -109,6 +109,8 @@
                     <p>Total Quantity: {{totalQuantity}}</p>
                     <p>Shipping: FREE</p>
                     <p>Total Price: {{totalPrice.toFixed(2)}}</p>
+                    Note :<br>
+                    <textarea [(ngModel)]="note" multiline style="width: 500px;" name="note"></textarea>
                 </div>
 
                 <!-- submit button-->

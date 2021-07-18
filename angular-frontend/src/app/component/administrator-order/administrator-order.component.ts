@@ -32,6 +32,7 @@ export class AdministratorOrderComponent implements OnInit {
   selectedId!:number
   selectedTotalItem!:number
   selectedTotalPrice!:number
+  selectedNote!:string
 
 
   constructor(private loginService: LoginService,
@@ -90,6 +91,7 @@ export class AdministratorOrderComponent implements OnInit {
     let o:OrderBill = new OrderBill
     o.id=this.selectedId
     o.status=this.selectedStatus
+    o.note=this.selectedNote
     this.adminService.updateOrder(o).subscribe(
       data => {
         this.toast.success("Update complete!")
@@ -107,6 +109,7 @@ export class AdministratorOrderComponent implements OnInit {
     this.selectedId=u.id
     this.selectedTotalItem=u.totalItem
     this.selectedTotalPrice=u.totalPrice
+    this.selectedNote=u.note
     this.adminService.getOrderDetail(this.selectedId).subscribe(
       data=>{
         this.orderDetails=data.content

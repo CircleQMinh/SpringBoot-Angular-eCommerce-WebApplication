@@ -55,6 +55,11 @@ public class OrderBill {
     @JoinColumn(name = "shipperid")
     private User shipper;
 
+
+    @Column(name = "note")
+    private String note;
+
+
     public Long getId() {
         return this.id;
     }
@@ -139,5 +144,13 @@ public class OrderBill {
 
     public void setShipper(User shipper_id) {
         this.shipper = shipper_id;
+    }
+
+    public String getNote() {
+        return this.note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

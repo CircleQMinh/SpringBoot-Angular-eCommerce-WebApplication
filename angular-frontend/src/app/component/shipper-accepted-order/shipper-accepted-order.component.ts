@@ -28,6 +28,10 @@ export class ShipperAcceptedOrderComponent implements OnInit {
   selectedId!:number
   selectedTotalItem!:number
   selectedTotalPrice!:number
+  selectedNote!:string
+  orderStatus:number=4
+  orderNote:string=""
+
   constructor(private loginService: LoginService,
     private adminService: AdminService, private http: HttpClient,private shipperService:ShipperService,
     private router: Router, private modalService: NgbModal,private toast: HotToastService) { }
@@ -77,6 +81,7 @@ export class ShipperAcceptedOrderComponent implements OnInit {
     this.selectedId=u.id
     this.selectedTotalItem=u.totalItem
     this.selectedTotalPrice=u.totalPrice
+    this.selectedNote=u.note
     this.adminService.getOrderDetail(this.selectedId).subscribe(
       data=>{
         this.orderDetails=data.content
@@ -85,10 +90,47 @@ export class ShipperAcceptedOrderComponent implements OnInit {
     )
   }
 
-  finishedOrder(){
+  openFinishModal(order_info:any,u:OrderBill){
+    this.modalService.open(order_info, { ariaLabelledBy: 'modal-basic-title' })
+    this.selectedId=u.id
 
   }
+  openCancelModal(order_info:any,u:OrderBill){
+    this.modalService.open(order_info, { ariaLabelledBy: 'modal-basic-title' })
+    this.selectedId=u.id
+
+  }
+  finishedOrder(){
+    let o:OrderBill = new OrderBill
+    o.id=this.selectedId
+    o.status=this.orderStatus
+    o.note=this.orderNote
+    this.shipperService.finisedOrder(o).subscribe(
+      data=>{
+        this.toast.success("Successfully finish this order!")
+        this.getPage()
+        this.orderNote=""
+      },
+      error=>{
+        this.toast.error("An error has occurred. Please try again!")
+      }
+    )
+    this.modalService.dismissAll()
+  }
   cancelOrder(){
-    
+    let o:OrderBill = new OrderBill
+    o.id=this.selectedId
+    o.status=2
+    this.shipperService.cancelOrder(o).subscribe(
+      data=>{
+        this.toast.success("Successfully cancel this order!")
+        this.getPage()
+        this.orderNote=""
+      },
+      error=>{
+        this.toast.error("An error has occurred. Please try again!")
+      }
+    )
+    this.modalService.dismissAll()
   }
 }

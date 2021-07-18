@@ -145,6 +145,9 @@
                                                         <td *ngIf="u.status==4"><span
                                                                 class="badge bgc-deep-purple-50 c-deep-purple-700 p-10 lh-0 tt-c rounded-pill">Finished</span>
                                                         </td>
+                                                        <td *ngIf="u.status==5"><span
+                                                                class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c rounded-pill">Canceled</span>
+                                                        </td>
                                                         <td class="fw-600">{{u.orderDate}}</td>
                                                         <td><span>{{u.paymentMethod}}</span>
                                                         </td>
@@ -158,11 +161,14 @@
                                                         <td><span class="text-success"><img
                                                                     style="width: 40px;height: 40px;"
                                                                     src="https://image.flaticon.com/icons/png/128/2550/2550322.png"
-                                                                    ngbTooltip="Finish this order"></span></td>
+                                                                    ngbTooltip="Finish this order"
+                                                                    (click)="openFinishModal(order_finished,u)"></span>
+                                                        </td>
                                                         <td><span class="text-success"><img
                                                                     style="width: 40px;height: 40px;"
                                                                     src="https://image.flaticon.com/icons/png/128/1008/1008927.png"
-                                                                    ngbTooltip="Cancel this order"></span></td>
+                                                                    ngbTooltip="Cancel this order"
+                                                                    (click)="openCancelModal(order_cancel,u)"></span></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -234,9 +240,53 @@
                     </tr>
                 </tbody>
             </table>
+            <p>Note : {{selectedNote}}</p>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Close</button>
+    </div>
+</ng-template>
+
+
+<ng-template #order_finished let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Complete this order</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <label for="cate">Status</label>
+        <div class="input-group">
+            <select id="cate" class="form-control" placeholder="100" name="cate" [(ngModel)]="orderStatus">
+                <option value="4" selected>Finished</option>
+                <option value="5">Canceled</option>
+            </select>
+        </div>
+        <label for="des">Note</label>
+        <div class="input-group">
+            <textarea id="des" class="form-control" placeholder="description..." name="des" style="height: 80px;"
+                [(ngModel)]="orderNote" multiple></textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="finishedOrder()">OK</button>
+    </div>
+</ng-template>
+
+<ng-template #order_cancel let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Cancel this order?</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="cancelOrder()">Yes</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">No</button>
     </div>
 </ng-template>
