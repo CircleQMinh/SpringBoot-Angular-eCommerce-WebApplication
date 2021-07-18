@@ -51,7 +51,7 @@
             height: 66px;">
                 <ul class="nav-left">
                     <li><a>
-                            <h3 style="margin-top: 10%;">Order Management</h3>
+                            <h3 style="margin-top: 10%;">Order History</h3>
                         </a></li>
                 </ul>
                 <ul class="nav-right">
@@ -81,76 +81,96 @@
                                 <div class="layers bd bgc-white p-20">
                                     <!--  -->
                                     <div class="layer w-100 mB-10">
-                                        <h6 class="lh-1">Order History</h6>
+                                        <h3 class="lh-1" style="margin-bottom: 3%;">Order History</h3>
+                                        <!-- <img style="width: 40px;height: 40px;"
+                                            src="https://image.flaticon.com/icons/png/128/1149/1149576.png"
+                                            ngbTooltip="Add a User" (click)="openAddModal(add_user)">Add a user -->
+
+                                        <div style="
+                                        display: inline-block;
+                                        width: 25%;">
+                                            <div>Page size : <select class="select select-history select-lg"
+                                                    [(ngModel)]="pageSize" (change)="getNewPage()">
+                                                    <option value="5" selected>5</option>
+                                                    <option value="10">10</option>
+                                                    <option value="15">15</option>
+                                                    <option value="25">25</option>
+
+                                                </select></div>
+                                        </div>
+
                                         <div class="table-responsive p-20">
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th class="bdwT-0">Name</th>
-                                                        <th class="bdwT-0">Status</th>
-                                                        <th class="bdwT-0">Date</th>
-                                                        <th class="bdwT-0">Price</th>
+                                                        <th class="bdwT-0" style="word-wrap: break-word;
+                                                        max-width: 80px;">Name</th>
+                                                        <th class="bdwT-0">Phone</th>
+                                                        <th class="bdwT-0" style="word-wrap: break-word;
+                                                        max-width: 80px;">Email</th>
+                                                        <th class="bdwT-0" style="
+                                                        width: 115px;
+                                                    ">Address</th>
+                                                        <th class="bdwT-0" style="
+                                                        width: 115px;
+                                                    ">Status</th>
+                                                        <th class="bdwT-0">Order Date</th>
+                                                        <th class="bdwT-0">Payment</th>
+                                                        <th class="bdwT-0" style="word-wrap: break-word;
+                                                        max-width: 50px;">Items</th>
+                                                        <th class="bdwT-0" style="word-wrap: break-word;
+                                                        max-width: 50px;">T.Price</th>
+                                                        <th class="bdwT-0" colspan="2">Action</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody *ngFor="let u of orders">
                                                     <tr>
-                                                        <td class="fw-600">Item #1 Name</td>
-                                                        <td><span
-                                                                class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c rounded-pill">Unavailable</span>
+                                                        <td class="fw-600" style="word-wrap: break-word;
+                                                        max-width: 50px;">{{u.contactName}}</td>
+                                                        <td><span>{{u.phone}}</span>
                                                         </td>
-                                                        <td>Nov 18</td>
-                                                        <td><span class="text-success">$12</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="fw-600">Item #2 Name</td>
-                                                        <td><span
-                                                                class="badge bgc-deep-purple-50 c-deep-purple-700 p-10 lh-0 tt-c rounded-pill">New</span>
+                                                        <td style="word-wrap: break-word;
+                                                        max-width: 80px;">{{u.email}}</td>
+                                                        <td><span class="text-success">{{u.address}}</span></td>
+                                                        <td *ngIf="u.status==1"><span
+                                                                class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c rounded-pill">Not
+                                                                Approved</span>
                                                         </td>
-                                                        <td>Nov 19</td>
-                                                        <td><span class="text-info">$34</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="fw-600">Item #3 Name</td>
-                                                        <td><span
-                                                                class="badge bgc-pink-50 c-pink-700 p-10 lh-0 tt-c rounded-pill">New</span>
+                                                        <td *ngIf="u.status==2"><span
+                                                                class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c rounded-pill">Approved</span>
                                                         </td>
-                                                        <td>Nov 20</td>
-                                                        <td><span class="text-danger">-$45</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="fw-600">Item #4 Name</td>
-                                                        <td><span
-                                                                class="badge bgc-green-50 c-green-700 p-10 lh-0 tt-c rounded-pill">Unavailable</span>
+                                                        <td *ngIf="u.status==3"><span
+                                                                class="badge bgc-yellow-50 c-yellow-700 p-10 lh-0 tt-c rounded-pill">Shipping</span>
                                                         </td>
-                                                        <td>Nov 21</td>
-                                                        <td><span class="text-success">$65</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="fw-600">Item #5 Name</td>
-                                                        <td><span
-                                                                class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c rounded-pill">Used</span>
+                                                        <td *ngIf="u.status==4"><span
+                                                                class="badge bgc-deep-purple-50 c-deep-purple-700 p-10 lh-0 tt-c rounded-pill">Finished</span>
                                                         </td>
-                                                        <td>Nov 22</td>
-                                                        <td><span class="text-success">$78</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="fw-600">Item #6 Name</td>
-                                                        <td><span
-                                                                class="badge bgc-orange-50 c-orange-700 p-10 lh-0 tt-c rounded-pill">Used</span>
+                                                        <td *ngIf="u.status==5"><span
+                                                                class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c rounded-pill">Canceled</span>
                                                         </td>
-                                                        <td>Nov 23</td>
-                                                        <td><span class="text-danger">-$88</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="fw-600">Item #7 Name</td>
-                                                        <td><span
-                                                                class="badge bgc-yellow-50 c-yellow-700 p-10 lh-0 tt-c rounded-pill">Old</span>
+                                                        <td class="fw-600">{{u.orderDate}}</td>
+                                                        <td><span>{{u.paymentMethod}}</span>
                                                         </td>
-                                                        <td>Nov 22</td>
-                                                        <td><span class="text-success">$56</span></td>
+                                                        <td>{{u.totalItem}}</td>
+                                                        <td><span class="text-success">{{u.totalPrice}}</span></td>
+                                                        <td><span class="text-success"><img
+                                                                    style="width: 40px;height: 40px;"
+                                                                    src="https://image.flaticon.com/icons/png/128/4108/4108276.png"
+                                                                    ngbTooltip="View Detail"
+                                                                    (click)="openInfoModal(order_info,u)"></span></td>
+
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-4" style="margin-left: 69%;">
+                                                <ngb-pagination [(page)]="pageNumber" [pageSize]="pageSize"
+                                                    [collectionSize]="collectionSize" [maxSize]="5" [boundaryLinks]=true
+                                                    (pageChange)="getPage()">
+                                                </ngb-pagination>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- <div class="layer w-100">
@@ -176,3 +196,43 @@
                 reserved.</span></footer> -->
     </div>
 </div>
+
+
+<ng-template #order_info let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Order Details</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive p-20">
+            <p>Total Item : {{selectedTotalItem}}</p>
+            <p>Total Price : {{selectedTotalPrice}}</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="bdwT-0">Image</th>
+                        <th class="bdwT-0">Name</th>
+                        <th class="bdwT-0">Price</th>
+                        <th class="bdwT-0">Quantity</th>
+                        <th class="bdwT-0">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let od of orderDetails">
+                        <td><img style="height: 40px;width: 40px;" src="{{ od.product.imgUrl }}"></td>
+                        <td>{{ od.product.name }}</td>
+                        <td>${{ od.product.price }}</td>
+                        <td>{{ od.quantity }}</td>
+                        <td>${{ (od.product.price*od.quantity).toFixed(2) }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Note : {{selectedNote}}</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Close</button>
+    </div>
+</ng-template>

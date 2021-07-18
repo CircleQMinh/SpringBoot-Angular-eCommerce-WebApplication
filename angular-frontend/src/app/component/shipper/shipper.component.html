@@ -81,7 +81,7 @@
                                 <div class="layers bd bgc-white p-20">
                                     <!--  -->
                                     <div class="layer w-100 mB-10">
-                                        <h3 class="lh-1" style="margin-bottom: 3%;">List of Order</h3>
+                                        <h3 class="lh-1" style="margin-bottom: 3%;">Available Orders</h3>
                                         <!-- <img style="width: 40px;height: 40px;"
                                             src="https://image.flaticon.com/icons/png/128/1149/1149576.png"
                                             ngbTooltip="Add a User" (click)="openAddModal(add_user)">Add a user -->
@@ -165,6 +165,9 @@
                                                         </td>
                                                         <td *ngIf="u.status==4"><span
                                                                 class="badge bgc-deep-purple-50 c-deep-purple-700 p-10 lh-0 tt-c rounded-pill">Finished</span>
+                                                        </td>
+                                                        <td *ngIf="u.status==5"><span
+                                                                class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c rounded-pill">Canceled</span>
                                                         </td>
                                                         <td class="fw-600">{{u.orderDate}}</td>
                                                         <td><span>{{u.paymentMethod}}</span>
@@ -252,6 +255,7 @@
                     </tr>
                 </tbody>
             </table>
+            <p>Note : {{selectedNote}}</p>
         </div>
     </div>
     <div class="modal-footer">

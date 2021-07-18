@@ -53,7 +53,7 @@ export class CheckoutComponent implements OnInit {
 
 
   today:string=""
-
+  note:string=""
   constructor(private loginService: LoginService,
     private accountService: AccountService,
     private cartService: CartService,
@@ -182,6 +182,7 @@ export class CheckoutComponent implements OnInit {
       this.order.orderDate=this.today
       this.order.totalItem=this.totalQuantity
       this.order.totalPrice=this.totalPrice
+      this.order.note=this.note
       for (let i = 0; i < this.cartItems.length; i++) {
         let od: OrderDetail = new OrderDetail()
         od.order = this.order

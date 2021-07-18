@@ -30,7 +30,8 @@ export class ShipperComponent implements OnInit {
   selectedId!:number
   selectedTotalItem!:number
   selectedTotalPrice!:number
-
+  selectedNote!:string
+  
   constructor(private loginService: LoginService,
     private adminService: AdminService, private http: HttpClient,private shipperService:ShipperService,
     private router: Router, private modalService: NgbModal,private toast: HotToastService) { }
@@ -93,6 +94,7 @@ export class ShipperComponent implements OnInit {
     this.selectedId=u.id
     this.selectedTotalItem=u.totalItem
     this.selectedTotalPrice=u.totalPrice
+    this.selectedNote=u.note
     this.adminService.getOrderDetail(this.selectedId).subscribe(
       data=>{
         this.orderDetails=data.content

@@ -1,4 +1,3 @@
-
 <div>
     <div class="sidebar">
         <div class="sidebar-inner">
@@ -58,7 +57,9 @@
             border-bottom: black solid;
             height: 66px;">
                 <ul class="nav-left">
-                    <li><a><h3 style="margin-top: 10%;">Order Management</h3></a></li>
+                    <li><a>
+                            <h3 style="margin-top: 10%;">Order Management</h3>
+                        </a></li>
                 </ul>
                 <ul class="nav-right">
                     <li class="notifications dropdown"><span class="counter bgc-red">3</span> <a
@@ -101,6 +102,7 @@
                                                     <option value="2">Approved</option>
                                                     <option value="3">Shipping</option>
                                                     <option value="4">Finished</option>
+                                                    <option value="5">Canceled</option>
                                                 </select></div>
                                         </div>
                                         <div style="
@@ -183,6 +185,9 @@
                                                         <td *ngIf="u.status==4"><span
                                                                 class="badge bgc-deep-purple-50 c-deep-purple-700 p-10 lh-0 tt-c rounded-pill">Finished</span>
                                                         </td>
+                                                        <td *ngIf="u.status==5"><span
+                                                                class="badge bgc-red-50 c-red-700 p-10 lh-0 tt-c rounded-pill">Canceled</span>
+                                                        </td>
                                                         <td class="fw-600">{{u.orderDate}}</td>
                                                         <td><span>{{u.paymentMethod}}</span>
                                                         </td>
@@ -204,7 +209,8 @@
                                                                     style="width: 40px;height: 40px;"
                                                                     src="https://image.flaticon.com/icons/png/128/1632/1632602.png"
                                                                     ngbTooltip="Delete"
-                                                                    (click)="openDeleteModal(order_delete,u)"></span></td>
+                                                                    (click)="openDeleteModal(order_delete,u)"></span>
+                                                        </td>
 
                                                     </tr>
                                                 </tbody>
@@ -256,7 +262,7 @@
         <form>
             <div class="form-group">
 
-
+               
                 <label for="status">Status</label>
                 <div class="input-group">
                     <select id="status" class="form-control" placeholder="100" name="status"
@@ -265,7 +271,11 @@
                         <option value="2">Approved</option>
                     </select>
                 </div>
+                <label for="des">Note</label>
 
+                <div class="input-group">
+                    <input id="des" class="form-control" placeholder="Note..." name="name" [(ngModel)]="selectedNote">
+                </div>
             </div>
         </form>
     </div>
@@ -303,9 +313,10 @@
                         <td>${{ od.product.price }}</td>
                         <td>{{ od.quantity }}</td>
                         <td>${{ (od.product.price*od.quantity).toFixed(2) }}</td>
-                    </tr> 
+                    </tr>
                 </tbody>
             </table>
+            <p>Note : {{selectedNote}}</p>
         </div>
     </div>
     <div class="modal-footer">
@@ -323,10 +334,12 @@
     </div>
     <div class="modal-body">
 
-        <p class="text-center"><i class="fas fa-exclamation-triangle"></i>Any order and other infomation associate with this order will also be deleted!</p>
+        <p class="text-center"><i class="fas fa-exclamation-triangle"></i>Any order and other infomation associate with
+            this order will also be deleted!</p>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" style="background-color: red;" (click)="deleteOrder()">Delete</button>
+        <button type="button" class="btn btn-outline-dark" style="background-color: red;"
+            (click)="deleteOrder()">Delete</button>
         <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cancel</button>
     </div>
 </ng-template>

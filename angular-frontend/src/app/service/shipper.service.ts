@@ -15,4 +15,14 @@ export class ShipperService {
   getacceptedOrder(id:number,page:number,size:number): Observable<any>{
     return this.http.get(`http://localhost:8080/api/v1/Order/getShipperAcceptedOrder?id=${id}&pageNumber=${page}&pageSize=${size}`)
   }
+  finisedOrder(u: Object): Observable<any> {
+    return this.http.put(`http://localhost:8080/api/v1/Order/finishOrder`,u);
+  }
+  cancelOrder(u: Object): Observable<any> {
+    return this.http.put(`http://localhost:8080/api/v1/Order/cancelOrder`,u);
+  }
+
+  getOrderHistory(id:number,page:number,size:number): Observable<any>{
+    return this.http.get(`http://localhost:8080/api/v1/Order/getShipperOrderHistory?id=${id}&pageNumber=${page}&pageSize=${size}`)
+  }
 }
