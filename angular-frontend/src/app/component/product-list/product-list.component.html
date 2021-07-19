@@ -1,14 +1,4 @@
 
-<app-nav></app-nav>
-<header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Shop in style</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-        </div>
-    </div>
-</header>
-
 
 <form class="searchbar">
     <input type="text" placeholder="Search.." name="search" #searchInput (keyup.enter)=" getSearchResult(searchInput.value)">
@@ -22,11 +12,11 @@
         </div>
         <div class="featured__controls">
             <ul>
-                <li [class.active]="category=='all'" (click)="switchCate('all')"><a >All</a></li>
-                <li [class.active]="category=='Fruit'" (click)="switchCate('Fruit')"><a >Fruit</a></li>
-                <li [class.active]="category=='Vegetable'" (click)="switchCate('Vegetable')"><a >Vegetables</a></li>
-                <li [class.active]="category=='Confectionery'" (click)="switchCate('Confectionery')"><a >Confectionery</a></li>
-                <li [class.active]="category=='Snack'" (click)="switchCate('Snack')"><a >Snack</a></li>
+                <li [class.active]="category=='all'" routerLink="/products"><a >All</a></li>
+                <li [class.active]="category=='Fruit'" routerLink="/products/category/Fruit"><a >Fruit</a></li>
+                <li [class.active]="category=='Vegetable'" routerLink="/products/category/Vegetable"><a >Vegetables</a></li>
+                <li [class.active]="category=='Confectionery'" routerLink="/products/category/Confectionery"><a >Confectionery</a></li>
+                <li [class.active]="category=='Snack'" routerLink="/products/category/Snack"><a >Snack</a></li>
             </ul>
         </div>
     </div>
@@ -46,17 +36,11 @@
         </div>
     </div>
 </div>
-<div class="row justify-content-center"  *ngIf="!searchMode">
-    <div class="col-4" style="margin-left: 6%;">
-        <ngb-pagination [(page)]="pageNumber" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5"
-            [boundaryLinks]=true (pageChange)="getPage()">
-        </ngb-pagination>
-    </div>
-</div>
+
 <section class="py-5" style="margin-top: -5%;">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div *ngFor="let pro of content  " class="col-lg-3 col-md-4 col-sm-4" style="border: 2px solid black;">
+            <div *ngFor="let pro of content  " class="gradient-border" style=" margin: 20px;margin-bottom: 100px;">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg" [ngStyle]="{'background-image':'url(' + pro.imgUrl + ')'}" 
                     ngbTooltip="{{pro.description}}"
@@ -72,10 +56,18 @@
                         <h5>${{pro.price}}</h5>
                     </div>
                 </div>
+            </div >
+           
+        </div>
+        <div *ngIf="!searchMode"  style="margin:0 auto;
+        width: 50%;display: block;">
+            <div  style="margin:0 auto;
+            width: 50%;display: block;" >
+                <ngb-pagination [(page)]="pageNumber" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="3"
+                    [boundaryLinks]=true (pageChange)="getPage()">
+                </ngb-pagination>
             </div>
-
         </div>
     </div>
 </section>
 
-<app-footer></app-footer>

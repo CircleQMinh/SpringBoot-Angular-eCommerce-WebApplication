@@ -20,7 +20,7 @@ export class AccountOrderlistComponent implements OnInit {
   pageOrder: string = "order_date"
   collectionSize: number = 0;
 
-  status:string[]=["error","Processing","Shipping","Completed"]
+  status:string[]=["error","Processing","Processing","Shipping","Completed","Canceled"]
 
   constructor(private loginService: LoginService,
     private accountService: AccountService,

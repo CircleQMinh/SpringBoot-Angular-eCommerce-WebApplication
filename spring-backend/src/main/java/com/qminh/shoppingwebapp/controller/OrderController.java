@@ -67,6 +67,12 @@ public class OrderController {
         return page;
     }
 
+    @GetMapping("/Order/getOrder/{id}")
+    public OrderBill getOrderById(@PathVariable Long id){
+        OrderBill ob = orderRepository.findById(id).orElse(new OrderBill());
+        ob.getUser().setPassword("");
+        return ob;
+    }
 
     @GetMapping("/getOrderDetail")
     public Page<OrderDetail> getOrdersDetail(@RequestParam(defaultValue = "") Long id,
