@@ -16,3 +16,4 @@
 16-07-2021 : hoàn thành trang dashboard.<br>
 17-07-2021 : thêm trang cho shipper và chức năng nhận đơn hàng.<br>
 18-07-2021 : hoàn thành trang shipper và thêm chức năng ghi chú cho đơn hàng.<br>
+19-07-2021 : thêm chức năng hủy đơn hàng cho khách hàng và update trang chủ nhìn cho đẹp.<br>
