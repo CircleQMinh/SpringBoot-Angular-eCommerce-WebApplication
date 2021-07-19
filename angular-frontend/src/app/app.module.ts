@@ -30,13 +30,17 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import { ShipperComponent } from './component/shipper/shipper.component';
 import { ShipperAcceptedOrderComponent } from './component/shipper-accepted-order/shipper-accepted-order.component';
 import { ShipperOrderHistoryComponent } from './component/shipper-order-history/shipper-order-history.component';
+import { HomeComponent } from './component/home/home.component';
+import { ProductComponent } from './component/product/product.component';
+import { AboutComponent } from './component/about/about.component';
+import { SlideHomeComponent } from './component/slide-home/slide-home.component';
 
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'cart-detail', component: CartDetailComponent},
-  { path: 'home', component: ProductListComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'account-info', component: AccountInfoComponent },
   { path: 'account-newpassword', component: AccountNewpasswordComponent },
@@ -54,6 +58,8 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'products/:id', component: ProductInfoComponent },
+  { path: 'products/category/:category', component: ProductComponent },
+  { path: 'products', component: ProductComponent },
   { path: 'login', component: LoginComponent },
   {path: '**', redirectTo: '/error', pathMatch: 'full'}
 ];
@@ -83,7 +89,11 @@ const routes: Routes = [
     AdministratorStatisticalComponent,
     ShipperComponent,
     ShipperAcceptedOrderComponent,
-    ShipperOrderHistoryComponent
+    ShipperOrderHistoryComponent,
+    HomeComponent,
+    ProductComponent,
+    AboutComponent,
+    SlideHomeComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

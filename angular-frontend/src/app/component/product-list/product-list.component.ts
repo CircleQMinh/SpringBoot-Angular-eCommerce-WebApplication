@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
   products!:Observable<Product[]>;
   content!:Product[];
   pageNumber:number=1;
-  pageSize:number=12;
+  pageSize:number=8;
   collectionSize:number=0;
   category:string="all"
   searchMode:boolean=false;
@@ -29,7 +29,7 @@ export class ProductListComponent implements OnInit {
 
   getData() {
     this.searchMode=false;
-    const cate=this.route.snapshot.paramMap.get("category");
+    let cate=this.route.snapshot.paramMap.get("category");
     if(cate!=null){
       this.category=cate
     }
@@ -41,6 +41,21 @@ export class ProductListComponent implements OnInit {
         this.pageSize=data.size
       }
     )
+    this.route.paramMap.subscribe(params => {
+      let cate = params.get("category");
+      console.log(cate)
+      if(cate!=null){
+        this.category=cate
+      }
+      this.productService.getPage(this.pageNumber,this.pageSize,this.category).subscribe(
+        data =>{
+          this.content=data.content;
+          this.collectionSize=data.totalElements;
+          this.pageNumber=data.number
+          this.pageSize=data.size
+        }
+      )
+   })
   }
   getPage(){
     this.productService.getPage(this.pageNumber,this.pageSize,this.category).subscribe(
@@ -53,7 +68,7 @@ export class ProductListComponent implements OnInit {
 
   switchCate(cate:string){
     this.pageNumber=1;
-    this.pageSize=12;
+    this.pageSize=8;
     this.category=cate;
     this.productService.getPage(this.pageNumber,this.pageSize,this.category).subscribe(
       data =>{

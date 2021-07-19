@@ -1,5 +1,5 @@
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light  " style="background-color: #94d78b;">
   <div class="container px-4 px-lg-5">
     <a class="navbar-brand" routerLink="/home">Tron's Shop</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -13,12 +13,14 @@
           <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">Shop</a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#!">All Products</a></li>
+            <li><a class="dropdown-item" routerLink="/products">All Products</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-            <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+            <li><a class="dropdown-item" routerLink="/products/category/Fruit">Fruit</a></li>
+            <li><a class="dropdown-item" routerLink="/products/category/Vegetable">Vegetable</a></li>
+            <li><a class="dropdown-item" routerLink="/products/category/Confectionery">Confectionery</a></li>
+            <li><a class="dropdown-item" routerLink="/products/category/Snack">Snack</a></li>
           </ul>
         </li>
       </ul>
@@ -28,9 +30,9 @@
       <img src="{{this.url}}"
         style="width: 40px;height: 40px;border-radius: 50%;margin-right: 15px;border: 2px solid black;" *ngIf="isLogin()" routerLink="/account-info">
 
-      <app-cart-status></app-cart-status>
+      <app-cart-status style="margin-top: 2%;"></app-cart-status>
 
-      <form class="d-flex" *ngIf="!isLogin()">
+      <form class="d-flex" *ngIf="!isLogin()" style="margin-top: 2%;">
         <button routerLink="/login" class="btn btn-outline-dark" type="submit">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
@@ -43,7 +45,7 @@
         </button>
       </form>
 
-      <form class="d-flex" *ngIf="isLogin()">
+      <form class="d-flex" *ngIf="isLogin()" style="margin-top: 2%;margin-right: 2%;margin-left: 2%;">
         <button class="btn btn-outline-dark" type="submit" (click)="this.loginService.tryLogout()">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">

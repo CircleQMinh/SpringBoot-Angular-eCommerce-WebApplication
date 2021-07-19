@@ -112,7 +112,10 @@
                             <td>{{totalItem}}</td>
                             <td>{{totalCost.toFixed(2)}}</td>
                         </tr>
-                    </table>             
+                    </table>     
+                    <button ngbTooltip="Cancel this order" *ngIf="order.status==1||order.status==2" 
+                    (click)="openCancelModal(order_cancel)">Cancel this order</button>     
+                       
                     <div class="main-container-transaction">
                         <table class="table payment-history-table">
                             <thead>
@@ -177,3 +180,19 @@
 
 
 <app-footer></app-footer>
+
+<ng-template #order_cancel let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Cancel this order?</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="text-center"><i class="fas fa-exclamation-triangle"></i>Any order and other infomation associate with this will also be deleted!</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="cancelOrder()">Yes</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">No</button>
+    </div>
+</ng-template>

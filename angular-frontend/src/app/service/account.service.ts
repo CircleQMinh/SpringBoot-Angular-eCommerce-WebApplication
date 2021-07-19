@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { OrderBill } from '../class/order-bill';
 import { User } from '../class/user';
 
 @Injectable({
@@ -38,10 +39,18 @@ export class AccountService {
   getOrderDetail(id:number,page:number):Observable<any>{
     return this.http.get(`http://localhost:8080/api/v1/getOrderDetail?id=${id}&pageNumber=${page}`)
   }
+  getOrderInfo(id:number):Observable<any>{
+    return this.http.get(`http://localhost:8080/api/v1/Order/getOrder/${id}`)
+  }
 
   setInfoCurrentOrder(sum:number,qua:number){
     this.currentOrderCost=sum
     this.currentOrderQuantity=qua
+  }
+
+  
+  editOrderStatus(u:OrderBill):Observable<any>{
+    return this.http.put(`http://localhost:8080/api/v1/editOrder`,u)
   }
 
 }
