@@ -34,6 +34,7 @@ import { HomeComponent } from './component/home/home.component';
 import { ProductComponent } from './component/product/product.component';
 import { AboutComponent } from './component/about/about.component';
 import { SlideHomeComponent } from './component/slide-home/slide-home.component';
+import { AccountFavoriteComponent } from './component/account-favorite/account-favorite.component';
 
 
 
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'account-newpassword', component: AccountNewpasswordComponent },
   { path: 'account-orderlist/:id', component: AccountOrderinfoComponent },
   { path: 'account-orderlist', component: AccountOrderlistComponent },
+  { path: 'account-favorite', component: AccountFavoriteComponent },
   { path: 'Administrator-Statistical', component: AdministratorStatisticalComponent },
   { path: 'Administrator-User', component: AdministratorUserComponent },
   { path: 'Administrator-Order', component: AdministratorOrderComponent },
@@ -93,7 +95,8 @@ const routes: Routes = [
     HomeComponent,
     ProductComponent,
     AboutComponent,
-    SlideHomeComponent
+    SlideHomeComponent,
+    AccountFavoriteComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

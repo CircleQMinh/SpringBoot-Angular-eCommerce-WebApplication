@@ -46,7 +46,7 @@
                     ngbTooltip="{{pro.description}}"
                     [openDelay]="100" [closeDelay]="100" placement="bottom" container="body">
                         <ul class="featured__item__pic__hover">
-                            <li ngbTooltip="Add to Favarite" container="body"><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li ngbTooltip="Add to Favarite" container="body"><a (click)="addToFav(pro)"><i class="fa fa-heart"></i></a></li>
                             <li ngbTooltip="View product page" container="body" routerLink="/products/{{pro.id}}"><a><i class="fas fa-info"></i></a></li>
                             <li ngbTooltip="Add to cart"   container="body" (click)="addToCart(pro)"><a><i class="fa fa-shopping-cart"></i></a></li>
                         </ul>

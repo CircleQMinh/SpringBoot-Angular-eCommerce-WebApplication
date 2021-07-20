@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HotToastService } from '@ngneat/hot-toast';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/class/product';
 import { CartService } from 'src/app/service/cart.service';
+import { LoginService } from 'src/app/service/login.service';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -20,7 +23,8 @@ export class ProductListComponent implements OnInit {
   searchMode:boolean=false;
   searchCount:number=0
   constructor(private productService:ProductService,
-              private cartService:CartService,
+              private cartService:CartService, private loginService:LoginService,
+              private modalService: NgbModal, private toast: HotToastService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -96,5 +100,21 @@ export class ProductListComponent implements OnInit {
   addToCart(pro:Product){
     this.cartService.addToCart(pro)
   }
-  
+  addToFav(pro:Product){
+    if(this.loginService.isLogin){
+      this.productService.addToFav(this.loginService.user.id,pro.id).subscribe(
+        data=>{
+          this.toast.success(data.mess)
+        },
+        error=>{
+          this.toast.error("Something gone wrong! Try again.")
+          console.log(error)
+        }
+      )
+      
+    }
+    else{
+      this.toast.show("Login to add this product to your favorite list!")
+    }
+  }
 }

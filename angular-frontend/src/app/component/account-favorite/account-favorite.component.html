@@ -1,5 +1,5 @@
 <app-nav></app-nav>
-<div class="container _1QwuCJ" style="margin-top: 8%;border: 2px black solid;margin-bottom: 2%;">
+<div class="container _1QwuCJ" style="margin-top: 8%;border: 2px black solid;margin-bottom: 8%;">
     <div class="_36cLcR" style="padding-left: 2%;border-right: 1px solid black;width: 25%;">
         <div class="_1_68zU"><a class="_2BuJEf" routerLink="/account-info">
                 <div class="shopee-avatar">
@@ -15,11 +15,11 @@
             </a>
             <div class="_2uLDqN">
                 <div class="_2lG70n">{{user.name}}</div>
-                <div><a class="_27BCO5" (click)="openChangeIMGModal(changeIMG)"><svg width="12" height="12" viewBox="0 0 12 12"
+                <div><a class="_27BCO5" routerLink="/account-info"><svg width="12" height="12" viewBox="0 0 12 12"
                             xmlns="http://www.w3.org/2000/svg" style="margin-right: 4px;">
                             <path d="M8.54 0L6.987 1.56l3.46 3.48L12 3.48M0 8.52l.073 3.428L3.46 12l6.21-6.18-3.46-3.48"
                                 fill="#9B9B9B" fill-rule="evenodd"></path>
-                        </svg>Change profile image</a></div>
+                        </svg>Edit profile</a></div>
             </div>
         </div>
         <div class="_1ZnP-m">
@@ -80,8 +80,8 @@
                 </div>
             </div>
             <div class="stardust-dropdown" *ngIf="user.role=='shipper'">
-                <div class="stardust-dropdown__item-header"><a class="_3aAm2h" routerLink="/Shipper">
-                        <div class="_21F-bS"><img src="https://image.flaticon.com/icons/png/128/1350/1350239.png">
+                <div class="stardust-dropdown__item-header"><a class="_3aAm2h" routerLink="/Administrator">
+                        <div class="_21F-bS"><img src="https://image.flaticon.com/icons/png/128/2830/2830175.png">
                         </div>
                         <div class="_2i7380"><span class="_3CHLlN">Shipping Page</span></div>
                     </a></div>
@@ -93,85 +93,76 @@
     </div>
     <div class="_3D9BVC">
         <div class="h4QDlo" role="main">
-            <div class="_2HWwrr">
-                <div class="_8C1CP">
-                    <h1 class="_1OYAxY">My Profile</h1>
-                    <div class="_2MZ69L">Manage my account info</div>
-                </div>
-                <div class="goiz2O _3u2vYq">
-                    <div class="pJout2">
-                        <form>
-                            <div class="_3BlbUs">
-                                <div class="_1iNZU3">
-                                    <div class="_2PfA-y"><label>Username</label></div>
-                                    <div class="_2_JugQ">
-                                        <div class="input-with-validator-wrapper">
-                                            <div class="input-with-validator"><input type="text" placeholder=""
-                                                    maxlength="255" value="{{user.username}}" [readonly]="true"
-                                                    ngbTooltip="Username cannot be changed"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <div class="_1iNZU3">
-                                    <div class="_1LvCQN">Tên Đăng nhập chỉ có thể thay đổi một lần.</div>
-                                </div> -->
-                            </div>
-                            <div class="_3BlbUs">
-                                <div class="_1iNZU3">
-                                    <div class="_2PfA-y"><label>Email</label></div>
-                                    <div class="_2_JugQ">
-                                        <div class="input-with-validator-wrapper">
-                                            <div class="input-with-validator"><input type="text" placeholder=""
-                                                    maxlength="255" value="{{user.email}}" [readonly]="true"
-                                                    ngbTooltip="Email cannot be changed"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <p class="text-center" *ngIf="nameError"><i class="fas fa-exclamation-triangle"></i>Name is
-                                not valid !</p>
-                            <div class="_3BlbUs">
-                                <div class="_1iNZU3">
-                                    <div class="_2PfA-y"><label>Name</label></div>
-                                    <div class="_2_JugQ">
-                                        <div class="input-with-validator-wrapper">
-                                            <div class="input-with-validator"><input type="text" placeholder=""
-                                                    maxlength="255" [(ngModel)]="displayName" name="uname"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-center" *ngIf="phoneError"><i class="fas fa-exclamation-triangle"></i>Phone
-                                is not valid !</p>
-                            <div class="_3BlbUs">
-                                <div class="_1iNZU3">
-                                    <div class="_2PfA-y"><label>Phone</label></div>
-                                    <div class="_2_JugQ">
-                                        <div class="input-with-validator-wrapper">
-                                            <div class="input-with-validator"><input type="text" placeholder=""
-                                                    maxlength="255" [(ngModel)]="user.phone" name="uphone"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="_31PFen"><button type="button" class="btn btn-solid-primary btn--m btn--inline"
-                                    aria-disabled="false" (click)="updateUserInfo()">Save</button></div>
-                        </form>
+            <div class="container payment-container">
+                <div class="main-container-title">
+                    <div class="form-container">
+                        <div class="title-section">
+                            <p class="title"><b>Favorite Items</b></p>
+                            <p class="description"><span>View your favorite items.</span></p>
+                        </div>
                     </div>
-                    <div class="_1aIEbS">
-                        <div class="X1SONv">
-                            <div class="_1FzaUZ">
-                                <div class="TgSfgo"
-                                    style="background-image: url(https://cdn.dribbble.com/users/113499/screenshots/7006153/media/1af75c73d98c2c6b8217294e65a603a9.png?compress=1&resize=400x300);">
-                                </div>
-                            </div><input class="_2xS5eV" type="file" accept=".jpg,.jpeg,.png"><button type="button"
-                                class="btn btn-light btn--m btn--inline">Tron's Shop</button>
-                            <div class="_3Jd4Zu">
-                                <div class="_3UgHT6">Thank you for shopping with us!</div>
-                            </div>
+                </div>
+                <hr>
+                <div class="results-container">
+                    <div class="main-container-transaction">
+                        <table class="table payment-history-table">
+                            <thead>
+                                <tr>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Product Image</p>
+                                    </th>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Product Name</p>
+                                    </th>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Price</p>
+                                    </th>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Detail</p>
+                                    </th>
+                                    <th class="table-header">
+                                        <p class="sort-btn">Remove</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="mobile-table-body" *ngFor="let od of fav">
+                                <tr class="data-column">
+                                    <td class="table-data"><img src="{{od.product.imgUrl}}"
+                                            style="height: 100px;width: 100px;" ngbTooltip="{{od.product.description}}">
+                                    </td>
+                                    <td class="table-data">
+                                        <span class="order-description">
+                                            <span>
+                                                <p class="expand-btn"><span
+                                                        ngbTooltip="{{od.product.description}}">{{od.product.name}}
+                                                    </span>
+                                                </p>
+                                            </span>
+                                        </span>
+                                    </td>
+                                    <td class="price table-data non-credit">${{od.product.price}}</td>
+                                    <td class="table-data order-status"><i routerLink="/products/{{od.product.id}} "
+                                            ngbTooltip="Visit product page" class="fas fa-info"></i>
+                                    <td class="table-data order-status"><i 
+                                        ngbTooltip="Remove from favorite"
+                                        (click)="removeFromFav(od)"
+                                            class="fas fa-times"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-4" style="margin-left: 6%;">
+                            <ngb-pagination [(page)]="pageNumber" [pageSize]="pageSize"
+                                [collectionSize]="collectionSize" [maxSize]="5" [boundaryLinks]=true
+                                (pageChange)="getPage()">
+                            </ngb-pagination>
+                        </div>
+                    </div>
+                    <div class="submit-section show-more-btn-section">
+                        <div class="submit-btns">
+                            <p routerLink="/home" type="p" class="btn btn-default btn-custom">Go back to
+                                Shopping</p>
                         </div>
                     </div>
                 </div>
@@ -180,27 +171,5 @@
     </div>
 </div>
 
+
 <app-footer></app-footer>
-
-
-
-<ng-template #changeIMG let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Change profile picture</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <label for="img">Product Image</label>
-        <div class="input-group">
-            <input type="file" id="img" class="form-control" placeholder="imgUrl" name="dp"
-                (change)="uploadImage($event)">
-        </div>
-        <img style="width: 100px;height: 100px;margin-top: 10px;" src="{{imgURL}}">
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" style="background-color: rgb(25, 216, 41);" (click)="changeUserIMGProfile()" *ngIf="!isUpload&&!imgError">Save</button>
-        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">Cancel</button>
-    </div>
-</ng-template>
