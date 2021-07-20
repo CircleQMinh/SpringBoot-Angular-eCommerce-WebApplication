@@ -17,3 +17,5 @@
 17-07-2021 : thêm trang cho shipper và chức năng nhận đơn hàng.<br>
 18-07-2021 : hoàn thành trang shipper và thêm chức năng ghi chú cho đơn hàng.<br>
 19-07-2021 : thêm chức năng hủy đơn hàng cho khách hàng và update trang chủ nhìn cho đẹp.<br>
+20-07-2021 : nghỉ hè 🤭
+21-07-2021 : thêm chức năng cho người dùng thêm sản phẩm vào danh sách yêu thích và xóa sản phẩm khỏi danh sách yêu thích.<br>
