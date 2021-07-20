@@ -28,6 +28,11 @@ export class ProductService {
     return this.http.get(`http://localhost:8080/api/v1/Products/search?keyword=${keyword}`)
   }
 
+  addToFav(userid:number,proid:number): Observable<any>{
+
+    return this.http.get(`http://localhost:8080/api/v1/account/addToFavorite?pro_id=${proid}&userid=${userid}`);
+  }
+
 }
 
 interface GetResponseProducts {

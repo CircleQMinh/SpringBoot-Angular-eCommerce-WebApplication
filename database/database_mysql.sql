@@ -45,6 +45,35 @@ INSERT INTO `event` VALUES (1,'2021-07-24','10:00:00','Test this app',1),(2,'202
 UNLOCK TABLES;
 
 --
+-- Table structure for table `favorite_product`
+--
+
+DROP TABLE IF EXISTS `favorite_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `favorite_product` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk1_idx` (`user_id`),
+  KEY `fk2_idx` (`product_id`),
+  CONSTRAINT `fk1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `favorite_product`
+--
+
+LOCK TABLES `favorite_product` WRITE;
+/*!40000 ALTER TABLE `favorite_product` DISABLE KEYS */;
+INSERT INTO `favorite_product` VALUES (1,3,45),(2,3,67),(4,3,78),(6,3,99),(7,3,3),(9,3,1),(10,3,92);
+/*!40000 ALTER TABLE `favorite_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `order_detail`
 --
 
@@ -110,7 +139,7 @@ CREATE TABLE `orderbill` (
 
 LOCK TABLES `orderbill` WRITE;
 /*!40000 ALTER TABLE `orderbill` DISABLE KEYS */;
-INSERT INTO `orderbill` VALUES (1,3,'Minh Vũ Trần Quốc','38 Chiến Thắng','0788283307','quocminh.vutran3105@gmail.com','2021-07-13','cash',1,14,338.75,NULL,'Backedn test'),(2,3,'Tròn','38 Chiến Thắng Phường 9 Quận Phú Nhuận TP.HCM','0788283307','quocminh.vutran3105@gmail.com','2021-07-13','paypal',4,4,114.10,11,'OK!'),(3,3,'Chi','89 Hồ Văn Huê Phường 9 Quận Phú Nhuận TP.HCM','0786789330','tron@gmail.com','2021-07-13','cash',3,12,175.70,11,NULL),(4,3,'Tròn','99 Hoàng Văn Thụ Phường 11 Quận Phú Nhuận TP.HCM','0789999999','qwe@gmail.com','2021-07-13','paypal',5,3,144.00,11,'Got trolled!'),(5,3,'Minh','56 Võ Văn Ngân Phường 8 Quận Thủ Đức TP.HCM','07892336600','m@gmail.com','2021-07-13','cash',2,5,49.65,NULL,NULL),(6,3,'Chi','547 Lê Văn Việt Phường 12 Quận Tân Bình TP.HCM','0789999000','chi@gmail.com','2021-07-13','cash',2,6,178.55,NULL,NULL),(8,3,'Minh Mâm','83 Thắng Chiến Phường 9 Quận Phú Nhuận TP.HCM','0789900099','mm@gmail.com','2021-07-13','cash',1,6,180.45,NULL,NULL),(9,3,'Tờ Ròn','39 Chiến Thắng Phường 9 Quận Phú Nhuận TP.HCM','0788283307','toron@gmail.com','2021-07-13','cash',2,22,341.20,NULL,NULL),(11,4,'Gold','45 Bạch Đằng Phường 12 Quận Bình Thạnh TP.HCM','0782934059','geo@gmail.com','2021-07-16','cash',1,15,306.55,NULL,NULL),(12,6,'Toàn','567 Phan Văn Trị Phường 10 Quận Gò Vấp TP.HCM','0782293423','t@gmail.com','2021-07-18','cash',1,3,136.10,NULL,'Xoài phải chín nha :))');
+INSERT INTO `orderbill` VALUES (1,3,'Minh Vũ Trần Quốc','38 Chiến Thắng','0788283307','quocminh.vutran3105@gmail.com','2021-07-13','cash',5,14,338.75,NULL,'Customer cancel this order!'),(2,3,'Tròn','38 Chiến Thắng Phường 9 Quận Phú Nhuận TP.HCM','0788283307','quocminh.vutran3105@gmail.com','2021-07-13','paypal',4,4,114.10,11,'OK!'),(3,3,'Chi','89 Hồ Văn Huê Phường 9 Quận Phú Nhuận TP.HCM','0786789330','tron@gmail.com','2021-07-13','cash',3,12,175.70,11,NULL),(4,3,'Tròn','99 Hoàng Văn Thụ Phường 11 Quận Phú Nhuận TP.HCM','0789999999','qwe@gmail.com','2021-07-13','paypal',5,3,144.00,11,'Got trolled!'),(5,3,'Minh','56 Võ Văn Ngân Phường 8 Quận Thủ Đức TP.HCM','07892336600','m@gmail.com','2021-07-13','cash',2,5,49.65,NULL,NULL),(6,3,'Chi','547 Lê Văn Việt Phường 12 Quận Tân Bình TP.HCM','0789999000','chi@gmail.com','2021-07-13','cash',2,6,178.55,NULL,NULL),(8,3,'Minh Mâm','83 Thắng Chiến Phường 9 Quận Phú Nhuận TP.HCM','0789900099','mm@gmail.com','2021-07-13','cash',1,6,180.45,NULL,NULL),(9,3,'Tờ Ròn','39 Chiến Thắng Phường 9 Quận Phú Nhuận TP.HCM','0788283307','toron@gmail.com','2021-07-13','cash',2,22,341.20,NULL,NULL),(11,4,'Gold','45 Bạch Đằng Phường 12 Quận Bình Thạnh TP.HCM','0782934059','geo@gmail.com','2021-07-16','cash',1,15,306.55,NULL,NULL),(12,6,'Toàn','567 Phan Văn Trị Phường 10 Quận Gò Vấp TP.HCM','0782293423','t@gmail.com','2021-07-18','cash',1,3,136.10,NULL,'Xoài phải chín nha :))');
 /*!40000 ALTER TABLE `orderbill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,4 +239,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-18 15:10:11
+-- Dump completed on 2021-07-21  3:06:46
