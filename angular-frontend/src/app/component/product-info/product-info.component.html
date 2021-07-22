@@ -1,69 +1,193 @@
-
 <app-nav></app-nav>
 <div class="container" *ngIf="product.name">
-    
+
     <div class="card" style="border: 3px solid #544bc8;
     margin-top: 10%;
     margin-bottom: 2%;">
-        <div class="i-product-update-error errors hidden-xs-up" >
+        <div class="i-product-update-error errors hidden-xs-up">
             <p class="errors_error i-product-update-error-text" data-cy="product-update-error-message"></p>
         </div>
         <div class="container-fliud">
-            
+
             <div class="wrapper row">
                 <div class="preview col-md-6">
-                    
-                    <div class="preview-pic tab-content" >
-                      <div class="tab-pane active" id="pic-1">
-                          <img src="{{product!.imgUrl}}" /></div>
+
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1">
+                            <img src="{{product!.imgUrl}}" />
+                        </div>
                     </div>
 
-                    
+
                 </div>
                 <div class="details col-md-6">
                     <h3 class="product-title">{{product.name}}</h3>
- 
+
                     <p class="product-description">Category : {{product.category}}</p>
                     <h3 class="product-title">Product Description</h3>
- 
+
                     <p class="product-description" style="    height: 45%;
                     border: solid mediumslateblue 2px;
                     padding: 1%;">{{product.description}}</p>
                     <h4 class="price">current price: <span>${{product.price}} </span></h4>
-            
+
                     <div class="action">
-                        <button class="like btn btn-default" type="button" style="background-color: red;margin-right: 3%;"><span class="fa fa-heart"></span></button>
-                        <button class="add-to-cart btn btn-default" type="button"><i class="fas fa-shopping-cart"></i>  add to cart</button>
-                       
+                        <button (click)="addToFav(product)" class="like btn btn-default" type="button"
+                            style="background-color: red;margin-right: 3%;"><span class="fa fa-heart"></span></button>
+                        <button (click)="addToCart(product)" class="add-to-cart btn btn-default" type="button"><i
+                                class="fas fa-shopping-cart"></i> add to cart</button>
+
                     </div>
                     <h4 class="price" style="margin-top: 3%;">product number: <span> </span></h4>
                     <div>
-                        <button (click)="prev()" class="like btn btn-default" type="button" style="background-color: rgb(100, 185, 211);margin-left: 3%;"><span class="fas fa-arrow-left"></span></button>
-                        <button class="like btn btn-default" style="background-color: transparent;color: #000;border: 1px solid black;">{{product.id}}</button>
-                        <button (click)="next()" class="like btn btn-default" type="button" style="background-color: rgb(100, 185, 211);"><span class="fas fa-arrow-right"></span></button>
-                        
+                        <button (click)="prev()" class="like btn btn-default" type="button"
+                            style="background-color: rgb(100, 185, 211);margin-left: 3%;"><span
+                                class="fas fa-arrow-left"></span></button>
+                        <button class="like btn btn-default"
+                            style="background-color: transparent;color: #000;border: 1px solid black;">{{product.id}}</button>
+                        <button (click)="next()" class="like btn btn-default" type="button"
+                            style="background-color: rgb(100, 185, 211);"><span
+                                class="fas fa-arrow-right"></span></button>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div style="width: 50%;">
+        <h2 class="pdp-mod-section-title outer-title">Ratings &amp; Reviews of {{product.name}}</h2>
+        <p><i class="far fa-star"></i><b>Rating({{avgRating.toFixed(2)}}) </b></p>
+        <p *ngIf="totalRating==0">
+            No one has rated this product!
+        </p>
+        <p>
+            <ngb-progressbar [showValue]="true" type="success" [value]="fivestar/totalRating*100"></ngb-progressbar>5<i
+                class="far fa-star"></i>({{fivestar}})
+        </p>
+        <p>
+            <ngb-progressbar [showValue]="true" type="info" [value]="fourstar/totalRating*100"></ngb-progressbar>4
+            <i class="far fa-star"></i>({{fourstar}})
+        </p>
+        <p>
+            <ngb-progressbar [showValue]="true" type="warning" [value]="threestar/totalRating*100"></ngb-progressbar>3<i
+                class="far fa-star"></i>({{threestar}})
+        </p>
+        <p>
+            <ngb-progressbar [showValue]="true" type="danger" [value]="twostar/totalRating*100"></ngb-progressbar>2
+            <i class="far fa-star"></i>({{twostar}})
+        </p>
+        <p>
+            <ngb-progressbar [showValue]="true" type="primary" [value]="onestar/totalRating*100"></ngb-progressbar>1<i
+                class="far fa-star"></i>({{onestar}})
+        </p>
+    </div>
+
+    <header class="head-comment fmsidWidgetCommentListHead"><i class="far fa-comments"></i> <b> Reviews</b><span
+            class="fmsidWidgetCommentListHeadText"></span> (<span
+            class="fmsidWidgetCommentListCount">{{collectionSize}}</span>)
+    </header>
+    <div style="
+    display: inline-block;
+    width: 25%; ">
+        <div>Sort by : <select class="select select-history select-lg" [(ngModel)]="sort" (change)="getNewPage()"
+                name="sort">
+                <option value="d" selected="true">Newest</option>
+                <option value="a">Oldest</option>
+            </select></div>
+
+    </div>
+    <div style="
+    display: inline-block;
+    width: 25%; ">
+        <div>Rating : <select class="select select-history select-lg" [(ngModel)]="ratingFilter" (change)="getNewPage()"
+                name="rating">
+                <option value="all" selected="true">All</option>
+                <option value="5">5 Star</option>
+                <option value="4">4 Star</option>
+                <option value="3">3 Star</option>
+                <option value="2">2 Star</option>
+                <option value="1">1 Star</option>
+            </select></div>
+    </div>
+    <div *ngFor="let r of reviews " class="shopee-product-rating"><a class="shopee-product-rating__avatar"
+            *ngIf="reviews.length!=0">
+            <div class="shopee-avatar">
+                <img src="{{r.user.imgUrl}}" style="width: 40px;height: 40px;border-radius: 50%;">
+            </div>
+        </a>
+
+        <div class="shopee-product-rating__main"><a class="shopee-product-rating__author-name">{{r.user.name}}</a>
+            <div class="shopee-product-rating__rating">
+                <svg *ngFor="let i of [].constructor(r.star)" enable-background="new 0 0 15 15" viewBox="0 0 15 15"
+                    x="0" y="0" class="shopee-svg-icon icon-rating-solid--active icon-rating-solid">
+                    <polygon
+                        points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+                </svg>
+                <!-- <svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0"
+                    class="shopee-svg-icon icon-rating-solid--active icon-rating-solid">
+                    <polygon
+                        points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+                </svg> -->
+            </div>
+            <div class="shopee-product-rating__content">{{r.content}}</div>
+            <div class="shopee-product-rating__time">{{r.date}}</div>
+        </div>
+    </div>
+    <div class="row justify-content-center" *ngIf="reviews.length!=0">
+        <div class="col-4">
+            <ngb-pagination [(page)]="pageNumber" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5"
+                [boundaryLinks]=true (pageChange)="getPage()">
+            </ngb-pagination>
+        </div>
+    </div>
+
+    <div *ngIf="reviews.length==0">
+        <p>There is no review for this product!</p>
+    </div>
+    <div>
+        <p><b>Write your review</b></p>
+        <div class="form-group" *ngIf="login">
+            <ngb-rating [(ngModel)]="rating" [max]=5 name="rating"></ngb-rating>
+            <div class="form-text small">
+                <div *ngIf="rating" class="text-success">Thanks!</div>
+                <div *ngIf="!rating" class="text-danger">Please rate this product!</div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="form commentBoxContainer" *ngIf="login">
+            <div class="input"><textarea class="text-cmt fmsidWidgetCommentMessage"
+                    placeholder="Your review..." name="review" [(ngModel)]="review"></textarea></div>
+            <p class="sent-cmt clearfix" (click)="addReview(product)"><a id="btnSubmit" class="btnSubmit disabled fmsidWidgetCommentBtnSend">Send</a>
+            </p>
+
+        </div>
+        <div *ngIf="!login">
+            <p>
+                Login to write review about this product!
+            </p>
+        </div>
+    </div>
+
 </div>
 
 <div class="container" *ngIf="!product.name">
-    
+
     <div class="card" style="border: 3px solid #544bc8;
     margin-top: 10%;
     margin-bottom: 2%;">
-        <div class="i-product-update-error errors hidden-xs-up" >
+        <div class="i-product-update-error errors hidden-xs-up">
             <p class="errors_error i-product-update-error-text" data-cy="product-update-error-message"></p>
         </div>
         <div class="container-fliud" style="height: 400px;">
-            
-           <p class="product-title" style="text-align: center;">There is no product with this id!</p>
-           <button style="text-align: center;
+
+            <p class="product-title" style="text-align: center;">There is no product with this id!</p>
+            <button style="text-align: center;
            margin-left: 37.5%;
            width: 25%;" routerLink="/home">Go back to homepage!</button>
-           
+
         </div>
     </div>
 </div>

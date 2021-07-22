@@ -14,106 +14,107 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  products!:Observable<Product[]>;
-  content!:Product[];
-  pageNumber:number=1;
-  pageSize:number=8;
-  collectionSize:number=0;
-  category:string="all"
-  searchMode:boolean=false;
-  searchCount:number=0
-  constructor(private productService:ProductService,
-              private cartService:CartService, private loginService:LoginService,
-              private modalService: NgbModal, private toast: HotToastService,
-              private route: ActivatedRoute) { }
+  products!: Observable<Product[]>;
+  content!: Product[];
+  pageNumber: number = 1;
+  pageSize: number = 8;
+  collectionSize: number = 0;
+  category: string = "all"
+  searchMode: boolean = false;
+  searchCount: number = 0
+  constructor(private productService: ProductService,
+    private cartService: CartService, private loginService: LoginService,
+    private modalService: NgbModal, private toast: HotToastService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getData();
   }
 
   getData() {
-    this.searchMode=false;
-    let cate=this.route.snapshot.paramMap.get("category");
-    if(cate!=null){
-      this.category=cate
+    this.searchMode = false;
+    let cate = this.route.snapshot.paramMap.get("category");
+    if (cate != null) {
+      this.category = cate
     }
-    this.productService.getPage(this.pageNumber,this.pageSize,this.category).subscribe(
-      data =>{
-        this.content=data.content;
-        this.collectionSize=data.totalElements;
-        this.pageNumber=data.number
-        this.pageSize=data.size
+    this.productService.getPage(this.pageNumber, this.pageSize, this.category).subscribe(
+      data => {
+        this.content = data.content;
+        this.collectionSize = data.totalElements;
+        this.pageNumber = data.number
+        this.pageSize = data.size
       }
     )
     this.route.paramMap.subscribe(params => {
       let cate = params.get("category");
       console.log(cate)
-      if(cate!=null){
-        this.category=cate
+      if (cate != null) {
+        this.category = cate
       }
-      this.productService.getPage(this.pageNumber,this.pageSize,this.category).subscribe(
-        data =>{
-          this.content=data.content;
-          this.collectionSize=data.totalElements;
-          this.pageNumber=data.number
-          this.pageSize=data.size
+      this.productService.getPage(this.pageNumber, this.pageSize, this.category).subscribe(
+        data => {
+          this.content = data.content;
+          this.collectionSize = data.totalElements;
+          this.pageNumber = data.number
+          this.pageSize = data.size
         }
       )
-   })
+    })
   }
-  getPage(){
-    this.productService.getPage(this.pageNumber,this.pageSize,this.category).subscribe(
-      data =>{
-        this.content=data.content;
-        this.collectionSize=data.totalElements;
+  getPage() {
+    this.productService.getPage(this.pageNumber, this.pageSize, this.category).subscribe(
+      data => {
+        this.content = data.content;
+        this.collectionSize = data.totalElements;
       }
     )
   }
 
-  switchCate(cate:string){
-    this.pageNumber=1;
-    this.pageSize=8;
-    this.category=cate;
-    this.productService.getPage(this.pageNumber,this.pageSize,this.category).subscribe(
-      data =>{
-        this.content=data.content;
-        this.collectionSize=data.totalElements;
+  switchCate(cate: string) {
+    this.pageNumber = 1;
+    this.pageSize = 8;
+    this.category = cate;
+    this.productService.getPage(this.pageNumber, this.pageSize, this.category).subscribe(
+      data => {
+        this.content = data.content;
+        this.collectionSize = data.totalElements;
       }
     )
   }
 
-  getSearchResult(keyword:string){
-    this.searchMode=true;
+  getSearchResult(keyword: string) {
+    this.searchMode = true;
 
     this.productService.getSearchResult(keyword).subscribe(
       data => {
-        this.content=data.content;
-        this.searchCount=data.totalElements;
+        this.content = data.content;
+        this.searchCount = data.totalElements;
       }
     )
   }
 
-  backToProduct(){
+  backToProduct() {
     this.getData();
   }
 
-  addToCart(pro:Product){
+  addToCart(pro: Product) {
     this.cartService.addToCart(pro)
+    this.toast.success("Add product to cart successfully!")
   }
-  addToFav(pro:Product){
-    if(this.loginService.isLogin){
-      this.productService.addToFav(this.loginService.user.id,pro.id).subscribe(
-        data=>{
+  addToFav(pro: Product) {
+    if (this.loginService.isLogin) {
+      this.productService.addToFav(this.loginService.user.id, pro.id).subscribe(
+        data => {
           this.toast.success(data.mess)
         },
-        error=>{
+        error => {
           this.toast.error("Something gone wrong! Try again.")
           console.log(error)
         }
       )
-      
+
     }
-    else{
+    else {
       this.toast.show("Login to add this product to your favorite list!")
     }
   }

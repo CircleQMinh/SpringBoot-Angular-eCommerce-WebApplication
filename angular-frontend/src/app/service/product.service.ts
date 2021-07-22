@@ -33,6 +33,16 @@ export class ProductService {
     return this.http.get(`http://localhost:8080/api/v1/account/addToFavorite?pro_id=${proid}&userid=${userid}`);
   }
 
+  getProductReview(pageNumber:number,pageSize:number,id:number,sort:string,filter:string): Observable<any>{
+    return this.http.get(`http://localhost:8080/api/v1/review/getProductReview?id=${id}&pageNumber=${pageNumber}&pageSize=${pageSize}&sort=${sort}&filter=${filter}`);
+  }
+  getProductRating(id:number): Observable<any>{
+    return this.http.get(`http://localhost:8080/api/v1/review/getProductRating?id=${id}`);
+  }
+
+  createReview(u: Object): Observable<any> {
+    return this.http.post(`http://localhost:8080/api/v1/review/postUserReview`, u);
+  }
 }
 
 interface GetResponseProducts {
