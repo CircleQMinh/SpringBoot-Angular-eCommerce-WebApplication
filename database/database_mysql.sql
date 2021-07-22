@@ -175,6 +175,39 @@ INSERT INTO `product` VALUES (1,'Mango LALBAG',24.55,'A almond-rich mango smooth
 UNLOCK TABLES;
 
 --
+-- Table structure for table `review`
+--
+
+DROP TABLE IF EXISTS `review`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `review` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userid` int DEFAULT NULL,
+  `productid` int DEFAULT NULL,
+  `blogid` int DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `content` varchar(5000) DEFAULT NULL,
+  `star` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk1_idx` (`userid`),
+  KEY `fk2_idx` (`productid`),
+  CONSTRAINT `fkproid` FOREIGN KEY (`productid`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fkuserid` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `review`
+--
+
+LOCK TABLES `review` WRITE;
+/*!40000 ALTER TABLE `review` DISABLE KEYS */;
+INSERT INTO `review` VALUES (2,2,2,NULL,'2021-07-12','Delicious!',4),(3,4,2,NULL,'2021-07-11','Could be better',3),(4,6,2,NULL,'2021-07-06','I eat this everyday',5),(5,7,2,NULL,'2021-07-21','Too expensive!',1),(6,8,2,NULL,'2021-07-01','Send to wrong address!',2),(7,9,2,NULL,'2021-07-19','Best gift for my wife!',5),(8,12,2,NULL,'2021-07-20','Is this from USA?',4),(9,13,2,NULL,'2021-07-09','Maybe next time',3),(11,3,2,NULL,'2021-07-22','5 star!',5),(12,3,1,NULL,'2021-07-22','I love mango!',5),(13,3,3,NULL,'2021-07-22','Doctor hate this product :)',4),(14,3,4,NULL,'2021-07-22','A summer dream!',5),(15,3,5,NULL,'2021-07-22','Yo it banana !',5),(16,3,6,NULL,'2021-07-22','My ma love this !',5),(17,3,7,NULL,'2021-07-22','Very sour!',3),(18,3,8,NULL,'2021-07-22','Is this orange ?',1),(19,3,9,NULL,'2021-07-22','Weird apple lol :v',2),(20,3,26,NULL,'2021-07-22','Very delicious with cheese',5),(21,3,27,NULL,'2021-07-22','My mom told me to buy this idk if it good',4),(22,3,28,NULL,'2021-07-22','Try onion with fried eggs ,  it so good!',5),(23,3,29,NULL,'2021-07-22','No bread included *angry*',2),(24,3,30,NULL,'2021-07-22','Wow people eat this thing ?',1),(25,3,31,NULL,'2021-07-22','Gonna make some tomato soup tonight!',5),(26,3,32,NULL,'2021-07-22','I love potato, can\'t get enough of this :))',5),(27,3,33,NULL,'2021-07-22','When life gave you lemon make lemonade',5),(28,3,51,NULL,'2021-07-22','Weird flex but OK!',4),(29,3,52,NULL,'2021-07-22','Yummy!',5),(30,3,53,NULL,'2021-07-22','Somewhat expensive :(',3),(31,3,54,NULL,'2021-07-22','I\'m vegan so...',4),(32,3,55,NULL,'2021-07-22','Put this in the frigde, enjoy delicious pie!',5),(33,3,56,NULL,'2021-07-22','What a ripoff lol :v',2),(34,3,57,NULL,'2021-07-22','Not very effective!',3),(35,3,58,NULL,'2021-07-22','Kids love this :))',4),(36,3,76,NULL,'2021-07-22','This is very good but the quantity is a little bit disappointed :o',4),(37,3,77,NULL,'2021-07-22','Always watch TSM while eating this :))',5),(38,3,78,NULL,'2021-07-22','7$ for bag of air wtf?',1),(39,3,79,NULL,'2021-07-22','There is a cheese flavor no way :o',3),(40,3,80,NULL,'2021-07-22','Is this really pumpkin ?',4),(41,3,81,NULL,'2021-07-22','The red one is better',3),(42,3,82,NULL,'2021-07-22','Deja vu!',4),(43,3,83,NULL,'2021-07-22','Yup this is better',5);
+/*!40000 ALTER TABLE `review` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -239,4 +272,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-21  3:06:46
+-- Dump completed on 2021-07-22 15:57:45
