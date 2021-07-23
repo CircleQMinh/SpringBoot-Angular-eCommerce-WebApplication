@@ -8,7 +8,7 @@
     button{text-transform:none;}
     button{-webkit-appearance:button;cursor:pointer;}
     button::-moz-focus-inner{border:0;padding:0;}
-    *,:after,:before{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+
     a:focus{outline:0;}
     img{max-width:100%;height:auto;}
     img{-ms-interpolation-mode:bicubic;}
@@ -147,14 +147,14 @@
     @media only screen and (max-width:767px){
     .header-promo-wrapper{display:none!important;}
     }
-    *{box-sizing:border-box;}
+
     .header-promo-wrapper{background:#897439;border:0;}
     .header-promo-wrapper .promo-code-box{text-align:center;color:#fff;}
     }
     /*! CSS Used from: https://www.finefoodspecialist.co.uk/static/version1626360940/frontend/WilliamsCommerce/finefood/en_GB/css/styles-l.min.css ; media=screen and (min-width: 768px) */
     @media screen and (min-width: 768px){
     @media all and (min-width:768px),print{
-    .header-promo-wrapper{padding:10px 20px;}
+    .header-promo-wrapper{padding:10px 20px;margin-top: -25px;}
     }
     }
     /*! CSS Used from: https://www.finefoodspecialist.co.uk/static/version1626360940/frontend/WilliamsCommerce/finefood/en_GB/css/print.min.css ; media=print */

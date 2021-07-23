@@ -51,6 +51,7 @@ export class ProductListComponent implements OnInit {
       if (cate != null) {
         this.category = cate
       }
+      this.pageNumber=1
       this.productService.getPage(this.pageNumber, this.pageSize, this.category).subscribe(
         data => {
           this.content = data.content;

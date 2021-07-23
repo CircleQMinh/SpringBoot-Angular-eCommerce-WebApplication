@@ -98,7 +98,7 @@ form.searchbar input[type=text] {
     padding: 10px;
     background: #2196F3;
     color: white;
-    font-size: 17px;
+    font-size: 24px;
     border: 1px solid grey;
     border-left: none; /* Prevent double borders */
     cursor: pointer;
