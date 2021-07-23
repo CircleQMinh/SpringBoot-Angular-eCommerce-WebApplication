@@ -4,3 +4,7 @@ body{
 .bg-light{
     background-color: #000232
 }
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}

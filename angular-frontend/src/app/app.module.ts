@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './component/product-list/product-list.component';
@@ -35,6 +35,9 @@ import { ProductComponent } from './component/product/product.component';
 import { AboutComponent } from './component/about/about.component';
 import { SlideHomeComponent } from './component/slide-home/slide-home.component';
 import { AccountFavoriteComponent } from './component/account-favorite/account-favorite.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BlogsComponent } from './component/blogs/blogs.component';
+import { AboutusComponent } from './component/aboutus/aboutus.component';
 
 
 
@@ -56,7 +59,7 @@ const routes: Routes = [
   { path: 'Shipper', component: ShipperComponent },
   { path: 'Shipper-Accepted', component: ShipperAcceptedOrderComponent },
   { path: 'Shiper-History', component: ShipperOrderHistoryComponent },
-
+  { path: 'blogs', component: BlogsComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'products/:id', component: ProductInfoComponent },
@@ -96,14 +99,17 @@ const routes: Routes = [
     ProductComponent,
     AboutComponent,
     SlideHomeComponent,
-    AccountFavoriteComponent
+    AccountFavoriteComponent,
+    BlogsComponent,
+    AboutusComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,FormsModule, NgbModule, HotToastModule.forRoot()
+    ReactiveFormsModule,FormsModule, NgbModule, HotToastModule.forRoot(), BrowserAnimationsModule,
+    CollapseModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

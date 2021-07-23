@@ -10,7 +10,7 @@ export class NavComponent implements OnInit {
 
   username!:string;
   url!:string;
-
+  isCollapsed:boolean=true
   constructor(public loginService:LoginService) { }
 
   ngOnInit(): void {

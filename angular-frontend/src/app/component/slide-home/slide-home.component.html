@@ -1,37 +1,41 @@
 
 
-<ngb-carousel #carousel [interval]="2400" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus"
+<ngb-carousel #carousel [interval]="2400" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus"[showNavigationArrows]="true" 
+[showNavigationIndicators]="true"
+[keyboard]="true"
+[pauseOnHover]="true"
+[wrap]="true"
     (slide)="onSlide($event)">
     <ng-template ngbSlide>
         <div class="picsum-img-wrapper">
-            <img [src]="images[0]" alt="Random first slide" class="mh-100" style="width: 100%; height: 70vh">
+            <img [src]="images[0]" alt="Random first slide" class="mh-100" style="width: 100%; height: 90vh">
         </div>
         <div class="carousel-caption">
-            <button>Shop Now <i class="fas fa-arrow-right"></i></button>
+            <button routerLink="/products/category/Fruit">Shop Now <i class="fas fa-arrow-right"></i></button>
       </div>
     </ng-template>
     <ng-template ngbSlide>
         <div class="picsum-img-wrapper">
-            <img [src]="images[1]" alt="Random second slide" class="mh-100" style="width: 100%; height: 70vh">
+            <img [src]="images[1]" alt="Random second slide" class="mh-100" style="width: 100%; height: 90vh">
         </div>
         <div class="carousel-caption">
-            <button>Shop Now <i class="fas fa-arrow-right"></i></button>
+            <button routerLink="/products/category/Vegetable">Shop Now <i class="fas fa-arrow-right"></i></button>
       </div>
     </ng-template>
     <ng-template ngbSlide>
         <div class="picsum-img-wrapper">
-            <img [src]="images[2]" alt="Random second slide" class="mh-100" style="width: 100%; height: 70vh">
+            <img [src]="images[2]" alt="Random second slide" class="mh-100" style="width: 100%; height: 90vh">
         </div>
         <div class="carousel-caption">
-            <button>Shop Now <i class="fas fa-arrow-right"></i></button>
+            <button routerLink="/products/category/Snack">Shop Now <i class="fas fa-arrow-right"></i></button>
       </div>
     </ng-template>
     <ng-template ngbSlide>
         <div class="picsum-img-wrapper">
-            <img [src]="images[3]" alt="Random second slide" class="mh-100" style="width: 100%; height: 70vh">
+            <img [src]="images[3]" alt="Random second slide" class="mh-100" style="width: 100%; height: 90vh">
         </div>
         <div class="carousel-caption">
-            <button>Shop Now <i class="fas fa-arrow-right"></i></button>
+            <button routerLink="/products/category/Confectionery">Shop Now <i class="fas fa-arrow-right"></i></button>
       </div>
     </ng-template>
 </ngb-carousel>
