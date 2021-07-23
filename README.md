@@ -12,11 +12,12 @@
 12-07-2021 : thêm chức năng update ảnh đại diện, thông tin cá nhân và thêm trang quản lý người dùng.<br>
 13-07-2021 : thêm chức năng thêm, xóa, sửa cho trang quản lý người dùng.<br>
 14-07-2021 : thêm trang quản lý đơn hàng, chức năng duyệt đơn, xem thông tin đơn hàng và xóa đơn hàng.<br>
-15-07-2021 : thêm trang dashboard. (Lười quá :v) .!<br>
+15-07-2021 : thêm trang dashboard. (Lười quá :) ).<br>
 16-07-2021 : hoàn thành trang dashboard.<br>
 17-07-2021 : thêm trang cho shipper và chức năng nhận đơn hàng.<br>
 18-07-2021 : hoàn thành trang shipper và thêm chức năng ghi chú cho đơn hàng.<br>
 19-07-2021 : thêm chức năng hủy đơn hàng cho khách hàng và update trang chủ nhìn cho đẹp.<br>
 20-07-2021 : nghỉ hè 🤭.<br>
 21-07-2021 : thêm chức năng cho người dùng thêm sản phẩm vào danh sách yêu thích và xóa sản phẩm khỏi danh sách yêu thích.<br>
-22-07-2021 : thêm chức năng cho người dùng xem đánh giá và nhận xét của sản phẩm đồng thời gửi đánh giá và nhận xét của sản phẩm
+22-07-2021 : thêm chức năng cho người dùng xem đánh giá và nhận xét của sản phẩm đồng thời gửi đánh giá và nhận xét của sản phẩm.<br>
+23-07-2021 : thêm trang blog và cập nhật thanh navigation.<br>
