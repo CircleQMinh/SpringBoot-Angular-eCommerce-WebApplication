@@ -21,3 +21,4 @@
 21-07-2021 : thêm chức năng cho người dùng thêm sản phẩm vào danh sách yêu thích và xóa sản phẩm khỏi danh sách yêu thích.<br>
 22-07-2021 : thêm chức năng cho người dùng xem đánh giá và nhận xét của sản phẩm đồng thời gửi đánh giá và nhận xét của sản phẩm.<br>
 23-07-2021 : thêm trang blog và cập nhật thanh navigation.<br>
+----------------------------Project Finished--------------------------------------------------------------------
